@@ -60,35 +60,23 @@
                     <!-- ========================= NAVIGATION MENU ========================-->
                     <nav>
                         <ul class="menu main_menu hover_menu">
-                            <li><a title="Home" href="{{url('/')}}">HOME</a></li>
-                            <li class="lihasdropdown  drop-left"><a title="more" href="#">About us</a>
-                                <ul class="menu-dropdown">
-                                    <li><a title="HEALTH LIBRARY" href="./knowledgebase.html">Who we are</a></li>
-                                    <li><a title="Filterable PORTFOLIO grid" href="./portfolio.html">History</a></li>
-                                    <li><a title="Filterable PORTFOLIO grid" href="./portfolio.html">Mission & vission</a></li>
-                                    <li><a title="Filterable PORTFOLIO grid" href="./portfolio.html">R&D</a></li>
-                                    <li><a title="Filterable PORTFOLIO grid" href="./portfolio.html">Quality</a></li>
-                                    <li><a title="Filterable PORTFOLIO grid" href="./portfolio.html">Management</a></li>
-                                </ul>
-                            </li>
-                            <li><a title="SERVICES" href="./services.html">Products</a></li>
-                            <li><a title="HEALTH PLANS" href="./health-plans.html">Export</a></li>
-                            <li><a title="News" href="./blog.html">Cme</a></li>
-                            <li><a title="CONTACT" href="./contact.html">csr</a></li>
-                            <li><a title="CONTACT" href="./contact.html">investors</a></li>
-                            <li class="lihasdropdown drop-left"><a title="more" href="#">careers </a>
-                                <ul class="menu-dropdown">
-                                    <li><a title="Blog Post" href="./single.html">Blog Post</a></li>
-                                    <li><a title="Blog Post" href="./single.html">Blog Post</a></li>
-                                </ul>
-                            </li>
+                            @foreach(App\Page::where('active' , 1)->get() as $pages )
+                                @if($pages->page_id == 0 && $pages->page_id == $pages->id)
+                                    <li><a title="Home" href="{{url('/')}}">{{$pages->title['en']}}</a></li>
+                                @endif
 
-                            <li class="lihasdropdown drop-left"><a title="more" href="#">Contact us</a>
+                            @endforeach
+                            @foreach(App\Page::where('active' , 1)->get() as $pages )
+                            @if($pages->page_id >0 && $pages->page_id >0 )
+                            <li class="lihasdropdown drop-left"><a title="more" href="#">{{$pages->title['en']}} </a>
                                 <ul class="menu-dropdown">
-                                    <li><a title="Blog Post" href="./single.html">Pharmacovigilance</a></li>
-                                    <li><a title="Blog Post" href="./single.html">Location</a></li>
+                                    <li><a title="Blog Post" href="./single.html">Blog Post</a></li>
+                                    <li><a title="Blog Post" href="./single.html">Blog Post</a></li>
                                 </ul>
                             </li>
+                        @endif
+                        @endforeach
+
                             <li class="lihasdropdown drop-left"><a title="en" href="#"><img src="{{url('frontend/assets/images/us.jpg')}}" width="20"> </a>
                                 <ul class="menu-dropdown">
 

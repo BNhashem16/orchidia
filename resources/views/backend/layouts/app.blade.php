@@ -101,6 +101,25 @@
                 <li class="heading">
                     <h3 class="uppercase">Features</h3>
                 </li>
+
+                
+                <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-briefcase"></i>
+                            <span class="title">Component Table List</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('dashboard/component/category')}}" class="nav-link "> Component Table </a>
+                            </li>
+    
+                            <li class="nav-item  ">
+                                <a href="{{url('dashboard/component/category/create')}}" class="nav-link ">Create Component </a>
+                            </li>
+                        </ul>
+                    </li>
+
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-briefcase"></i>
@@ -169,6 +188,23 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-briefcase"></i>
+                            <span class="title">Component Table List</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('dashboard/component')}}" class="nav-link "> Component Table </a>
+                            </li>
+    
+                            <li class="nav-item  ">
+                                <a href="{{url('dashboard/component/create')}}" class="nav-link ">Create Component </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">

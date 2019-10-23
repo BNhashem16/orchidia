@@ -10,10 +10,10 @@
                         <div class="container">
                             <div class="caption caption-right caption-fancy">
                                 <div class="inner animated bounceInUp">
-                                    <div class="t1">{{$slider->big_header}}</div>
-                                    <div class="t2 uppercase">{{$slider->title}}</div>
-                                    <div class="t3 uppercase">{{$slider->small_header}}</div>
-                                    <p class="desc hidden-xxs">{{$slider->paragraph}} </p>
+                                    <div class="t1">{{$slider->big_header['en']}}</div>
+                                    <div class="t2 uppercase">{{$slider->title['en']}}</div>
+                                    <div class="t3 uppercase">{{$slider->small_header['en']}}</div>
+                                    <p class="desc hidden-xxs">{{$slider->paragraph['en']}} </p>
                                 </div>
                             </div>
                         </div>
