@@ -22,30 +22,13 @@
                     <div class="portlet-body form">
 
                         <!-- BEGIN FORM-->
-                        {!! Form::model($lang,['route' => ['lang.update',$lang->id], 'method' => 'PATCH'] , ['class' =>'form-horizontal form-bordered'] ) !!}
+                        {!! Form::model($component_category,['route' => ['category.update',$component_category->id], 'method' => 'PATCH'] , ['class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Name</label>
+                                    <label class="control-label col-md-3">Title</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" value="{{$lang->name}}" name="name">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Code</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" value="{{$lang->short_code}}" name="short_code">
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group ">
-                                    <label class="control-label col-md-3">Active</label>
-                                    <div class="col-md-9">
-                                             <input type="radio" value="1" @if($lang->active == 1) checked @endif  name="status"> Active <br>
-                                             <input type="radio" value="0" @if($lang->active == 0) checked @endif name="status"> Deactivate
-                                        </div>
+                                        <input type="text" class="form-control" value="{{$component_category->title}}" name="title">
                                     </div>
                                 </div>
 
@@ -55,7 +38,7 @@
                                     <div class="col-md-offset-3 col-md-9">
                                         <button type="Submit" class="btn green">
                                                 <i class="fa fa-check"></i> Submit</button>
-                                        <a href="{{url('dashboard/lang')}}" class="btn btn-outline grey-salsa">Cancel</a>
+                                        <a href="{{url('dashboard/component/category')}}" class="btn btn-outline grey-salsa">Cancel</a>
                                     </div>
                                 </div>
                             </div>

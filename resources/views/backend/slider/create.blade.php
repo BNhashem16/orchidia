@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                 <label class="control-label col-md-3">Main Header {{$lang->name}}</label>
                                     <div class="col-md-9">
-                                    <textarea class="form-control" name="big_header[{{$lang->short_code}}]" value="">{{old('big_header.'.$lang->short_code)}}</textarea>
+                                    <textarea class="form-control" name="title[{{$lang->short_code}}]" value="">{{old('title.'.$lang->short_code)}}</textarea>
                                     </div>
                                 </div>
                                 @endforeach
@@ -37,11 +37,11 @@
                                 <div class="form-group">
                                 <label class="control-label col-md-3">Title {{$lang->name}}</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                        <input type="text" class="form-control" name="sub_title[{{$lang->short_code}}]" value="{{old('sub_title.'.$lang->short_code)}}">
                                     </div>
                                 </div>
                                 @endforeach
-
+{{-- 
                                 @foreach($langs as $lang)
                                 <div class="form-group">
                                 <label class="control-label col-md-3">Small Header {{$lang->name}}</label>
@@ -49,13 +49,13 @@
                                         <textarea class="form-control" name="small_header[{{$lang->short_code}}]">{{old('small_header.'.$lang->short_code)}}</textarea>
                                     </div>
                                 </div>
-                                @endforeach
+                                @endforeach --}}
 
                                 @foreach($langs as $lang)
                                 <div class="form-group">
                                 <label class="control-label col-md-3">Paragraph {{$lang->name}}</label>
                                     <div class="col-md-9">
-                                        <textarea class="form-control" name="paragraph[{{$lang->short_code}}]">{{old('paragraph.'.$lang->short_code)}}</textarea>
+                                        <textarea class="form-control" name="description[{{$lang->short_code}}]">{{old('description.'.$lang->short_code)}}</textarea>
                                     </div>
                                 </div>
                                 @endforeach

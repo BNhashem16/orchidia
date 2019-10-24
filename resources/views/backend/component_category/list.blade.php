@@ -49,11 +49,12 @@
 
                                         <a class="btn btn-info " href="{{route('category.edit',$component_category->id)}}"> Edit </a>
                                     </td>
-
-
+                                    
+                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['category.destroy',$component_category->id]]) !!}
                                     <td>
                                         <button class="btn btn-danger" data-id="{{$component_category->id}}" onclick="deletefunction({{$component_category->id}},'{{url('/')}}')"> Delete </button>
                                     </td>
+                                    {!! Form::Close() !!}
                                 </tr>
                                     @endforeach
                                 </tbody>
@@ -73,35 +74,19 @@
 @endsection
 @section('jsCode')
     <script type="text/javascript">
-        $(document).on('click','.active_change',function () {
-            var url = $(this).data('url');
-            var id = $(this).data('id');
-            var active = $(this).data('active');
-            $.ajax({
-                type: "GET",
-                url:url+'/dashboard/lang/change_active/'+id,
-                data: {'id':id,'active':active},
-                cache: false,
-                success: function(result)
-                {
-                    $('.table_change').html(result);
-                }
-            });
+                function deletefunction(id,url) {
 
-        });
-        function deletefunction(id,url) {
-
-            $.ajax({
-                type: "GET",
-                url:url+'/dashboard/lang/delete_ajax/'+id,
-                data: {'id':id},
-                cache: false,
-                success: function(result)
-                {
-                    $('.table_change').html(result);
-                }
-            });
-        }
+$.ajax({
+    type: "GET",
+    url:url+'dashboard/component/category/delete_ajax/'+id,
+    data: {'id':id},
+    cache: false,
+    success: function(result)
+    {
+        $('.table_change').html(result);
+    }
+});
+}
     </script>
     @endsection
 @extends('backend.layouts.app')

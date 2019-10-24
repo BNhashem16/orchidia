@@ -41,7 +41,7 @@
                                         <th> Image </th>
                                         <th> Main Header </th>
                                         <th> Title </th>
-                                        <th> Small Header </th>
+                                        {{-- <th> Small Header </th> --}}
                                         <th> Paragraph </th>
                                         <th> Edit </th>
                                         <th> Delete </th>
@@ -52,10 +52,10 @@
                                         <tr>
                                             <td> {{$key+1}} </td>
                                             <td><img width="100px" height="100px" src="{{url($slider->image)}}"></td>
-                                            <td>{{$slider->big_header['en']}}</td>
                                             <td>{{$slider->title['en']}}</td>
-                                            <td class="center">{{$slider->small_header['en']}}</td>
-                                            <td>{{substr($slider->paragraph['en'],0,30)}}</td>
+                                            <td>{{$slider->sub_title['en']}}</td>
+                                            {{-- <td class="center">{{$slider->small_header['en']}}</td> --}}
+                                            <td>{{substr($slider->description['en'],0,30)}}</td>
                                             {!! Form::Close() !!}
                                             <td>
                                                     <a class="btn btn-info " href="{{route('slider.edit',$slider->id)}}"> Edit </a>

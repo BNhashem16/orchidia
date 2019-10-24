@@ -41,7 +41,6 @@ Route::get('dashboard/pages/delete_ajax/{page}','backend\PagesController@ajax_de
 Route::get('dashboard/pages/change_active/{page}','backend\PagesController@change_active')->name('change.active');
 #Component Category
 Route::resource('dashboard/component/category', 'backend\Component_categoryController');
-
 #Login
 Route::get('dashboard/login', 'backend\UserController@login');
 Route::post('dashboard/login', 'backend\UserController@doLogin');

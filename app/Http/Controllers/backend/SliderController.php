@@ -9,19 +9,21 @@ use Illuminate\Http\Request;
 use Exception;
 use Session;
 use Redirect;
+use App\Component_category;
+use App\Component;
 use File;
 
 class SliderController extends Controller
 {
     public function index()
     {
-        $slider = Slider::orderBy('id','DESC')->get();
+        $slider = Component::where('component_category_id' , 2)->orderBy('id','DESC')->get();
         return view('backend.slider.list')->with('slider' , $slider);
     }
 
     public function create()
     {
-        $slider = Slider::all();
+        $slider = Component::all();
         $langs = Language::where('active' , 1)->get();
         return view('backend.slider.create')->with('slider' ,$slider)->with('langs' ,$langs);
     }
@@ -29,20 +31,20 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'big_header.en'=>'required',
-            'big_header.ar'=>'required',
-            'small_header.en'=>'required',
-            'small_header.ar'=>'required',
-            'paragraph.en'=>'required',
-            'paragraph.ar'=>'required',
+            'title.en'=>'required',
+            'title.ar'=>'required',
+            'sub_title.en'=>'required',
+            'sub_title.ar'=>'required',
+            'description.en'=>'required',
+            'description.ar'=>'required',
         ]);
         try {
-            $slider = new Slider;
-            $slider->slider = 1;
-            $slider->bannar = 0;
-            $slider->big_header = $request->input('big_header');
-            $slider->small_header = $request->input('small_header');
-            $slider->paragraph = $request->input('paragraph');
+            $slider = new Component;
+            $slider->component_category_id = 2;
+            // $slider->bannar = 0;
+            $slider->title = $request->input('title');
+            $slider->sub_title = $request->input('sub_title');
+            $slider->description = $request->input('description');
             // start Update Image
             if ($request->hasfile('image')) {
                 File::Delete($slider->image);
@@ -55,12 +57,10 @@ class SliderController extends Controller
                 $slider->image = 'No Image';
             }
             // Ending Update Image
-            $slider->title = $request->input('title'); 
             $slider->save();
             Session::flash('success' , 'Slider Added Successfully');
             return Redirect::to('dashboard/slider');
         } catch (\Exception $e) {
-
             dd($e);
             Session::flash('error', 'Slider Not Added');
         }
@@ -77,20 +77,20 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'big_header.en'=>'required',
-            'big_header.ar'=>'required',
-            'small_header.en'=>'required',
-            'small_header.ar'=>'required',
-            'paragraph.en'=>'required',
-            'paragraph.ar'=>'required',
+            'title.en'=>'required',
+            'title.ar'=>'required',
+            'sub_title.en'=>'required',
+            'sub_title.ar'=>'required',
+            'description.en'=>'required',
+            'description.ar'=>'required',
         ]);
         try {
             $slider = slider::where('id',$id)->first();
             $slider->slider = 1;
             $slider->bannar = 0;
-            $slider->big_header = $request->input('big_header');
-            $slider->small_header = $request->input('small_header');
-            $slider->paragraph = $request->input('paragraph');
+            $slider->title = $request->input('title');
+            $slider->sub_title = $request->input('sub_title');
+            $slider->description = $request->input('description');
             // start Update Image
             if ($request->hasfile('image')) {
                 File::Delete($slider->image);

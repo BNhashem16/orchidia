@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Component_category;
 use Session;
 use Redirect;
+use validator;
 
 class Component_categoryController extends Controller
 {
@@ -45,59 +46,40 @@ class Component_categoryController extends Controller
         return Redirect::back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $component_category = Component_category::find($id);
+        return view('backend.component_category.edit')->with('component_category' , $component_category);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         try {
-            $component_category = Component_category::where('id' , $id)->first();
-            if (Component_category::where('id' , $id)->count()) {
-                Session::flash('error' , 'This Category is A Sub Categoies');
-            } else {
-                Session::flash('success' , 'Category Deleted Successfully');
-                $component_category->delete();
-            }
-        } catch (Exception $e) {
-            Session::flash('error' ,'This Category is A Sub Categoies');
+            $component_category = Component_category::where('id',$id)->first();
+            $component_category->title = $request->input('title');
+            $component_category->save();
+            Session::flash('success', 'Component Updated Successfully');
+            return Redirect::to('dashboard/component/category');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Component Not Updated');
+            return Redirect::back();
         }
-        return Redirect::back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+    	if(!$id || Component_category::where('id',$id)->count() == 0) {
+    		return \App::abort(404);
+    	}
+
+		try {
+			Component_category::where('id',$id)->delete();
+    		Session::flash('success','Component Category Deleted Successfully');
+		} catch (\Exception $e) {
+			Session::flash('error','Component Category Not Deleted');
+		}
+		return Redirect::back();
     }
 }
