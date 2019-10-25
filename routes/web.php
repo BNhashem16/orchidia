@@ -16,7 +16,12 @@ Route::get('news', 'frontend\NewsController@index');
 # Sub News Route
 Route::get('News/{slug}', 'frontend\NewsController@sub_news');
 #Event Route
-Route::get('news', 'frontend\NewsController@index');
+Route::get('events', 'frontend\EventController@index');
+# Sub Event Route
+Route::get('Events/{slug}', 'frontend\EventController@sub_events');
+# Calender
+Route::get('Calender', 'HomeController@calender');
+
 //============
 //==Back End==
 //============

@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('frontend.layouts.index');
     }
+
+    public function calender()
+    {
+        return view('frontend.calender');
+    }
 }

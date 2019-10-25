@@ -38,12 +38,12 @@
                                 <div class="entry_text">News</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry secondary_section"><a href="knowledgebase.html">
+                        <div class="entry secondary_section"><a href="{{url('events')}}">
                                 <div style="background-image:url('frontend/assets/images/events.png');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">Events</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry skincolored_section"><a href="#contact_panel">
+                        <div class="entry skincolored_section"><a href="{{url('Calender')}}">
                                 <div style="background-image:url('frontend/assets/images/calendar.png');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">calender</div></a></div>
                     </div>
