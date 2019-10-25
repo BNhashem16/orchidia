@@ -15,9 +15,9 @@ class CreateComponentCategoriesTable extends Migration
     {
         Schema::create('component_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->string('title')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

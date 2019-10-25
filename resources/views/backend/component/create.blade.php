@@ -21,16 +21,15 @@
                 <div class="portlet light form-fit bordered">
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
-                        {!! Form::Open(['route'=>'pages.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
+                        {!! Form::Open(['route'=>'component.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
                                 
                                     <div class="form-group">
-                                            <label class="control-label col-md-3">Page</label>
+                                            <label class="control-label col-md-3">Category</label>
                                             <div class="col-md-3">
-                                                <select class="form-control" name="page_id">
-                                                    <option value="0" >No parent</option>
-                                                    @foreach($page as $key => $page)
-                                                        <option value="{{$page->id}}" >{{$page->title['en']}}</option>
+                                                <select class="form-control" name="component_category_id">
+                                                    @foreach($component_category as $key => $component_category)
+                                                        <option value="{{$component_category->id}}" >{{$component_category->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -44,6 +43,14 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                @foreach($langs as $lang)        
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Small Title {{$lang->name}}</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="sub_title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                        </div>
+                                    </div>
+                                @endforeach
                                 @foreach($langs as $lang) 
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Description {{$lang->name}}</label>
@@ -52,33 +59,20 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-
-                                <div class="form-group ">
-                                    <label class="control-label col-md-3">Have Gallary</label>
-                                    <div class="col-md-9">
-                                             <input type="radio" value="yes"  name="have_gallary"> Yes <br>
-                                             <input type="radio" value="no"  name="have_gallary"> No
-                                    </div>
-                                </div>
-                                
-                                
-                                <div class="form-group ">
-                                    <label class="control-label col-md-3">Have Gallary</label>
-                                    <div class="col-md-9">
-                                             <input type="radio" value="yes"  name="have_form"> Yes <br>
-                                             <input type="radio" value="no"  name="have_form"> No
-                                    </div>
-                                </div>
-                            
-                                <div class="form-group ">
-                                    <label class="control-label col-md-3">Active</label>
-                                    <div class="col-md-9">
-                                             <input type="radio" value="1"  name="status"> Active <br>
-                                             <input type="radio" value="0"  name="status"> Deactivate
+                                @foreach($langs as $lang)        
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Extra {{$lang->name}} (optional)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach        
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Link </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="link">
+                                        </div>
+                                    </div>
 
                                 <div class="form-group last">
                                     <label class="control-label col-md-3">Upload Image</label>

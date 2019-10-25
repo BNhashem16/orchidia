@@ -102,20 +102,19 @@
                     <h3 class="uppercase">Features</h3>
                 </li>
 
-                
                 <li class="nav-item  ">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-briefcase"></i>
-                            <span class="title">Component Table List</span>
+                            <span class="title">Component category List</span>
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item  ">
-                                <a href="{{url('dashboard/component/category')}}" class="nav-link "> Component Table </a>
+                                <a href="{{url('dashboard/component/category')}}" class="nav-link "> Component category Table </a>
                             </li>
     
                             <li class="nav-item  ">
-                                <a href="{{url('dashboard/component/category/create')}}" class="nav-link ">Create Component </a>
+                                <a href="{{url('dashboard/component/category/create')}}" class="nav-link ">Create Category </a>
                             </li>
                         </ul>
                     </li>
@@ -123,16 +122,16 @@
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-briefcase"></i>
-                        <span class="title">Category Table List</span>
+                        <span class="title">Component List</span>
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <a href="{{url('dashboard/categories')}}" class="nav-link "> Category Table </a>
+                            <a href="{{url('dashboard/component')}}" class="nav-link "> Component Table </a>
                         </li>
 
                         <li class="nav-item  ">
-                            <a href="{{url('dashboard/categories/create')}}" class="nav-link ">Create Category Table </a>
+                            <a href="{{url('dashboard/component/create')}}" class="nav-link ">Create Component </a>
                         </li>
                     </ul>
                 </li>

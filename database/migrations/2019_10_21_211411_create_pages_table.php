@@ -23,9 +23,9 @@ class CreatePagesTable extends Migration
             $table->string('page_id');
             $table->enum('have_gallary', ['yes' , 'no']);
             $table->enum('have_form', ['yes' , 'no']);
-            $table->integer('form_id');
-            $table->integer('created_by');
-            $table->integer('updatde_by');
+            $table->integer('form_id')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updatde_by')->nullable();
             $table->timestamps();
 
         });

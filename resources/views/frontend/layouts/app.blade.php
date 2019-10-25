@@ -57,38 +57,27 @@
                     <p class="animated slideInLeft">Call us Toll free +30 1234-567-890</p>
                 </div>
                 <div class="menu_container"><span class="close_menu">&times;</span>
-                    <!-- ========================= NAVIGATION MENU ========================-->
-                    <nav>
-                        <ul class="menu main_menu hover_menu">
-                            @foreach(App\Page::where('active' , 1)->get() as $pages )
-                                @if($pages->page_id == 0 && $pages->page_id == $pages->id)
-                                    <li><a title="Home" href="{{url('/')}}">{{$pages->title['en']}}</a></li>
-                                @endif
-
-                            @endforeach
-                            @foreach(App\Page::where('active' , 1)->get() as $pages )
-                            @if($pages->page_id >0 && $pages->page_id >0 )
-                            <li class="lihasdropdown drop-left"><a title="more" href="#">{{$pages->title['en']}} </a>
-                                <ul class="menu-dropdown">
-                                    <li><a title="Blog Post" href="./single.html">Blog Post</a></li>
-                                    <li><a title="Blog Post" href="./single.html">Blog Post</a></li>
-                                </ul>
-                            </li>
-                        @endif
-                        @endforeach
-
-                            <li class="lihasdropdown drop-left"><a title="en" href="#"><img src="{{url('frontend/assets/images/us.jpg')}}" width="20"> </a>
-                                <ul class="menu-dropdown">
-
-
-                                    <li><a class="flg_a" title="ar" href="http://orchidiapharma.com/ar"><img src="{{url('frontend/assets/images/egy.jpg')}}"></a></li>
-
-
-                                </ul>
-                            </li>
+                  <!-- ========================= NAVIGATION MENU ========================-->
+                  <nav>
+                    <ul class="menu main_menu hover_menu">
+                      @foreach(App\Page::where('active',1)->where('page_id',0)->get() as $page)
+                      @if(count($page->childs))
+                      <li><a title="Home" href="./index.html">HOME</a></li>
+                      @endif
+                      @endforeach
+                      @foreach(App\Page::where('active',1)->where('page_id',0)->get() as $sub_nav)
+                      <li class="lihasdropdown two-column drop-left"><a title="more" href="#">{{$sub_nav->title['en']}} </a>
+                        <ul class="menu-dropdown">
+                          @foreach(App\Page::where('active',1)->where('page_id','id')->get() as $dropdown)
+                          <li><a title="HEALTH LIBRARY" href="./knowledgebase.html">{{$dropdown->title['en']}} </a></li>
+                          <li><a title="Blog Compact" href="./blog-compact.html">Blog Compact </a></li>
+                          @endforeach
                         </ul>
-                    </nav>
-                    <!-- END====================== NAVIGATION MENU ========================-->
+                      </li>
+                      @endforeach
+                    </ul>
+                  </nav>
+                  <!-- END====================== NAVIGATION MENU ========================-->
                 </div>
                 <label class="mobile_collapser">MENU  </label>
                 <!-- =========================== SOCIAL ICONS =========================--><a title="" href="#" class="social_links"><i class="fa fa-share-alt"></i></a>

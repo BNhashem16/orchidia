@@ -4,16 +4,17 @@
         <div class="slider_wrapper">
             <div id="head_panel_slider" class="owl-carousel">
                 <!-- ============================ SLIDE ==========================-->
-                @foreach(App\Slider::where('slider',1)->get() as $slider)
+                <?php $component_cat = App\Component_category::first();  ?>
+                @foreach(App\Component::where('component_category_id',$component_cat->id)->get() as $slider)
                 <div class="stretchy-wrapper ratio_slider" >
                     <div style="background-image: url({{$slider->image}});" aria-hidden="true" class="item">
                         <div class="container">
                             <div class="caption caption-right caption-fancy">
                                 <div class="inner animated bounceInUp">
-                                    <div class="t1">{{$slider->big_header['en']}}</div>
-                                    <div class="t2 uppercase">{{$slider->title['en']}}</div>
-                                    <div class="t3 uppercase">{{$slider->small_header['en']}}</div>
-                                    <p class="desc hidden-xxs">{{$slider->paragraph['en']}} </p>
+                                    <div class="t1">{{$slider->title['en']}}</div>
+                                    <div class="t2 uppercase">{{$slider->sub_title['en']}}</div>
+                                    <div class="t3 uppercase">{{$slider->extra['en']}}</div>
+                                    <p class="desc hidden-xxs">{{$slider->description['en']}} </p>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +33,7 @@
                 <div class="row">
                     <!-- ========================= ENTRY ========================-->
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry skincolored_section"><a href="services.html">
+                        <div class="entry skincolored_section"><a href="{{url('news')}}">
                                 <div style="background-image:url('frontend/assets/images/News.jpg');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">News</div></a></div>
                     </div>

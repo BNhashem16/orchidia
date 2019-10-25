@@ -1,4 +1,4 @@
-@section('content')
+    @section('content')
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a class="btn green" href="{{route('pages.create')}}" >Add New
+                                            <a class="btn green" href="{{route('component.create')}}" >Add New
                                                 <i class="fa fa-plus"></i>
                                           </a>
 
@@ -38,36 +38,38 @@
                                 <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Title English </th>
-                                    <th> Description </th>
                                     <th> Image </th>
-                                    <th> Status</th>
+                                    <th> Title </th>
+                                    <th> Category Component</th>
+                                    <th> Small Title </th>
+                                    <th> Description </th>
+                                    <th> Extra</th>
                                     <th> Edit </th>
                                     <th> Delete </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($page as $key => $page)
-                                    <td class="center">{{$key+1}} </td>
-                                    <td class="center">{{$page->title['en']}}</td>
-                                    <td class="center">{{$page->description['en']}}</td>
-                                    <td class="center"><img width="100px" height="100px" src="{{url($page->image)}}" > </td>
-                                    <td class="center">
-                                        @if($page->active ==1)
-                                            <label class="btn btn-primary active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Active</label>
-                                        @else
-                                            <label class="btn btn-danger active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Inactive</label> @endif
+
+                                @foreach($components as  $component)
+
+                                    <td class="center">{{$component->id}} </td>
+                                    <td class="center"><img width="100px" height="100px" src="{{url($component->image)}}" >
                                     </td>
+                                    <td class="center">{{$component->title['en']}}</td>
+                                    <td>{{$component->category_component->title}}</td>
+                                    <td class="center">{{$component->sub_title['en']}}</td>
+                                    <td class="center">{{$component->description['en']}}</td>
+                                    <td class="center">{{$component->extra['en']}}</td>
 
 
                                     <td>
 
-                                        <a class="btn btn-info " href="{{route('lang.edit',$page->id)}}"> Edit </a>
+                                        <a class="btn btn-info " href="{{route('component.edit',$component->id)}}"> Edit </a>
                                     </td>
 
 
                                     <td>
-                                        <button class="btn btn-danger" data-id="{{$page->id}}" onclick="deletefunction({{$page->id}},'{{url('/')}}')"> Delete </button>
+                                        <button class="btn btn-danger" data-id="{{$component->id}}" onclick="deletefunction({{$component->id}},'{{url('/')}}')"> Delete </button>
                                     </td>
                                 </tr>
                                     @endforeach

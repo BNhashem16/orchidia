@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Exception;
 use Session;
 use Redirect;
+use validator;
 use File;
 
 class PagesController extends Controller
@@ -22,7 +23,7 @@ class PagesController extends Controller
 
     public function create()
     {
-        $page = Page::all();
+        $page = Page::get();
         $langs = Language::where('active' , 1)->get();
         return view('backend.pages.create')->with('page' ,$page)->with('langs' ,$langs);
     }
@@ -35,7 +36,7 @@ class PagesController extends Controller
         ]);
 
         try {
-            $title_en= $request->title["en"];
+            $title_en= $request->title['en'];
             $page = new Page;
             $page->title = $request->title;
             $page->description = $request->description;
@@ -58,11 +59,15 @@ class PagesController extends Controller
             $page->have_gallary = $request->input('have_gallary');
             $page->have_form = $request->input('have_form');
             $page->save();
-            Session::flash('success' , 'Language Added Successfully');
-            return Redirect::back();
+
+            Session::flash('success' , 'Page Added Successfully');
+            return Redirect::to('dashboard/pages');
         } catch (\Exception $e) {
 
-            Session::flash('error', 'Language Not Added');
+
+            Session::flash('error', 'Page Not Added');
+            // dd($page);
+            // var_dump($e);
         }
         return Redirect::back();
     }

@@ -23,7 +23,6 @@
                         <!-- BEGIN FORM-->
                         {!! Form::Open(['route'=>'pages.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
-                                
                                     <div class="form-group">
                                             <label class="control-label col-md-3">Page</label>
                                             <div class="col-md-3">
@@ -31,12 +30,12 @@
                                                     <option value="0" >No parent</option>
                                                     @foreach($page as $key => $page)
                                                         <option value="{{$page->id}}" >{{$page->title['en']}}</option>
-                                                    @endforeach
+                                                        @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                        
-                                @foreach($langs as $lang)        
+
+                                @foreach($langs as $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Title {{$lang->name}}</label>
                                         <div class="col-md-9">
@@ -44,7 +43,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                @foreach($langs as $lang) 
+                                @foreach($langs as $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Description {{$lang->name}}</label>
                                         <div class="col-md-9">
@@ -61,16 +60,16 @@
                                              <input type="radio" value="no"  name="have_gallary"> No
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 <div class="form-group ">
-                                    <label class="control-label col-md-3">Have Gallary</label>
+                                    <label class="control-label col-md-3">Have Form</label>
                                     <div class="col-md-9">
                                              <input type="radio" value="yes"  name="have_form"> Yes <br>
                                              <input type="radio" value="no"  name="have_form"> No
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group ">
                                     <label class="control-label col-md-3">Active</label>
                                     <div class="col-md-9">
@@ -78,7 +77,7 @@
                                              <input type="radio" value="0"  name="status"> Deactivate
                                         </div>
                                     </div>
-                                </div>
+
 
                                 <div class="form-group last">
                                     <label class="control-label col-md-3">Upload Image</label>
@@ -94,17 +93,17 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            <!-- </div> -->
                             <div class="form-actions">
                                 <div class="row">
-                                    <div class="col-md-offset-3 col-md-9">
+                                      <div class="col-md-offset-3 col-md-9">
                                         <button class="btn green">
                                                 <i class="fa fa-check"></i> Submit</button>
                                         <a href="{{url('dashboard/pages')}}" class="btn btn-outline grey-salsa">Cancel</a>
                                     </div>
                                 </div>
                             </div>
-                        {!! Form::Close() !!}
+                      {!! Form::Close() !!}
                         <!-- END FORM-->
                     </div>
                 </div>
