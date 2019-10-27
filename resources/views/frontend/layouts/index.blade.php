@@ -56,106 +56,67 @@
                 </div>
             </div>
         </section>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 section_header fancy centered">
-                        <h2 style="color: #29377D">Our Products</h2>
-                        <p style="color: #323856" class="uppercase">An integrated intelligent portfolio</p>
+        <section style="background:white;" >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 section_header fancy centered">
+                <h2>Our Products</h2>
+              </div>
+              <!-- ==================== SERVICE BOX ===================-->
+              @foreach(App\Component::where('component_category_id',14)->get() as $product)
+              <div class="col-sm-6 col-md-3">
+                <div class="teaser_box centered same_height_col white_section boxed boxed-special cat_box" style="height: auto; min-height: 361px;">
+                  <div class="figure">
+                    <a  href="{{url('Product/'.$product->link)}}">
+                      <img src="{{url($product->image)}}" alt="service" height="195">
+                    </a>
+                  </div>
+                  <div class="content cat_content">
+                    <div class="hgroup">
+                      <h4 style="font-size: 11px;" class="tit_product">{{$product->title['en']}}</h4>
                     </div>
-                    <!-- ========================= SERVICES ========================-->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="teaser_box centered same_height_col white_section boxed boxed-special">
-                            <div class="figure"><img src="./assets/images/strive-test.png" height="100" alt="service"></div>
-                            <div class="content">
-                                <div class="hgroup">
-                                    <h4>Daily Checkups</h4>
-                                </div>
-                                <div class="desc">
-                                    <p>
-                                        Big and impressive Photography is an essential part of this design's success.
+                    <div class="link"><a href="{{url('Product/'.$product->link)}}" class="btn btn-sm btn-primary"><strong>Details</strong>  </a></div>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+              <!-- END================= SERVICE BOX ===================-->
+              <!-- END========================= SERVICES ========================-->
+                      <div class="clearfix"></div>
+                      <div class="text-center">
+                        <a href="{{url('Products')}}" class="btn btn-secondary with-icon">Read more <i class="fa fa-caret-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ==================== SERVICE BOX ===================-->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="teaser_box centered same_height_col white_section boxed boxed-special">
-                            <div class="figure"><a href="services.html"><img src="./assets/images/strive-lungs.png" height="100" alt="service"></a></div>
-                            <div class="content">
-                                <div class="hgroup">
-                                    <h4>Prevent Asthma</h4>
-                                </div>
-                                <div class="desc">
-                                    <p>So every item has its own custom-post that you can fill in with useful information. </p>
-                                </div>
-                                <div class="link"><a href="services.html" class="btn btn-sm btn-primary"><strong>MORE</strong>  </a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END================= SERVICE BOX ===================-->
-                    <!-- ==================== SERVICE BOX ===================-->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="teaser_box centered same_height_col white_section boxed boxed-special">
-                            <div class="figure"><a href="services.html"><img src="./assets/images/strive-cardiology.png" height="100" alt="service"></a></div>
-                            <div class="content">
-                                <div class="hgroup">
-                                    <h4>Cardiology Dep</h4>
-                                </div>
-                                <div class="desc">
-                                    <p>Then all you have to do is setup the "Team Grid" shortcode and add it in a row with the Visual Builder. </p>
-                                </div>
-                                <div class="link"><a href="services.html" class="btn btn-sm btn-primary"><strong>DETAILS</strong>  </a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END================= SERVICE BOX ===================-->
-                    <!-- ==================== SERVICE BOX ===================-->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="teaser_box centered same_height_col white_section boxed boxed-special">
-                            <div class="figure"><img src="./assets/images/strive-dna.png" height="100" alt="service"></div>
-                            <div class="content">
-                                <div class="hgroup">
-                                    <h4>DNA Testing</h4>
-                                </div>
-                                <div class="desc">
-                                    <p>Make sure you balance these text descriptions to maintain the strict visual rhythm of the grid. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END================= SERVICE BOX ===================-->
-                    <!-- END========================= SERVICES ========================-->
+
+
+        <section style="background-image: none;" class="secondary_section transparent-film parallax-window vcenter transparent" data-parallax="scroll" data-image-src="http://orchidiapharma.com/images/pages/1508862771+1_Wetlap.jpg" data-position="center top">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-sm-8">
+                <!-- ========================= CALL TO ACTION ========================-->
+                <div class="section_header fancy">
+                  <h3><small>{{$component->title['en']}}</small></h3>
+                  <p>{{$component->description['en']}}</p>
                 </div>
-            </div>
-        </section>
-        <section style="background-image: url('./assets/images/hands.jpg')" class="secondary_section transparent-film parallax-window vcenter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-sm-8">
-                        <!-- ========================= CALL TO ACTION ========================-->
-                        <div class="section_header fancy"><img src="./assets/images/icon-tester-o.png" alt="image-desc">
-                            <h3><small>Need Top Health Care?</small>Call now (600) 123-4567</h3>
-                            <p>Top Quality Healthcare in your City</p><a href="health-plans.html" class="btn btn-secondary with-icon">Request Plan<i class="fa fa-caret-right"></i></a>
-                        </div>
-                        <!-- ========================= /CALL TO ACTION ========================-->
+                <!-- ========================= /CALL TO ACTION ========================-->
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <a href="http://orchidiapharma.com/Wet_lab">
+                  <div class="pricing_plan black_section transparent transparent-film">
+                    <div class="stretchy-wrapper ratio_2-1">
+                      <div style="background-image:url({{$component->image}});" class="pricing_plan_photo"></div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="pricing_plan black_section transparent transparent-film">
-                            <div class="stretchy-wrapper ratio_2-1">
-                                <div style="background-image:url('./assets/images/pricing-004.jpg');" class="pricing_plan_photo"></div>
-                            </div>
-                            <div class="plan_title skincolored_section transparent transparent-film">
-                                <h3>FAMILY</h3>
-                                <p>All Inclusive Plan</p>
-                            </div>
-                            <div class="the_price">$49.99<small>/year            </small></div>
-                        </div>
+                    <div class="plan_title skincolored_section transparent transparent-film">
+                      <h3>{{$component->title['en']}}</h3>
                     </div>
-                </div>
+                  </div>
+                </a>
+              </div>
             </div>
+          </div>
         </section>
         <section id="contact_panel">
             <div class="container">

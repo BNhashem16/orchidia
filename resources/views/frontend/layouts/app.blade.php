@@ -60,20 +60,17 @@
                   <!-- ========================= NAVIGATION MENU ========================-->
                   <nav>
                     <ul class="menu main_menu hover_menu">
+
                       @foreach(App\Page::where('active',1)->where('page_id',0)->get() as $page)
-                      @if(count($page->childs))
-                      <li><a title="Home" href="./index.html">HOME</a></li>
-                      @endif
-                      @endforeach
-                      @foreach(App\Page::where('active',1)->where('page_id',0)->get() as $sub_nav)
-                      <li class="lihasdropdown two-column drop-left"><a title="more" href="#">{{$sub_nav->title['en']}} </a>
-                        <ul class="menu-dropdown">
-                          @foreach(App\Page::where('active',1)->where('page_id','id')->get() as $dropdown)
-                          <li><a title="HEALTH LIBRARY" href="./knowledgebase.html">{{$dropdown->title['en']}} </a></li>
-                          <li><a title="Blog Compact" href="./blog-compact.html">Blog Compact </a></li>
-                          @endforeach
-                        </ul>
-                      </li>
+                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="#">{{$page->title['en']}} </a>
+                          @if(count($page->childs) > 0)
+                            <ul class="menu-dropdown">
+                              @foreach($page->childs as $child)
+                                <li><a title="{{$child->title['en']}}" href="./knowledgebase.html">{{$child->title['en']}}</a></li>
+                              @endforeach
+                            </ul>
+                          @endif
+                        </li>
                       @endforeach
                     </ul>
                   </nav>

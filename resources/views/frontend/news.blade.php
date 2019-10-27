@@ -4,7 +4,7 @@
     <div class="hgroup pull-right">
       <div class="title diagonal-bgcolor-trans">
         <div class="container">
-          <h1 style="color: #29377d;font-size: 41px;" >News</h1>
+            <h1 style="color: #29377d;font-size: 41px;" >News</h1>
         </div>
       </div>
       <div class="subtitle body-bg_section">

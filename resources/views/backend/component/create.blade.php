@@ -23,7 +23,7 @@
                         <!-- BEGIN FORM-->
                         {!! Form::Open(['route'=>'component.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
-                                
+
                                     <div class="form-group">
                                             <label class="control-label col-md-3">Category</label>
                                             <div class="col-md-3">
@@ -34,8 +34,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        
-                                @foreach($langs as $lang)        
+
+                                @foreach($langs as $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Title {{$lang->name}}</label>
                                         <div class="col-md-9">
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                @foreach($langs as $lang)        
+                                @foreach($langs as $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Small Title {{$lang->name}}</label>
                                         <div class="col-md-9">
@@ -51,22 +51,22 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                @foreach($langs as $lang) 
+                                @foreach($langs as $key => $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Description {{$lang->name}}</label>
                                         <div class="col-md-9">
-                                            <textarea class="form-control" name="description[{{$lang->short_code}}]"></textarea>
+                                            <textarea class="form-control" id="editor{{$key}}"name="description[{{$lang->short_code}}]"></textarea>
                                         </div>
                                     </div>
                                 @endforeach
-                                @foreach($langs as $lang)        
+                                @foreach($langs as $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Extra {{$lang->name}} (optional)</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
                                         </div>
                                     </div>
-                                @endforeach        
+                                @endforeach
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Link </label>
                                         <div class="col-md-9">
@@ -108,9 +108,21 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+<?php $langs_count = count($langs); ?>
 <!-- END CONTENT -->
 @endsection
 @section('jsCode')
+    <script>
+    // $(document).ready(function() {
+    //     for (var i = 0; i < {{$langs_count}}; i++) {
+    //       CKEDITOR.replace( 'editor'+i );
+    //     }
+    // });
+      for (var i = 0; i < {{$langs_count}}; i++) {
+        CKEDITOR.replace( 'editor'+i );
+      }
+    </script>
+
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {

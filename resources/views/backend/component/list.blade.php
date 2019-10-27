@@ -57,20 +57,20 @@
                                     </td>
                                     <td class="center">{{$component->title['en']}}</td>
                                     <td>{{$component->category_component->title}}</td>
-                                    <td class="center">{{$component->sub_title['en']}}</td>
-                                    <td class="center">{{$component->description['en']}}</td>
-                                    <td class="center">{{$component->extra['en']}}</td>
-
+                                    <td class="center">{{$component->sub_title['en']}} </td>
+                                    <td class="center">{{$component->description['en']}} </td>
+                                    <td class="center"> {{$component->extra['en']}} </td>
 
                                     <td>
 
                                         <a class="btn btn-info " href="{{route('component.edit',$component->id)}}"> Edit </a>
                                     </td>
 
-
+                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['component.destroy',$component->id] ]) !!}
                                     <td>
                                         <button class="btn btn-danger" data-id="{{$component->id}}" onclick="deletefunction({{$component->id}},'{{url('/')}}')"> Delete </button>
                                     </td>
+                                    {!! Form::Close() !!}
                                 </tr>
                                     @endforeach
                                 </tbody>

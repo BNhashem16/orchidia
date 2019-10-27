@@ -112,7 +112,7 @@
                             <li class="nav-item  ">
                                 <a href="{{url('dashboard/component/category')}}" class="nav-link "> Component category Table </a>
                             </li>
-    
+
                             <li class="nav-item  ">
                                 <a href="{{url('dashboard/component/category/create')}}" class="nav-link ">Create Category </a>
                             </li>
@@ -198,7 +198,7 @@
                             <li class="nav-item  ">
                                 <a href="{{url('dashboard/component')}}" class="nav-link "> Component Table </a>
                             </li>
-    
+
                             <li class="nav-item  ">
                                 <a href="{{url('dashboard/component/create')}}" class="nav-link ">Create Component </a>
                             </li>
@@ -294,6 +294,7 @@
 <script src="{{url('backend/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
 <script src="{{url('backend/assets/pages/scripts/table-datatables-editable.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+<script src="https://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
 @yield('jsCode')
 </body>
 </html>

@@ -82,7 +82,10 @@ class ComponentController extends Controller
      */
     public function edit($id)
     {
-        //
+      $langs = Language::get();
+      $component_category = Component_category::get();
+      $component = Component::find($id);
+      return view('backend.component.edit')->with('component' , $component)->with('component_category' , $component_category)->with('langs' , $langs);
     }
 
     /**
@@ -97,14 +100,18 @@ class ComponentController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+      if(!$id || Component::where('id',$id)->count() == 0) {
+        return \App::abort(404);
+      }
+
+    try {
+      Component::where('id',$id)->delete();
+        Session::flash('success','Component Deleted Successfully');
+    } catch (\Exception $e) {
+      Session::flash('error','Component Not Deleted');
+    }
+    return Redirect::back();
     }
 }
