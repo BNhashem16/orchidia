@@ -21,10 +21,14 @@ Route::get('events', 'frontend\EventController@index');
 Route::get('Events/{slug}', 'frontend\EventController@sub_events');
 # Calender
 Route::get('Calender', 'HomeController@calender');
-# Products
-Route::get('Products', 'frontend\ProductsController@index');
+# Products Category
+Route::get('Products/{slug}', 'frontend\ProductsController@index');
 # Sub Products Route
-Route::get('Products/{slug}', 'frontend\ProductsController@sub_products');
+Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
+# Pages
+Route::get('{slug}', 'frontend\PagesController@pages');
+# Products Route
+Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');
 
 //============
 //==Back End==

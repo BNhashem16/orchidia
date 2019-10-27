@@ -14,7 +14,7 @@
                                     <div class="t1">{{$slider->title['en']}}</div>
                                     <div class="t2 uppercase">{{$slider->sub_title['en']}}</div>
                                     <div class="t3 uppercase">{{$slider->extra['en']}}</div>
-                                    <p class="desc hidden-xxs">{{$slider->description['en']}} </p>
+                                    <p class="desc hidden-xxs">{!! $slider->description['en'] !!} </p>
                                 </div>
                             </div>
                         </div>
@@ -63,11 +63,11 @@
                 <h2>Our Products</h2>
               </div>
               <!-- ==================== SERVICE BOX ===================-->
-              @foreach(App\Component::where('component_category_id',14)->get() as $product)
+              @foreach(App\Page::where('active',1)->where('nav',0)->where('page_id',0)->get() as $product)
               <div class="col-sm-6 col-md-3">
                 <div class="teaser_box centered same_height_col white_section boxed boxed-special cat_box" style="height: auto; min-height: 361px;">
                   <div class="figure">
-                    <a  href="{{url('Product/'.$product->link)}}">
+                    <a  href="{{url('Products/'.$product->slug)}}">
                       <img src="{{url($product->image)}}" alt="service" height="195">
                     </a>
                   </div>
@@ -75,7 +75,7 @@
                     <div class="hgroup">
                       <h4 style="font-size: 11px;" class="tit_product">{{$product->title['en']}}</h4>
                     </div>
-                    <div class="link"><a href="{{url('Product/'.$product->link)}}" class="btn btn-sm btn-primary"><strong>Details</strong>  </a></div>
+                    <div class="link"><a href="{{url('Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>Details</strong>  </a></div>
                   </div>
                 </div>
               </div>
@@ -89,9 +89,6 @@
                     </div>
                   </div>
                 </section>
-
-
-
         <section style="background-image: none;" class="secondary_section transparent-film parallax-window vcenter transparent" data-parallax="scroll" data-image-src="http://orchidiapharma.com/images/pages/1508862771+1_Wetlap.jpg" data-position="center top">
           <div class="container">
             <div class="row">

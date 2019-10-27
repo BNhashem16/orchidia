@@ -22,16 +22,16 @@
           <div class="post-grid masonry boxed_children">
             <div class="row">
               <!-- ======================= ARTICLE #1 ======================-->
-              @foreach(App\Component::where('component_category_id',15)->get() as $sub_product)
+              @foreach($page->childs as $sub_product)
               <div class="col-md-3 col-xs-10 ">
                 <article class="post dark_section">
                   <div class="post_figure_and_info">
                      <img src="http://orchidiapharma.com/images/pages/1518363099_Ocuguard.jpg" alt="OCUGUARD" title="OCUGUARD">
                   </div>
                   <h2 class="post_title">
-                    <a href="http://orchidiapharma.com/en/Products/Eye_tonics_-_Eye_vitamins/OCUGUARD">OCUGUARD </a></h2>
-                  <p class="post_subtitle subtitle2">Eye tonics - Eye vitamins </p>
-                  <a href="http://orchidiapharma.com/en/Products/Eye_tonics_-_Eye_vitamins/OCUGUARD" class="btn btn-primary">Read More</a>
+                    <a href="http://orchidiapharma.com/en/Products/Eye_tonics_-_Eye_vitamins/OCUGUARD">{{$sub_product->title['en']}} </a></h2>
+                  <p class="post_subtitle subtitle2">{{$sub_product->title['en']}} </p>
+                  <a href="{{url('Products/'.$page->slug.'/'.$sub_product->slug)}}" class="btn btn-primary">Read More</a>
                 </article>
               </div>
               @endforeach

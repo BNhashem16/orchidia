@@ -21,7 +21,7 @@
                 <div class="portlet light form-fit bordered">
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
-                        {!! Form::model($component,['route' => ['component.update',$component->id], 'method' => 'PATCH'] , ['class' =>'form-horizontal form-bordered'] ) !!}
+                        {!! Form::model($component_category,['route' => ['component.update',$component->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
 
                                     <div class="form-group">
@@ -51,11 +51,11 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                @foreach($langs as $lang)
+                                @foreach($langs as $key => $lang)
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Description {{$lang->name}}</label>
                                         <div class="col-md-9">
-                                            <textarea class="form-control" name="description[{{$lang->short_code}}]"></textarea>
+                                            <textarea class="form-control" id="editor{{$key}}"name="description[{{$lang->short_code}}]"></textarea>
                                         </div>
                                     </div>
                                 @endforeach
@@ -108,9 +108,21 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+<?php $langs_count = count($langs); ?>
 <!-- END CONTENT -->
 @endsection
 @section('jsCode')
+    <script>
+    // $(document).ready(function() {
+    //     for (var i = 0; i < {{$langs_count}}; i++) {
+    //       CKEDITOR.replace( 'editor'+i );
+    //     }
+    // });
+      for (var i = 0; i < {{$langs_count}}; i++) {
+        CKEDITOR.replace( 'editor'+i );
+      }
+    </script>
+
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {

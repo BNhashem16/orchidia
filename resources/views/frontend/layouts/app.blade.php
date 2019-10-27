@@ -53,20 +53,19 @@
     <div class="header">
         <div class="mainbar gradient diagonal">
             <div class="container">
-                <div class="logo"><a href="{{url('/')}}" class="brand"><img src="{{url('frontend/assets/images/medicus-header-logo-x64.png')}}" alt="logo"></a>
-                    <p class="animated slideInLeft">Call us Toll free +30 1234-567-890</p>
+                <div class="logo"><a href="{{url('/')}}" class="brand">
+                  <img src="{{url('frontend/assets/images/medicus-header-logo-x64.png')}}" alt="logo"></a>
                 </div>
                 <div class="menu_container"><span class="close_menu">&times;</span>
                   <!-- ========================= NAVIGATION MENU ========================-->
                   <nav>
                     <ul class="menu main_menu hover_menu">
-
-                      @foreach(App\Page::where('active',1)->where('page_id',0)->get() as $page)
-                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="#">{{$page->title['en']}} </a>
+                      @foreach(App\Page::where('active',1)->where('page_id',0)->where('nav',1)->get() as $page)
+                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="{{url($page->slug)}}">{{$page->title['en']}} </a>
                           @if(count($page->childs) > 0)
                             <ul class="menu-dropdown">
                               @foreach($page->childs as $child)
-                                <li><a title="{{$child->title['en']}}" href="./knowledgebase.html">{{$child->title['en']}}</a></li>
+                                <li><a title="{{$child->title['en']}}" href="{{url($child->slug)}}">{{$child->title['en']}}</a></li>
                               @endforeach
                             </ul>
                           @endif
@@ -86,7 +85,6 @@
     <div class="brand-colors"></div>
     <!-- END======================== HEADER ==========================-->
 @yield('content')
-    <!-- FOOTER-->
     <!-- ============================ FOOTER ============================-->
     <footer class="gradient-invert diagonal-70-invert vbottom">
         <div class="container">
@@ -143,7 +141,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-6">Copyright ©2015 all rights reserved</div>
-                    <div class="col-sm-6 col-md-6 text-right">Designed by <a href='http://plethorathemes.com/' target='_blank'>Plethora Themes</a></div>
+                    <div class="col-sm-6 col-md-6 text-right">Designed by <a href='http://plethorathemes.com/' target='_blank'>Ahmed Hashem</a></div>
                 </div>
             </div>
         </div>
@@ -153,8 +151,6 @@
 <script type="text/javascript" src="{{url('frontend/assets/js/config.js')}}" data-module="main-configuration"></script>
 <!-- ==================== SCRIPTS | GLOBAL ====================-->
 <script type="text/javascript" src="{{url('frontend/assets/js/libs/jquery.min.js')}}"></script>
-<!--if lte IE 9 script(type='text/javascript', src="{{url('frontend/assets/js/libs/matchMedia.min.js')}}"
--->
 <script type="text/javascript" src="{{url('frontend/assets/js/libs/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{url('frontend/assets/js/libs/wow.min.js')}}" data-module="wow-animation-lib"></script>
 <script type="text/javascript" src="{{url('frontend/assets/js/libs/particlesjs/particles.min.js')}}" data-module="particles-js"></script>
@@ -173,27 +169,6 @@
 <!-- END==================== SCRIPTS | INIT ===================-->
 <!-- Style Switcher, You propably want to remove this!-->
 <script type="text/javascript" src="{{url('frontend/assets/js/_style-switcher.js')}}"></script>
-<div class="style_switcher">
-    <div class="gear"><i class="fa fa-gear"></i></div>
-    <div class="styles">
-        <h6>Color Variations</h6>
-        <ul class="color_variations">
-            <li class="style-default"><i class="fa fa-circle"></i></li>
-            <li class="style-silver"><i class="fa fa-circle"></i></li>
-            <li class="style-yellow"><i class="fa fa-circle"></i></li>
-            <li class="style-golden"><i class="fa fa-circle"></i></li>
-            <li class="style-purple"><i class="fa fa-circle">                </i></li>
-        </ul>
-        <ul>
-            <li class="style-onepage"><a href="all-demos.html"><i class="fa fa-desktop"></i>ALL DEMOS PAGE</a></li>
-        </ul>
-        <p></p>
-        <ul>
-            <li><a href="http://doc.plethorathemes.com/medicus-html/"><i class="fa fa-flag"></i>Documentation</a></li>
-        </ul>
-    </div>
-</div>
-<!-- END Style Switcher-->
 <!-- DYNAMIC STYLE SWITCHER -->
 <script type="text/style-switcher-template" id="style-switcher-template">
     <div class="section_style_switcher">
