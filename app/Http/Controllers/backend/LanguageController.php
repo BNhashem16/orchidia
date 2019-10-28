@@ -67,32 +67,31 @@ class LanguageController extends Controller
 
     public function destroy($id)
     {
-        try {
-            $lang = Language::where('id' , $id)->first();
-            if (Language::where('id' , $id)->count()) {
-                Session::flash('error' , 'This Category is A Sub Categoies');
-            } else {
-                Session::flash('success' , 'Category Deleted Successfully');
-                $lang->delete();
-            }
-        } catch (Exception $e) {
-            Session::flash('error' ,'This Category is A Sub Categoies');
-        }
-        return Redirect::back();
-    }
-    public  function ajax_delete(Language $lang) {
-        $lang->delete();
+      if(!$id || Language::where('id',$id)->count() == 0) {
+        return \App::abort(404);
+      }
 
-        $lang = Language::orderBy('id','DESC')->get();
-        return view('backend.language.ajax')->with('lang' , $lang);
+    try {
+      Language::where('id',$id)->delete();
+        Session::flash('success','Language Deleted Successfully');
+    } catch (\Exception $e) {
+      Session::flash('error','Language Not Deleted');
     }
-    public  function change_active(Language $lang) {
-        $active = $_GET['active'];
-        $active == 1 ? $lang->update(['active'=>0]) :   $lang->update(['active'=>1]);
-
-        $lang->save();
-        $lang = Language::orderBy('id','DESC')->get();
-        return view('backend.language.ajax')->with('lang' , $lang);
-
+    return Redirect::back();
     }
+    // public  function ajax_delete(Language $lang) {
+    //     $lang->delete();
+    //
+    //     $lang = Language::orderBy('id','DESC')->get();
+    //     return view('backend.language.ajax')->with('lang' , $lang);
+    // }
+    // public  function change_active(Language $lang) {
+    //     $active = $_GET['active'];
+    //     $active == 1 ? $lang->update(['active'=>0]) :   $lang->update(['active'=>1]);
+    //
+    //     $lang->save();
+    //     $lang = Language::orderBy('id','DESC')->get();
+    // //     return view('backend.language.ajax')->with('lang' , $lang);
+    //
+    // }
 }

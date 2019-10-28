@@ -112,16 +112,7 @@
 <!-- END CONTENT -->
 @endsection
 @section('jsCode')
-    <script>
-    // $(document).ready(function() {
-    //     for (var i = 0; i < {{$langs_count}}; i++) {
-    //       CKEDITOR.replace( 'editor'+i );
-    //     }
-    // });
-      for (var i = 0; i < {{$langs_count}}; i++) {
-        CKEDITOR.replace( 'editor'+i );
-      }
-    </script>
+    <script> for (var i = 0; i < {{$langs_count}}; i++) {CKEDITOR.replace( 'editor'+i );} </script>
 
     <script>
         function readURL(input) {

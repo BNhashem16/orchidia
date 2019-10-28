@@ -57,47 +57,49 @@ class ComponentController extends Controller
             Session::flash('success' , 'Component Added Successfully');
             return Redirect::to('dashboard/component');
         } catch (\Exception $e) {
-            dd($e);
             Session::flash('error', 'Component Not Added');
         }
         return Redirect::back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+      $component = Component::find($id);
       $langs = Language::get();
       $component_category = Component_category::get();
-      $component = Component::find($id);
       return view('backend.component.edit')->with('component' , $component)->with('component_category' , $component_category)->with('langs' , $langs);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+      try {
+      $title_en= $request->title['en'];
+      $component = Component::where('id',$id)->first();
+      $component->component_category_id = $request->component_category_id;
+      $component->title = $request->title;
+      $component->sub_title = $request->sub_title;
+      $component->description = $request->description;
+      $component->extra = $request->extra;
+      $component->link = Str::slug($title_en,'-');
+      // start Update Image
+      if ($request->hasfile('image')) {
+          File::Delete($component->image);
+          $file = $request->file('image');
+          $path = 'uploads/pages/';
+          $filename = date('Y-m-d-h-i-s').'.'.$file->getClientOriginalExtension();
+          $file->move(public_path().'/'.$path,$filename);
+          $component->image = $path.$filename;
+      }
+      // Ending Update Image
+      $component->created_by = 1;
+      $component->updated_by = 1;
+      $component->save();
+      Session::flash('success' , 'Component Added Successfully');
+      return Redirect::to('dashboard/component');
+  } catch (\Exception $e) {
+      Session::flash('error', 'Component Not Added');
+  }
+  return Redirect::back();
     }
 
     public function destroy($id)

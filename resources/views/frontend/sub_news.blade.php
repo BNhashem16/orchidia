@@ -33,7 +33,7 @@
                       </a>
                     </figure>
               </div>
-                  <p style="color: #323232;">{{$component->description['en']}}</p>
+                  <p style="color: #323232;"> {!! $component->description['en'] !!} </p>
             </div>
           </article>
         </div>

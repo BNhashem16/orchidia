@@ -95,8 +95,8 @@
               <div class="col-md-8 col-sm-8">
                 <!-- ========================= CALL TO ACTION ========================-->
                 <div class="section_header fancy">
-                  <h3><small>{{$component->title['en']}}</small></h3>
-                  <p>{{$component->description['en']}}</p>
+                  <h3><small>{!! $component->title['en'] !!}</small></h3>
+                  <p>{!! $component->description['en'] !!}</p>
                 </div>
                 <!-- ========================= /CALL TO ACTION ========================-->
               </div>

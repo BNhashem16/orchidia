@@ -55,10 +55,10 @@
                                     <td class="center">{{$component->id}} </td>
                                     <td class="center"><img width="100px" height="100px" src="{{url($component->image)}}" >
                                     </td>
-                                    <td class="center">{{$component->title['en']}}</td>
-                                    <td>{{$component->category_component->title}}</td>
+                                    <td class="center">{{substr($component->title['en'],0,15)}}</td>
+                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{$component->category_component->title}}</td>
                                     <td class="center">{{$component->sub_title['en']}} </td>
-                                    <td class="center">{{$component->description['en']}} </td>
+                                    <td class="center">{{substr($component->description['en'] ,0,30) }} </td>
                                     <td class="center"> {{$component->extra['en']}} </td>
 
                                     <td>

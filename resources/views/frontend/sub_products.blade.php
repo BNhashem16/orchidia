@@ -4,7 +4,7 @@
     <div class="hgroup pull-right">
       <div class="title diagonal-bgcolor-trans">
         <div class="container">
-          <h1>Eye tonics - Eye vitamins</h1>
+          <h1 style="color: #29377d;" >{{$page->title['en']}}</h1>
         </div>
       </div>
       <div class="subtitle body-bg_section">
@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="main">
-  <section>
+  <section style="background:white">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-xs-12">
@@ -30,7 +30,7 @@
                   </div>
                   <h2 class="post_title">
                     <a href="http://orchidiapharma.com/en/Products/Eye_tonics_-_Eye_vitamins/OCUGUARD">{{$sub_product->title['en']}} </a></h2>
-                  <p class="post_subtitle subtitle2">{{$sub_product->title['en']}} </p>
+                  <p class="post_subtitle subtitle2">{{$page->title['en']}}</p>
                   <a href="{{url('Products/'.$page->slug.'/'.$sub_product->slug)}}" class="btn btn-primary">Read More</a>
                 </article>
               </div>

@@ -65,8 +65,10 @@
 
 
                                     <td>
+{!! Form::Open(['method' => 'DELETE' , 'route' => ['lang.destroy',$lang->id]]) !!}
                                         <button class="btn btn-danger" data-id="{{$lang->id}}" onclick="deletefunction({{$lang->id}},'{{url('/')}}')"> Delete </button>
-                                    </td>
+{!! Form::Close() !!}
+</td>
                                 </tr>
                                     @endforeach
                                 </tbody>
