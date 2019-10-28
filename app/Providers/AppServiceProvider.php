@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Session;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        app()->singleton('lang' , function(){
+          if (Session::has('lang')) {
+            return session()->get('lang');
+          } else {
+return 'en';
+}
+        });
         Schema::defaultStringLength(191);
     }
 }

@@ -1,34 +1,11 @@
 <?php
-
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+use Illuminate\Support\Facades\Route;
 
 //Auth::routes();
-//=============
-//==Front End==
-//=============
-use Illuminate\Support\Facades\Route;
-Route::get('/', 'HomeController@index')->name('home');
-#News Route
-Route::get('news', 'frontend\NewsController@index');
-# Sub News Route
-Route::get('News/{slug}', 'frontend\NewsController@sub_news');
-#Event Route
-Route::get('events', 'frontend\EventController@index');
-# Sub Event Route
-Route::get('Events/{slug}', 'frontend\EventController@sub_events');
-# Calender
-Route::get('Calender', 'HomeController@calender');
-# Products Category
-Route::get('Products/{slug}', 'frontend\ProductsController@index');
-# Sub Products Route
-Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
-# Pages
-Route::get('{slug}', 'frontend\PagesController@pages');
-# Products Route
-Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');
+
+
+
+
 
 //============
 //==Back End==
@@ -63,3 +40,34 @@ Route::resource('dashboard/component', 'backend\ComponentController');
 #Login
 Route::get('dashboard/login', 'backend\UserController@login');
 Route::post('dashboard/login', 'backend\UserController@doLogin');
+
+
+
+
+//=============
+//==Front End==
+//=============
+
+Route::group(['prefix'=>'/{lang}','middleware' => 'Lang'] , function() {
+  Route::get('/' ,'HomeController@lang');
+  Route::get('/', 'HomeController@index')->name('home');
+  #News Route
+  Route::get('news', 'frontend\NewsController@index');
+  # Sub News Route
+  Route::get('News/{slug}', 'frontend\NewsController@sub_news');
+  #Event Route
+  Route::get('events', 'frontend\EventController@index');
+  # Sub Event Route
+  Route::get('Events/{slug}', 'frontend\EventController@sub_events');
+  # Calender
+  Route::get('Calender', 'HomeController@calender');
+  # Products Category
+  Route::get('Products/{slug}', 'frontend\ProductsController@index');
+  # Sub Products Route
+  Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
+  # Pages
+  Route::get('{slug}', 'frontend\PagesController@pages');
+  # Products Route
+  Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');
+
+});

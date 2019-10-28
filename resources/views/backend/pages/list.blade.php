@@ -38,6 +38,7 @@
                             </thead>
                             <tbody>
                               @foreach($page as $key => $page)
+<tr>
                                 <td class="center">{{$key+1}} </td>
                                 <td class="center">{{$page->title['en']}}</td>
                                 <td class="center">{{$page->description['en']}}</td>

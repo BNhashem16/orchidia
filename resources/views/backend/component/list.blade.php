@@ -53,25 +53,21 @@
                                 @foreach($components as  $component)
 
                                     <td class="center">{{$component->id}} </td>
-                                    <td class="center"><img width="100px" height="100px" src="{{url($component->image)}}" >
-                                    </td>
+                                    <td class="center"><img width="100px" height="100px" src="{{url($component->image)}}" ></td>
                                     <td class="center">{{substr($component->title['en'],0,15)}}</td>
-                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{$component->category_component->title}}</td>
-                                    <td class="center">{{$component->sub_title['en']}} </td>
+                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{substr($component->category_component->title,0,15)}}</td>
+                                    <td class="center">{{substr($component->sub_title['en'],0,30) }} </td>
                                     <td class="center">{{substr($component->description['en'] ,0,30) }} </td>
                                     <td class="center"> {{$component->extra['en']}} </td>
-
                                     <td>
-
                                         <a class="btn btn-info " href="{{route('component.edit',$component->id)}}"> Edit </a>
                                     </td>
-
                                     {!! Form::Open(['method' => 'DELETE' , 'route' => ['component.destroy',$component->id] ]) !!}
-                                    <td>
-                                        <button class="btn btn-danger" data-id="{{$component->id}}" onclick="deletefunction({{$component->id}},'{{url('/')}}')"> Delete </button>
-                                    </td>
+                                      <td>
+                                          <button class="btn btn-danger" data-id="{{$component->id}}" onclick="deletefunction({{$component->id}},'{{url('/')}}')"> Delete </button>
+                                      </td>
                                     {!! Form::Close() !!}
-                                </tr>
+                                  </tr>
                                     @endforeach
                                 </tbody>
                             </table>

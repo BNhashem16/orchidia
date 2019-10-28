@@ -61,16 +61,37 @@
                   <nav>
                     <ul class="menu main_menu hover_menu">
                       @foreach(App\Page::where('active',1)->where('page_id',0)->where('nav',1)->get() as $page)
-                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="{{url($page->slug)}}">{{$page->title['en']}} </a>
+                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="{{'/'.url(app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
                           @if(count($page->childs) > 0)
                             <ul class="menu-dropdown">
                               @foreach($page->childs as $child)
-                                <li><a title="{{$child->title['en']}}" href="{{url($child->slug)}}">{{$child->title['en']}}</a></li>
+                                <li><a title="{{$child->title['en']}}" href="{{url($child->slug)}}">{{$child->title['en']}} - {{trans('app.Home')}} </a></li>
                               @endforeach
                             </ul>
                           @endif
                         </li>
+
+
+
                       @endforeach
+
+                      <li class="lihasdropdown drop-left"><a title="{{trans('app.Language')}}" href=""><img src="{{url('frontend/assets/images/egy.jpg')}}" width="20"> </a>
+                        <ul class="menu-dropdown">
+@foreach($lang as $lan)
+                          <li><a class="flg_a" title="en" href="{{url('/'.$lan->short_code)}}"><img src="{{url('frontend/assets/images/us.jpg')}}"></a></li>
+@endforeach
+  </ul>
+                      </li>
+
+
+
+                      <li class="lihasdropdown two-column drop-left"><a title="more" href="">{{trans('app.Language') }} </a>
+                          <ul class="menu-dropdown">
+                            @foreach($lang as $lang)
+                              <li><a title="{{$lang}}" href="{{url('/'.$lang->short_code)}}">{{$lang->name}}</a></li>
+                            @endforeach
+                          </ul>
+                      </li>
                     </ul>
                   </nav>
                   <!-- END====================== NAVIGATION MENU ========================-->

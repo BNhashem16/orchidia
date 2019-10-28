@@ -11,10 +11,10 @@
                         <div class="container">
                             <div class="caption caption-right caption-fancy">
                                 <div class="inner animated bounceInUp">
-                                    <div class="t1">{{$slider->title['en']}}</div>
-                                    <div class="t2 uppercase">{{$slider->sub_title['en']}}</div>
-                                    <div class="t3 uppercase">{{$slider->extra['en']}}</div>
-                                    <p class="desc hidden-xxs">{!! $slider->description['en'] !!} </p>
+                                    <div class="t1">{{$slider->title[app()->getLocale()]}}</div>
+                                    <div class="t2 uppercase">{{$slider->sub_title[app()->getLocale()]}}</div>
+                                    <div class="t3 uppercase">{{$slider->extra[app()->getLocale()]}}</div>
+                                    <p class="desc hidden-xxs">{!! $slider->description[app()->getLocale()] !!} </p>
                                 </div>
                             </div>
                         </div>
@@ -35,22 +35,22 @@
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="entry skincolored_section"><a href="{{url('news')}}">
                                 <div style="background-image:url('frontend/assets/images/News.jpg');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
-                                <div class="entry_text">News</div></a></div>
+                                <div class="entry_text">{{trans('app.News')}}</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="entry secondary_section"><a href="{{url('events')}}">
                                 <div style="background-image:url('frontend/assets/images/events.png');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
-                                <div class="entry_text">Events</div></a></div>
+                                <div class="entry_text">{{trans('app.Events')}}</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="entry skincolored_section"><a href="{{url('Calender')}}">
                                 <div style="background-image:url('frontend/assets/images/calendar.png');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
-                                <div class="entry_text">calender</div></a></div>
+                                <div class="entry_text">{{trans('app.calender')}}</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="entry secondary_section"><a href="portfolio.html">
                                 <div style="background-image:url('frontend/assets/images/gallery.jpg');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
-                                <div class="entry_text">Gallary</div></a></div>
+                                <div class="entry_text">{{trans('app.gallary')}}</div></a></div>
                     </div>
                     <!-- END====================== ENTRY ========================-->
                 </div>
@@ -75,7 +75,7 @@
                     <div class="hgroup">
                       <h4 style="font-size: 11px;" class="tit_product">{{$product->title['en']}}</h4>
                     </div>
-                    <div class="link"><a href="{{url('Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>Details</strong>  </a></div>
+                    <div class="link"><a href="{{url('Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>{{trans('app.Details')}}</strong>  </a></div>
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@
               <!-- END========================= SERVICES ========================-->
                       <div class="clearfix"></div>
                       <div class="text-center">
-                        <a href="{{url('Products')}}" class="btn btn-secondary with-icon">Read more <i class="fa fa-caret-right"></i></a>
+                        <a href="{{url('Products')}}" class="btn btn-secondary with-icon">{{trans('app.READ MORE')}}<i class="fa fa-caret-right"></i></a>
                       </div>
                     </div>
                   </div>
@@ -95,8 +95,8 @@
               <div class="col-md-8 col-sm-8">
                 <!-- ========================= CALL TO ACTION ========================-->
                 <div class="section_header fancy">
-                  <h3><small>{!! $component->title['en'] !!}</small></h3>
-                  <p>{!! $component->description['en'] !!}</p>
+                  <h3><small>{!! $component->title[app()->getLocale()]  !!}</small></h3>
+                  <p>{!! $component->description[app()->getLocale()]  !!}</p>
                 </div>
                 <!-- ========================= /CALL TO ACTION ========================-->
               </div>
@@ -107,7 +107,7 @@
                       <div style="background-image:url({{$component->image}});" class="pricing_plan_photo"></div>
                     </div>
                     <div class="plan_title skincolored_section transparent transparent-film">
-                      <h3>{{$component->title['en']}}</h3>
+                      <h3>{{$component->title[app()->getLocale()]}}</h3>
                     </div>
                   </div>
                 </a>
@@ -119,7 +119,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 light_section boxed same_height_col" style="height: auto; min-height: 445px;">
-                        <h3 class="col_header centered">Contact us</h3>
+                        <h3 class="col_header centered">{{trans('app.CONTACT US')}}</h3>
                         <!-- =========================  QUICK CONTACT FORM ========================-->
                         <div class="contact-quick">
                             <div class="screen-reader-response"></div>
@@ -152,7 +152,7 @@
                         <!-- =========================  QUICK CONTACT FORM ========================-->
                     </div>
                     <div class="col-md-4 secondary_section boxed elevate" id="appoin">
-                        <h3 class="col_header centered">Apply for job</h3>
+                        <h3 class="col_header centered">{{trans('app.APPLY FOR JOB')}}</h3>
                         <!-- ========================= APPOINTMENT FORM ========================-->
                         <div class="appointment">
                             <form id="appointment_form" name="appointment_form" method="post" action="http://orchidiapharma.com/Messages/appointment" enctype="multipart/form-data">
