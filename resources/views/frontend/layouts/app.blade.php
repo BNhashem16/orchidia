@@ -47,8 +47,8 @@
     <!-- Style Switcher, You propably want to remove this!-->
     <link rel="stylesheet" href="{{url('frontend/assets/css/_style-switcher.css')}}" type="text/css" media="all">
 </head>
-<body class="sticky_header">
-<div class="overflow_wrapper">
+<body class="sticky_header" >
+<div class="overflow_wrapper" >
     <!-- =========================== HEADER ==========================-->
     <div class="header">
         <div class="mainbar gradient diagonal">
@@ -70,28 +70,19 @@
                             </ul>
                           @endif
                         </li>
-
-
-
                       @endforeach
 
                       <li class="lihasdropdown drop-left"><a title="{{trans('app.Language')}}" href=""><img src="{{url('frontend/assets/images/egy.jpg')}}" width="20"> </a>
                         <ul class="menu-dropdown">
 @foreach($lang as $lan)
-                          <li><a class="flg_a" title="en" href="{{url('/'.$lan->short_code)}}"><img src="{{url('frontend/assets/images/us.jpg')}}"></a></li>
+                          <li><a class="flg_a" title="en" href="{{url('/'.$lan->short_code)}}"><img src="{{url($lan->image)}}"></a></li>
 @endforeach
   </ul>
                       </li>
 
 
 
-                      <li class="lihasdropdown two-column drop-left"><a title="more" href="">{{trans('app.Language') }} </a>
-                          <ul class="menu-dropdown">
-                            @foreach($lang as $lang)
-                              <li><a title="{{$lang}}" href="{{url('/'.$lang->short_code)}}">{{$lang->name}}</a></li>
-                            @endforeach
-                          </ul>
-                      </li>
+
                     </ul>
                   </nav>
                   <!-- END====================== NAVIGATION MENU ========================-->

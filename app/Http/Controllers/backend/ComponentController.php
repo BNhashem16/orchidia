@@ -25,7 +25,7 @@ class ComponentController extends Controller
     public function create()
     {
         $langs = Language::where('active' , 1)->get();
-        $component_category = Component_category::get();
+        $component_category = Component_category::where('type', 'component')->get();
         $component = Component::orderBy('id','DESC')->get();
         return view('backend.component.create')->with('langs' , $langs)->with('component' , $component)->with('component_category' , $component_category);
     }
@@ -66,7 +66,7 @@ class ComponentController extends Controller
     {
       $component = Component::find($id);
       $langs = Language::get();
-      $component_category = Component_category::get();
+      $component_category = Component_category::where('type', 'component')->get();
       return view('backend.component.edit')->with('component' , $component)->with('component_category' , $component_category)->with('langs' , $langs);
     }
 

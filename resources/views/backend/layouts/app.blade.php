@@ -169,6 +169,40 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-briefcase"></i>
+                        <span class="title">Form Table List</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/form')}}" class="nav-link "> Form Table </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/form/create')}}" class="nav-link ">Create Form </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-briefcase"></i>
+                        <span class="title">Gallery Table List</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/gallery')}}" class="nav-link "> Gallery Table </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/gallery/create')}}" class="nav-link ">Create Gallery </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
             <!-- END SIDEBAR MENU -->

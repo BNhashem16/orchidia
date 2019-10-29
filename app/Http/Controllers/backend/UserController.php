@@ -11,11 +11,7 @@ use validate;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
@@ -27,22 +23,22 @@ class UserController extends Controller
             if(Auth::check()) { return \Redirect::to('/'); }
             return view('backend.user.login');
         }
-    
+
         public function doLogin(Request $request)
         {
-            #Validation 
+            #Validation
             $request->validate([
                 'name' => 'required',
                 'password' => 'required'
             ]);
-    
+
             $name = $request->input('name');
             $password = $request->input('password');
             $data = ["name"=>$name,"password" =>$password];
             if(Auth::attempt($data, true)) {
                 return Redirect::to('dashboard');
             } else {
-                dd($request->session()->all());
+                dd($data);
                Session::flash('error','Username or Password Incorrect');
                return Redirect::back();
             }

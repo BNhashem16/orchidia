@@ -21,10 +21,6 @@ Route::resource('dashboard/slider', 'backend\SliderController');
 Route::get('dashboard/slider/delete_ajax/{slider}','backend\SliderController@ajax_delete')->name('delete.ajax');
 Route::get('dashboard/slider/change_active/{slider}','backend\SliderController@change_active')->name('change.active');
 
-#Product
-// Route::resource('dashboard/product', 'backend\ProductController');
-#News
-// Route::resource('dashboard/news', 'backend\NewsController');
 #Language
 Route::resource('dashboard/lang', 'backend\LanguageController');
 Route::get('dashboard/lang/delete_ajax/{lang}','backend\LanguageController@ajax_delete')->name('delete.ajax');
@@ -37,6 +33,10 @@ Route::get('dashboard/pages/change_active/{page}','backend\PagesController@chang
 Route::resource('dashboard/component/category', 'backend\Component_categoryController');
 #Component Category
 Route::resource('dashboard/component', 'backend\ComponentController');
+#Gallery
+Route::resource('dashboard/gallery', 'backend\GalleryController');
+#Gallery
+Route::resource('dashboard/form', 'backend\FormController');
 #Login
 Route::get('dashboard/login', 'backend\UserController@login');
 Route::post('dashboard/login', 'backend\UserController@doLogin');
@@ -47,9 +47,12 @@ Route::post('dashboard/login', 'backend\UserController@doLogin');
 //=============
 //==Front End==
 //=============
-
-Route::group(['prefix'=>'/{lang}','middleware' => 'Lang'] , function() {
+Route::get('/',function(){
+  return redirect()->to('/en');
+});
+Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
+
   Route::get('/', 'HomeController@index')->name('home');
   #News Route
   Route::get('news', 'frontend\NewsController@index');

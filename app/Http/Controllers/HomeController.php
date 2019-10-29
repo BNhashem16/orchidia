@@ -12,9 +12,10 @@ class HomeController extends Controller
 
     public function index()
     {
+      $switch = Language::first();
       $lang = Language::all();
       $component = Component::where('component_category_id', 11)->first();
-        return view('frontend.layouts.index')->with('component', $component)->with('lang', $lang);
+        return view('frontend.layouts.index')->with('component', $component)->with('lang', $lang)->with('switch', $switch);
     }
 
     public function calender()

@@ -37,6 +37,7 @@
                                 <tr>
                                     <th> # </th>
                                     <th> Title </th>
+                                    <th> Type </th>
                                     <th> Edit </th>
                                     <th> Delete </th>
                                 </tr>
@@ -45,11 +46,12 @@
                                 @foreach($component_category as $key => $component_category)
                                     <td class="center">{{$key+1}} </td>
                                     <td class="center">{{$component_category->title}}</td>
+                                    <td class="center"> <label class="btn btn-warning" style="color:black;font-weight: bold" > {{$component_category->type}} </label></td>
                                     <td>
 
                                         <a class="btn btn-info " href="{{route('category.edit',$component_category->id)}}"> Edit </a>
                                     </td>
-                                    
+
                                     {!! Form::Open(['method' => 'DELETE' , 'route' => ['category.destroy',$component_category->id]]) !!}
                                     <td>
                                         <button class="btn btn-danger" data-id="{{$component_category->id}}" onclick="deletefunction({{$component_category->id}},'{{url('/')}}')"> Delete </button>

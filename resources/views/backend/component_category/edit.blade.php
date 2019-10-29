@@ -22,13 +22,23 @@
                     <div class="portlet-body form">
 
                         <!-- BEGIN FORM-->
-                        {!! Form::model($component_category,['route' => ['category.update',$component_category->id], 'method' => 'PATCH'] , ['class' =>'form-horizontal form-bordered'] ) !!}
+                        {!! Form::model($component_category,['route' => ['category.update',$component_category->id], 'method' => 'PATCH' , 'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Title</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" value="{{$component_category->title}}" name="title">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Type</label>
+                                    <div class="col-md-9">
+                                      <select name="type" >
+                                        <option class="form-control" value="component" @if($component_category->type == 'component') selected @endif >Component</option>
+                                        <option class="form-control" value="form" @if($component_category->type == 'form') selected @endif >Form</option>
+                                      <select>
                                     </div>
                                 </div>
 

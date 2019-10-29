@@ -18,7 +18,7 @@ class Lang
       if ($request->lang <> '') {
             app()->setLocale($request->lang);
         }else{
-            app()->setLocale("en");
+            app()->setLocale('en');
         }
         // app()->setlocale(app('lang'));
         return $next($request);

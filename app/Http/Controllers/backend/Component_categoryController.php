@@ -34,6 +34,7 @@ class Component_categoryController extends Controller
         try {
             $component_category = new Component_category;
             $component_category->title = $request->title;
+            $component_category->type = $request->type;
             $component_category->created_by = 1;
             $component_category->updated_by = 1;
             $component_category->save();
@@ -59,6 +60,7 @@ class Component_categoryController extends Controller
         try {
             $component_category = Component_category::where('id',$id)->first();
             $component_category->title = $request->input('title');
+            $component_category->type = $request->type;
             $component_category->save();
             Session::flash('success', 'Component Updated Successfully');
             return Redirect::to('dashboard/component/category');

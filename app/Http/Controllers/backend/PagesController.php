@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Page;
 use App\Language;
+use App\Gallery;
 use Illuminate\Support\Str;
 use Exception;
 use Session;
@@ -71,10 +72,11 @@ class PagesController extends Controller
 
     public function edit($id)
     {
+      $galleries = Gallery::get();
       $page = Page::find($id);
       $page_get = Page::get();
       $langs = Language::get();
-      return view('backend.pages.edit')->with('page' , $page)->with('page_get' , $page_get)->with('langs' , $langs);
+      return view('backend.pages.edit')->with('page' , $page)->with('page_get' , $page_get)->with('langs' , $langs)->with('galleries' , $galleries);;
     }
 
     public function update(Request $request, $id)
