@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Component;
+use App\Message;
 use Session;
 use App\Language;
+use Redirect;
+use validator;
 
 class HomeController extends Controller
 {
@@ -31,5 +34,35 @@ class HomeController extends Controller
       }
       return back();
 }
+
+    public function formStore(Request $request)
+    {
+      try {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $phone_number = $request->input('phone_number');
+        $subject = $request->input('subject');
+        $msg = $request->input('message');
+        $message_array = ["name"          =>  $name,
+                          "email"         =>  $email,
+                          "phone_number"  =>  $phone_number,
+                          "subject"       =>  $subject,
+                          "message"       =>  $msg];
+        $contact_form = new Message;
+        $contact_form->message = $message_array;
+        $contact_form->page_id = 1;
+        $contact_form->created_by = 1;
+        $contact_form->updated_by = 1;
+        $contact_form->save();
+
+      Session::flash('success' , 'Form Added Successfully');
+      return Redirect::to('/');
+  } catch (\Exception $e) {
+    dd($e);
+      Session::flash('error', 'Form Not Added');
+    }
+  }
+
+
 
 }

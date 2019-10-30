@@ -123,32 +123,20 @@
                         <!-- =========================  QUICK CONTACT FORM ========================-->
                         <div class="contact-quick">
                             <div class="screen-reader-response"></div>
-                            <form id="contact_form" name="contact_form" method="post" action="http://orchidiapharma.com/en/Messages/quick">
-                                <input type="hidden" name="type" value="4" class="contact_type">
-                                <span class="your-name">
-                      <input type="text" name="name" required="" size="40" aria-required="true" aria-invalid="false" placeholder="Name" class="name form-control">
-                    </span>
-                                <span class="your-phone">
-                      <input type="text" name="phone" placeholder="Phone Number" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
-                    </span>
-                                <span class="your-email">
-                      <input type="email" name="email" placeholder="Email" size="40" aria-required="true" aria-invalid="false" class="email form-control">
-                    </span>
-                                <span class="your-subject">
-                      <input type="text" name="subject" placeholder="Subject" size="40" aria-required="true" aria-invalid="false" class="subject form-control">
-                    </span>
-                                <span class="your-message">
-                      <textarea name="message" cols="40" rows="4" aria-invalid="false" class="message form-control" placeholder="Message"></textarea>
-                    </span>
-                                <!-- <div class="captcha">
-                                  <div style="background-image:url('http://orchidiapharma.com/assets/php/contact/captcha.php')" class="captcha-code"></div>
-                                  <input type="text" name="captchainput" value="Enter Code" aria-required="true" aria-invalid="false" class="captchainput form-control">
-                                </div> -->
-                                <input type="submit" value="Send" class=" btn btn-primary">
-                                <!-- <div class="notice btn btn-metro alert alert-warning alert-dismissable hidden"></div><img src="http://orchidiapharma.com/assets/images/ajax-loader.gif" alt="Sending ..." class="ajax-loader not_visible"> -->
-                            </form>
+                            {!! Form::Open(['route'=>'home','files'=>true , 'name' => 'contact_form'  ,'id' => 'contact_form'] ) !!}
+                                  @foreach(App\Form::where('component_category_id' , 20)->get() as $form)
+                                  @if($form->field['type'] == 'textarea')
+                                    <span class="your-message">
+                                      <textarea name="$form->field['name']" cols="40" rows="4" aria-invalid="false" class="message form-control" placeholder="Message"></textarea>
+                                    </span>
+                                  @elseif($form->field['type'] == 'submit')
+                                    <input type="submit" value="Send" class=" btn btn-primary">
+                                  @else
+                                    <input type="$form->field['type']" name="$form->field['name']" required="" size="40" aria-required="true" aria-invalid="false" placeholder="{{$form->title[app()->getLocale()]}}" class="name form-control">
+                                  @endif
+                                  @endforeach
+                                {!! Form::Close() !!}
                         </div>
-                        <!-- /.contact-quick-->
                         <!-- =========================  QUICK CONTACT FORM ========================-->
                     </div>
                     <div class="col-md-4 secondary_section boxed elevate" id="appoin">

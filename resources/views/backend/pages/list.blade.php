@@ -41,7 +41,7 @@
 <tr>
                                 <td class="center">{{$key+1}} </td>
                                 <td class="center">{{$page->title['en']}}</td>
-                                <td class="center">{{$page->description['en']}}</td>
+                                <td class="center">{!!$page->description['en']!!}</td>
                                 <td class="center"><img width="100px" height="100px" src="{{url($page->image)}}" > </td>
                                 <td class="center">
                                   @if($page->active ==1)

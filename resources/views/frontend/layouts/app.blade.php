@@ -61,7 +61,7 @@
                   <nav>
                     <ul class="menu main_menu hover_menu">
                       @foreach(App\Page::where('active',1)->where('page_id',0)->where('nav',1)->get() as $page)
-                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="{{'/'.url(app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
+                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="{{('/'.app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
                           @if(count($page->childs) > 0)
                             <ul class="menu-dropdown">
                               @foreach($page->childs as $child)
@@ -74,7 +74,7 @@
 
                       <li class="lihasdropdown drop-left"><a title="{{trans('app.Language')}}" href=""><img src="{{url('frontend/assets/images/egy.jpg')}}" width="20"> </a>
                         <ul class="menu-dropdown">
-@foreach($lang as $lan)
+@foreach( App\Language::where('active' , 1)->get() as $lan)
                           <li><a class="flg_a" title="en" href="{{url('/'.$lan->short_code)}}"><img src="{{url($lan->image)}}"></a></li>
 @endforeach
   </ul>

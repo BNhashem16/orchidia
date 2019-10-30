@@ -17,8 +17,8 @@ class FormController extends Controller
 
     public function index()
     {
-      $form = Form::get();
-      return view('backend.form.list')->with('form' , $form);
+      $forms = Form::get();
+      return view('backend.form.list')->with('forms' , $forms);
     }
 
     public function create()
@@ -32,16 +32,25 @@ class FormController extends Controller
     public function store(Request $request)
     {
       try {
+        $title_en = $request->title["en"];
+        $name = str_replace(" ","_", $title_en);
+        $name = strtolower($name);
+        $mendatory = $request->mendatory == null ? 0 : 1 ;
+        $type =$request->type;
+        $field = ["name"=>$name,"type"=>$type,"mendatory"=>$mendatory];
+        $title = $request->title;
       $form = new Form;
-      $form->title = $request->title;
-      $form->form = $request->form;
+      $form->title = $title;
+      $form->field = $field;
       $form->component_category_id = $request->component_category_id;
       $form->created_by = 1;
-      $form->updated_by = 1;
+      $form->updatde_by = 1;
       $form->save();
+
       Session::flash('success' , 'Form Added Successfully');
       return Redirect::to('dashboard/form');
   } catch (\Exception $e) {
+    dd($e);
       Session::flash('error', 'Form Not Added');
   }
   return Redirect::back();

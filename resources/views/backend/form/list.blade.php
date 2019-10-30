@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="btn-group">
-                                            <a class="btn green" href="{{route('component.create')}}" >Add New
+                                            <a class="btn green" href="{{route('form.create')}}" >Add New
                                                 <i class="fa fa-plus"></i>
                                           </a>
 
@@ -38,9 +38,8 @@
                                 <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Image </th>
                                     <th> Title </th>
-                                    <th> Category Component</th>
+                                    <th> Name</th>
                                     <th> Small Title </th>
                                     <th> Description </th>
                                     <th> Extra</th>
@@ -50,21 +49,20 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($components as  $component)
+                                @foreach($forms as  $form)
 
-                                    <td class="center">{{$component->id}} </td>
-                                    <td class="center"><img width="100px" height="100px" src="{{url($component->image)}}" ></td>
-                                    <td class="center">{{substr($component->title['en'],0,15)}}</td>
-                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{substr($component->category_component->title,0,15)}}</td>
-                                    <td class="center">{{substr($component->sub_title['en'],0,30) }} </td>
-                                    <td class="center">{!!substr($component->description['en'] ,0,30) !!} </td>
-                                    <td class="center"> {{$component->extra['en']}} </td>
+                                    <td class="center">{{$form->id}} </td>
+                                    <td class="center">{{substr($form->title["en"],0,15)}}</td>
+                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{substr($form->field['name'],0,15)}}</td>
+                                    <td class="center">{{ $form->field['type']}} </td>
+                                    <td class="center">{{ $form->field['mendatory'] }} </td>
+                                    <td class="center"> {{$form->component_category_id}} </td>
                                     <td>
-                                        <a class="btn btn-info " href="{{route('component.edit',$component->id)}}"> Edit </a>
+                                        <a class="btn btn-info " href="{{route('form.edit',$form->id)}}"> Edit </a>
                                     </td>
-                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['component.destroy',$component->id] ]) !!}
+                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['form.destroy',$form->id] ]) !!}
                                       <td>
-                                          <button class="btn btn-danger" data-id="{{$component->id}}" onclick="deletefunction({{$component->id}},'{{url('/')}}')"> Delete </button>
+                                          <button class="btn btn-danger" data-id="{{$form->id}}" onclick="deletefunction({{$form->id}},'{{url('/')}}')"> Delete </button>
                                       </td>
                                     {!! Form::Close() !!}
                                   </tr>

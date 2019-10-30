@@ -8,6 +8,7 @@ use App\Page;
 use App\Language;
 use App\Gallery;
 use Illuminate\Support\Str;
+use App\Component_category;
 use Exception;
 use Session;
 use Redirect;
@@ -26,7 +27,8 @@ class PagesController extends Controller
     {
         $page = Page::get();
         $langs = Language::where('active' , 1)->get();
-        return view('backend.pages.create')->with('page' ,$page)->with('langs' ,$langs);
+        $forms = Component_category::where('type' , 'form')->get();
+        return view('backend.pages.create')->with('page' ,$page)->with('langs' ,$langs)->with('forms' ,$forms);
     }
 
     public function store(Request $request)
@@ -54,7 +56,7 @@ class PagesController extends Controller
             }
             // Ending Update Image
             $page->page_id = $request->input('page_id');
-            $page->form_id = 1;
+            $page->form_id = $request->form;
             $page->created_by = 1;
             $page->updatde_by = 1;
             $page->have_gallary = $request->input('have_gallary');
@@ -76,7 +78,8 @@ class PagesController extends Controller
       $page = Page::find($id);
       $page_get = Page::get();
       $langs = Language::get();
-      return view('backend.pages.edit')->with('page' , $page)->with('page_get' , $page_get)->with('langs' , $langs)->with('galleries' , $galleries);;
+      $forms = Component_category::where('type' , 'form')->get();      
+      return view('backend.pages.edit')->with('page' , $page)->with('page_get' , $page_get)->with('langs' , $langs)->with('galleries' , $galleries)->with('forms' ,$forms);
     }
 
     public function update(Request $request, $id)
@@ -102,7 +105,7 @@ class PagesController extends Controller
             $page->have_gallary = $request->input('have_gallary');
             $page->have_form = $request->input('have_form');
             $page->nav = $request->input('nav');
-            $page->form_id = 1;
+            $page->form_id = $request->form;
             $page->created_by = 1;
             $page->updatde_by = 1;
             $page->save();

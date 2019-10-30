@@ -54,6 +54,10 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
 
   Route::get('/', 'HomeController@index')->name('home');
+
+  #Contact Us
+  Route::resource('contact-us', 'frontend\ContactController');
+  // Route::post('contact-us', 'HomeController@formStore')->name('contactus');
   #News Route
   Route::get('news', 'frontend\NewsController@index');
   # Sub News Route
@@ -65,11 +69,12 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   # Calender
   Route::get('Calender', 'HomeController@calender');
   # Products Category
-  Route::get('Products/{slug}', 'frontend\ProductsController@index');
+  Route::get('Products/{slug}', 'frontend\ProductsController@index')->name('products');
   # Sub Products Route
   Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
   # Pages
   Route::get('{slug}', 'frontend\PagesController@pages');
+
   # Products Route
   Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');
 

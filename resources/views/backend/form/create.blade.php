@@ -34,32 +34,26 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                @foreach($langs as $lang)
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Title {{$lang->name}}</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                          @foreach($langs as $lang)
+                                              <div class="form-group">
+                                                  <label class="control-label col-md-3">Title {{$lang->name}}</label>
+                                                  <div class="col-md-9">
+                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                                  </div>
+                                              </div>
+                                          @endforeach
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Type</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="type" value="{{old('type')}}">
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                                @foreach($langs as $lang)
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Small Title {{$lang->name}}</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="sub_title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Mendatory</label>
+                                            <div class="col-md-1">
+                                                <input type="checkbox" class="form-control" name="mendatory" value="1">
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                                @foreach($langs as $key => $lang)
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Description {{$lang->name}}</label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control" id="editor{{$key}}"name="description[{{$lang->short_code}}]"></textarea>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">

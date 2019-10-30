@@ -64,6 +64,17 @@
                               <input type="radio" value="no"  name="have_form"> No
                             </div>
                         </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Form</label>
+                          <div class="col-md-3">
+                            <select class="form-control" name="form">
+                              <option value="" disabled selected>Select .. </option>
+                                @foreach($forms as $key => $form)
+                                  <option value="{{$form->id}}" >{{$form->title}}</option>
+                                @endforeach
+                            </select>
+                          </div>
+                        </div>                        
                         <div class="form-group ">
                           <label class="control-label col-md-3">Active</label>
                             <div class="col-md-9">

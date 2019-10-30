@@ -64,6 +64,17 @@
                               <input type="radio" value="no"  @if($page->have_form == 'no') checked @endif name="have_form"> No
                             </div>
                         </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Form</label>
+                          <div class="col-md-3">
+                            <select class="form-control" name="form">
+                              <option value="" disabled >Select .. </option>
+                                @foreach($forms as $key => $form)
+                                  <option value="{{$form->id}}" {{$page->form_id == $form->id ?"selected": ""}} >{{$form->title}}</option>
+                                @endforeach
+                            </select>
+                          </div>
+                        </div>                         
                         <div class="form-group ">
                           <label class="control-label col-md-3">Active</label>
                             <div class="col-md-9">
@@ -157,7 +168,18 @@
                                       <img src="{{asset($gallery->image)}}" class="rounded" style="width: 50px;height: 50px" alt="img">
                                   </td>
 
-                                
+                                <td>
+                                    <a class="btn btn-info" href="{{route('gallery.edit',$page->id)}}">
+                                        <i class="glyphicon glyphicon-edit" title="EDIT"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" class="btn btn-danger delete" title="DESTROY" id="{{$gallery->id}}" url="{{url('/')}}" page="galleries"><i class="fa fa-trash"></i></a>
+                                    @if($gallery->deleted == 0)
+                                      <a class="btn btn-success" role="button" href="{{route('galleries.approvment',['id'=>$gallery->id,'deleted'=>$gallery->deleted])}}" class="btn btn-dark" title=" HIDE "><i class="fa fa-eye-slash"></i>  </a>
+                                    @else
+                                      <a class="btn btn-success" role="button" href="{{route('galleries.approvment',['id'=>$gallery->id,'deleted'=>$gallery->deleted])}}" class="btn btn-dark"><i class="fa fa-eye"></i> </a>
+                                    @endif
+                                </td>
                             </tr>
 
                         @endforeach
