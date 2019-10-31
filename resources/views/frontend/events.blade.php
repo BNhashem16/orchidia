@@ -36,7 +36,7 @@
                         </figure>
                   </div>
                     <p style="color:black;" class="desc hight" >{{substr($event->description['en'], 0, 90)}}....</p>
-                      <a href="{{url('Events/'.$event->link)}}" class="btn btn-primary">Read More</a>
+                      <a href="{{url('/'.app()->getLocale().'/'.'Events/'.$event->link)}}" class="btn btn-primary">Read More</a>
                 </article>
               </div>
                             <!-- ======================= ARTICLE #2 ======================-->

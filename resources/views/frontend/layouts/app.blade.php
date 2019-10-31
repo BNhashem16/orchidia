@@ -99,66 +99,70 @@
 @yield('content')
     <!-- ============================ FOOTER ============================-->
     <footer class="gradient-invert diagonal-70-invert vbottom">
-        <div class="container">
-            <div class="row">
-                <!-- ========================== WIDGET ABOUT US ==========================-->
-                <div class="col-sm-6 col-md-4">
-                    <div class="widget pl_about_us_widget">
-                        <p><img src="./assets/images/medicus-header-logo.png" alt="image-desc"></p>
-                        <p>Premium HTML Template mainly Medical Oriented but so flexible that it can fit any Business Site!</p>
-                        <p class="contact_detail"><i class="fa fa-phone"></i><span>(+30) 210 1234567</span></p>
-                        <p class="contact_detail"><i class="fa fa-envelope"></i><span><a href="mailto:info@plethorathemes.com">info@plethorathemes.com</a></span></p>
-                        <p class="social"><a href="https://www.facebook.com/plethorathemes"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/PlethoraThemes"><i class="fa fa-twitter"></i></a><a href="https://plus.google.com/112457016609952874702/posts"><i class="fa fa-google-plus"></i></a><a href="https://gr.linkedin.com/pub/plethora-themes/89/552/4a9"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="https://www.youtube.com/user/plethorathemes"><i class="fa fa-youtube">   </i></a>
-                        </p>
-                        <p class="contact_detail"><a href="https://www.google.com/maps/place/79+Folsom+Ave+San+Francisco+CA+94107" target="_blank"><i class="fa fa-location-arrow"></i></a><span>79 Folsom Ave, San Francisco, CA 94107        </span></p>
-                    </div>
-                </div>
-                <!-- END======================= WIDGET ABOUT US ==========================-->
-                <!-- ========================== LATEST NEWS =============================-->
-                <div class="col-sm-6 col-md-4">
-                    <div class="widget pl_latest_news_widget">
-                        <h4>Latest Articles</h4>
-                        <ul class="media-list">
-                            <li class="media"><a href="single.html" style="background-image:url('./assets/images/video-002.jpg');" class="media-photo"></a>
-                                <h5 class="media-heading"><a href="single.html">Diabetes Diet and Food Tips</a></h5><small>Dec 8</small>
-                                <p>You can make a big difference with healthy lifestyle changes....</p>
-                            </li>
-                            <li class="media"><a href="single.html" style="background-image:url('./assets/images/pricing-004.jpg');" class="media-photo"></a>
-                                <h5 class="media-heading"><a href="single.html">Prevent Asthma by changing working enviroment</a></h5><small>Dec 6</small>
-                                <p>Prom preventive care and checkups, to immunizations and exams, our primary…</p>
-                            </li>
-                            <li class="media"><a href="single.html" class="media-photo"></a>
-                                <h5 class="media-heading"><a href="single.html">Learn about Arrhythmia today</a></h5><small>Dec 7</small>
-                                <p>When you visit one of our four San Francisco campus locations you can expect…</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- END======================= LATEST NEWS =============================-->
-                <!-- ========================== REQUEST A CHECKUP =======================-->
-                <div class="col-sm-8 col-md-4">
-                    <div class="widget pl_html_widget boxed black_section transparent-film wow slideInRight">
-                        <h4>Request a Checkup</h4>
-                        <p><img src="./assets/images/strive-test.png" width="90" alt="image-desc" class="pull-left">From preventive care and checkups, to immunizations and exams, our primary care physicians and providers you visit one of our four San Francisco campus locations you can expect to receive world class care.</p>
-                        <p> <a href="health-plans.html" class="btn btn-success with-icon"><i class="fa fa-caret-right"> </i>Free Checkup</a></p>
-                    </div>
-                </div>
-                <!-- END======================= REQUEST A CHECKUP =======================-->
+      <div class="container">
+        <div class="row">
+            <!-- ========================== WIDGET ABOUT US ==========================-->
+            <div class="col-sm-6 col-md-4">
+              <div class="widget pl_about_us_widget">
+                @foreach(App\Setting::where('logo' , '!=' , null)->get() as $logo)
+                <p><img src="{{url($logo->logo)}}" alt="image-desc"></p>
+                @endforeach
+                @foreach(App\Setting::where('related_icon' , 'info')->orderBy('id' , 'DESC')->get() as $info)
+                @if(empty ( $info->link['href'] ))
+                <p ><i class="{{$info->link['class']}}"></i><span>{{$info->title[app()->getLocale()]}}</span></p>
+                @else
+                <p ><a href="{{$info->link['href']}}" target="_blank"><i class="{{$info->link['class']}}"></i></a><span>{{$info->title[app()->getLocale()]}} </span></p>
+                @endif
+                @endforeach
+
+                <p>
+                  @foreach(App\Setting::where('related_icon' , 'social')->get() as $social)
+                  <a target="{{$social->link['target']}}" href="{{$social->link['href']}}"><i class="{{$social->link['class']}}"></i></a>
+                  @endforeach
+                </p>
+              </div>
             </div>
+            <!-- END======================= WIDGET ABOUT US ==========================-->
+            <!-- ========================== LATEST NEWS =============================-->
+            <div class="col-sm-6 col-md-4">
+              <div class="widget pl_latest_news_widget">
+                <h4>Latest News</h4>
+                <ul class="media-list">
+                  <?php $count = 0; ?>
+                  @foreach (App\Component::where('component_category_id' , 12)->get() as $new)
+                      <?php if($count == 3) break; ?>
+                      <li class="media">
+                        <a href="{{app()->getLocale().'/'.'News/'.$new->link}}" style="background-image:url({{$new->image}});" class="media-photo"></a>
+                        <h5 class="media-heading">
+                          <a href="{{'News/'.$new->link}}">{{$new->title[$app->getLocale()]}}</a><br>
+                            <span>{{ $new->created_at->format('y-m-d') }} </span>
+                        </h5>
+                          <p>{!! substr($new->sub_title[$app->getLocale()] , 0 , 40)  !!}</p>
+                      </li>
+                      <?php $count++; ?>
+                    @endforeach
+                </ul>
+
+              </div>
+            </div>
+            <!-- END======================= LATEST NEWS =============================-->
+          <!-- ========================== REQUEST A CHECKUP =======================-->
+          <div class="col-sm-8 col-md-4 right-tex">
+            <div class="widget pl_html_widget boxed black_section transparent-film wow slideInRight">
+              @foreach(App\Component::where('component_category_id' , 21)->get() as $message  )
+              <h4>{{$message->title[app()->getLocale()]}}</h4>
+                <div>
+                  <img src="https://orchidiapharma.com/images/pages/1508169297_1507740938_OSAMA_ABBAS.png" width="90" alt="image-desc" class="pull-left img-ceo">
+                    <p>{!! substr($message->description[app()->getLocale()] , 0 ,285) !!}</p>
+                      <a href="{{url(app()->getLocale().'/'.$message->link)}}" class="btn btn-primary">Read More</a>
+                      @endforeach
+                </div>
+            </div>
+          </div>
+          <!-- END======================= REQUEST A CHECKUP =======================-->
         </div>
+      </div>
     </footer>
-    <!-- END========================== FOOTER ============================-->
-    <div class="copyright secondary_section">
-        <div class="secondary_section transparent-film">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6">Copyright ©2015 all rights reserved</div>
-                    <div class="col-sm-6 col-md-6 text-right">Designed by <a href='http://plethorathemes.com/' target='_blank'>Ahmed Hashem</a></div>
-                </div>
-            </div>
-        </div>
-    </div><a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-</div>
 <!-- ==================== SCRIPTS | CONFIG ====================-->
 <script type="text/javascript" src="{{url('frontend/assets/js/config.js')}}" data-module="main-configuration"></script>
 <!-- ==================== SCRIPTS | GLOBAL ====================-->

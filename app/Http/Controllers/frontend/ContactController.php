@@ -4,6 +4,12 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Message;
+use App\Form;
+use Session;
+use App\Language;
+use Redirect;
+use validator;
 
 class ContactController extends Controller
 {
@@ -14,7 +20,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages');
+        $form = Form::get();
+        return view('frontend.pages')->with('$form' , $form);
     }
 
     /**

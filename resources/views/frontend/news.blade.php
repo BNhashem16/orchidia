@@ -30,9 +30,9 @@
                     <img src="{{url($new->image)}}" class="" alt="Now in Egyptian Market" title="Now in Egyptian Market" >
                   </div>
                   <div style="color:black;" class="col-md-6 col-sm-6 col-xs-6">
-                    <h2 style="font-weight: 900;font-size: 20px;font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;" class="post_title post_title2"><a href="{{url('News/'.$new->link)}}">{{$new->title['en']}}</a></h2>
+                    <h2 style="font-weight: 900;font-size: 20px;font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;" class="post_title post_title2"><a href="{{'News/'.$new->link}}">{{$new->title['en']}}</a></h2>
                       <h3 style="font-size: 20px; margin-bottom: 0px; margin-top: 0px; font-family: 'Raleway', 'Helvetica Neue' ,Arial, sans-serif; font-weight: normal; line-height: 1.1;"  class="post_title2">{{$new->created_at->format('m-d-Y')}}</h3>
-                        <div style="margin-bottom: 20px; margin-top: 10px;font-size: 15px;font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;" class="desc desc_news">{{substr($new->description['en'], 0, 90)}}....</div>
+                        <div style="margin-bottom: 20px; margin-top: 10px;font-size: 15px;font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;" class="desc desc_news">{!! substr($new->sub_title[$app->getLocale()], 0, 90) !!}....</div>
                           <p><a href="{{url('News/'.$new->link)}}" class="btn btn-primary">Read More</a></p>
                   </div>
                 </article>

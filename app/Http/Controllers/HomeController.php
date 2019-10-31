@@ -63,6 +63,10 @@ class HomeController extends Controller
     }
   }
 
+  public function ceo_message() {
+    return view('frontend.ceo_message');
+  }
+
 
 
 }

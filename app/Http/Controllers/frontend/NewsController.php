@@ -12,8 +12,10 @@ class NewsController extends Controller
       return view('frontend.news');
     }
 
-    public function sub_news($slug) {
-      $component = Component::where('link',$slug)->first();
-      return view('frontend.sub_news')->with('component' , $component);
+    public function sub_news($lang ,$slug) {
+
+      $news = Component::where('link',$slug)->first();
+
+      return view('frontend.sub_news')->with('news' , $news);
     }
 }

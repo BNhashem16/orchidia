@@ -5,7 +5,7 @@
     <div  class="hgroup pull-right">
       <div class="title diagonal-bgcolor-trans">
         <div class="container">
-          <h1 style="color: #29377d; font-size: 41px;">{{$component->title['en']}}</h1>
+          <h1 style="color: #29377d; font-size: 41px;">{{ $news->title[$app->getLocale()] }}</h1>
         </div>
       </div>
       <div class="subtitle body-bg_section">
@@ -24,16 +24,16 @@
               <div class="col-md-5 pull-right no_pad">
                 <div class="post_sub">
                   <span class="post_info post_date">
-                    <i class="fa fa-calendar"></i> {{$component->created_at->format('y-m-d')}}
+                    <i class="fa fa-calendar"></i> {{$news->created_at->format('y-m-d')}}
                   </span>
                 </div>
                     <figure>
-                      <a href="{{url($component->image)}}" class="lightbox_gallery">
-                        <img class="pull-right img-event-single" alt="featured image" src="{{url($component->image)}}">
+                      <a href="{{url($news->image)}}" class="lightbox_gallery">
+                        <img class="pull-right img-event-single" alt="featured image" src="{{url($news->image)}}">
                       </a>
                     </figure>
               </div>
-                  <p style="color: #323232;"> {!! $component->description['en'] !!} </p>
+                  <p style="color: #323232;"> {!! $news->description[$app->getLocale()] !!} </p>
             </div>
           </article>
         </div>

@@ -35,6 +35,8 @@ Route::resource('dashboard/component/category', 'backend\Component_categoryContr
 Route::resource('dashboard/component', 'backend\ComponentController');
 #Gallery
 Route::resource('dashboard/gallery', 'backend\GalleryController');
+#Setting
+Route::resource('dashboard/setting', 'backend\SettingController');
 #Gallery
 Route::resource('dashboard/form', 'backend\FormController');
 #Login
@@ -50,18 +52,21 @@ Route::post('dashboard/login', 'backend\UserController@doLogin');
 Route::get('/',function(){
   return redirect()->to('/en');
 });
+
 Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
 
   Route::get('/', 'HomeController@index')->name('home');
+  #Form Post Method
+  Route::post('/', 'frontend\ContactController@store');
 
   #Contact Us
   Route::resource('contact-us', 'frontend\ContactController');
-  // Route::post('contact-us', 'HomeController@formStore')->name('contactus');
+  // Route::post('contact-us', 'HomeController@formStore')->name('contact-us');
   #News Route
   Route::get('news', 'frontend\NewsController@index');
   # Sub News Route
-  Route::get('News/{slug}', 'frontend\NewsController@sub_news');
+  Route::get('News/{slug}', 'frontend\NewsController@sub_news')->name('News');
   #Event Route
   Route::get('events', 'frontend\EventController@index');
   # Sub Event Route
@@ -74,6 +79,8 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
   # Pages
   Route::get('{slug}', 'frontend\PagesController@pages');
+  # CEO MESSAGE
+  Route::get('ceo-message', 'HomeController@ceo_message');
 
   # Products Route
   Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');

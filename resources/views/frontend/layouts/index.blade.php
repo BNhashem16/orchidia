@@ -11,10 +11,10 @@
                         <div class="container">
                             <div class="caption caption-right caption-fancy">
                                 <div class="inner animated bounceInUp">
-                                    <div class="t1">{{$slider->title[app()->getLocale()]}}</div>
-                                    <div class="t2 uppercase">{{$slider->sub_title[app()->getLocale()]}}</div>
-                                    <div class="t3 uppercase">{{$slider->extra[app()->getLocale()]}}</div>
-                                    <p class="desc hidden-xxs">{!! $slider->description[app()->getLocale()] !!} </p>
+                                    <div class="t1">{{$slider->title[$app->getLocale()]}}</div>
+                                    <div class="t2 uppercase">{{$slider->sub_title[$app->getLocale()]}}</div>
+                                    <div class="t3 uppercase">{{$slider->extra[$app->getLocale()]}}</div>
+                                    <p class="desc hidden-xxs">{!! $slider->description[$app->getLocale()] !!} </p>
                                 </div>
                             </div>
                         </div>
@@ -33,12 +33,12 @@
                 <div class="row">
                     <!-- ========================= ENTRY ========================-->
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry skincolored_section"><a href="{{url('news')}}">
+                        <div class="entry skincolored_section"><a href="{{url('/'.app()->getLocale().'/news')}}">
                                 <div style="background-image:url('frontend/assets/images/News.jpg');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">{{trans('app.News')}}</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry secondary_section"><a href="{{url('events')}}">
+                        <div class="entry secondary_section"><a href="{{url('/'.app()->getLocale().'/'.'events')}}">
                                 <div style="background-image:url('frontend/assets/images/events.png');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">{{trans('app.Events')}}</div></a></div>
                     </div>
@@ -123,16 +123,16 @@
                         <!-- =========================  QUICK CONTACT FORM ========================-->
                         <div class="contact-quick">
                             <div class="screen-reader-response"></div>
-                            {!! Form::Open(['route'=>'home','files'=>true , 'name' => 'contact_form'  ,'id' => 'contact_form'] ) !!}
+                            {!! Form::Open() !!}
                                   @foreach(App\Form::where('component_category_id' , 20)->get() as $form)
                                   @if($form->field['type'] == 'textarea')
                                     <span class="your-message">
-                                      <textarea name="$form->field['name']" cols="40" rows="4" aria-invalid="false" class="message form-control" placeholder="Message"></textarea>
+                                      <textarea name="{{$form->field['name']}}" cols="40" rows="4" aria-invalid="false" class="message form-control" placeholder="Message"></textarea>
                                     </span>
                                   @elseif($form->field['type'] == 'submit')
-                                    <input type="submit" value="Send" class=" btn btn-primary">
+                                    <input type="{{$form->field['type']}}" value="Send" class=" btn btn-primary">
                                   @else
-                                    <input type="$form->field['type']" name="$form->field['name']" required="" size="40" aria-required="true" aria-invalid="false" placeholder="{{$form->title[app()->getLocale()]}}" class="name form-control">
+                                    <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" size="40" aria-required="true" aria-invalid="false" placeholder="{{$form->title[app()->getLocale()]}}" class="name form-control">
                                   @endif
                                   @endforeach
                                 {!! Form::Close() !!}

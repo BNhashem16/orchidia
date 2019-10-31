@@ -203,6 +203,24 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-briefcase"></i>
+                        <span class="title">Setting Table List</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/setting')}}" class="nav-link "> Setting Table </a>
+                        </li>
+
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/setting/create')}}" class="nav-link ">Create setting </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
             <!-- END SIDEBAR MENU -->
             <!-- END SIDEBAR MENU -->

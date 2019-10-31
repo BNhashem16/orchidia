@@ -39,13 +39,13 @@ class FormController extends Controller
         $type =$request->type;
         $field = ["name"=>$name,"type"=>$type,"mendatory"=>$mendatory];
         $title = $request->title;
-      $form = new Form;
-      $form->title = $title;
-      $form->field = $field;
-      $form->component_category_id = $request->component_category_id;
-      $form->created_by = 1;
-      $form->updatde_by = 1;
-      $form->save();
+        $form = new Form;
+        $form->title = $title;
+        $form->field = $field;
+        $form->component_category_id = $request->component_category_id;
+        $form->created_by = 1;
+        $form->updatde_by = 1;
+        $form->save();
 
       Session::flash('success' , 'Form Added Successfully');
       return Redirect::to('dashboard/form');

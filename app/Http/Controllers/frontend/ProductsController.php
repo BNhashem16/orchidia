@@ -20,7 +20,7 @@ class ProductsController extends Controller
     return view('frontend.sub_products')->with('pro', $pro)->with('page', $page);
   }
 
-  public function sub_category($slug , $slug2) {
+  public function sub_category($lang ,$slug , $slug2) {
     $sub = Page::where('slug',$slug)->first();
     $product = Page::where('slug',$slug2)->first();
     $get_id = Page::get();
@@ -28,7 +28,7 @@ class ProductsController extends Controller
     return view('frontend.single_product')->with('single_product', $single_product)->with('product', $product)->with('sub', $sub);
   }
 
-  public function single_product($slug , $slug2 , $slug3) {
+  public function single_product($lang , $slug , $slug2 , $slug3) {
     $sub = Page::where('slug',$slug)->first();
     $page = Page::where('slug',$slug2)->first();
     $page = Page::where('slug',$slug3)->first();

@@ -16,7 +16,7 @@
                 <!-- =========================  QUICK CONTACT FORM ========================-->
                 <div class="contact-quick">
                   <div class="screen-reader-response"></div>
-                  {!! Form::Open(['route'=>'contact-us.store','files'=>true , 'name' => 'contact_form'  ,'id' => 'contact_form'] ) !!}
+                  {!! Form::Open() !!}
                         @foreach(App\Form::where('component_category_id' , 20)->get() as $form)
                         @if($form->field['type'] == 'textarea')
                           <span class="your-message">
