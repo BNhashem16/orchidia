@@ -63,8 +63,9 @@ class HomeController extends Controller
     }
   }
 
-  public function ceo_message() {
-    return view('frontend.ceo_message');
+  public function ceo_message($slug) {
+    $ceo_message = Component::where('link',$slug)->first();
+    return view('frontend.ceo_message')->with('ceo_message' , $ceo_message);
   }
 
 

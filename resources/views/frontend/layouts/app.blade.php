@@ -71,25 +71,33 @@
                           @endif
                         </li>
                       @endforeach
-
-                      <li class="lihasdropdown drop-left"><a title="{{trans('app.Language')}}" href=""><img src="{{url('frontend/assets/images/egy.jpg')}}" width="20"> </a>
+                      <li class="lihasdropdown drop-left">
+                        <a href="">
+                          @if(app()->getLocale() == 'ar') <img src="{{url('frontend/assets/images/egy.jpg')}}" width="20">
+                          @else <img src="{{url('frontend/assets/images/us.jpg')}}" width="20">
+                          @endif
+                        </a>
                         <ul class="menu-dropdown">
-@foreach( App\Language::where('active' , 1)->get() as $lan)
-                          <li><a class="flg_a" title="en" href="{{url('/'.$lan->short_code)}}"><img src="{{url($lan->image)}}"></a></li>
-@endforeach
-  </ul>
+                          @foreach( App\Language::where('active' , 1)->get() as $lan)
+                          <li>
+                            <a class="flg_a" title="{{$lan->short_code}}" href="{{url('/'.$lan->short_code)}}">
+                              <img src="{{url($lan->image)}}">
+                            </a>
+                          </li>
+                          @endforeach
+                        </ul>
                       </li>
-
-
-
-
                     </ul>
                   </nav>
                   <!-- END====================== NAVIGATION MENU ========================-->
                 </div>
-                <label class="mobile_collapser">MENU  </label>
-                <!-- =========================== SOCIAL ICONS =========================--><a title="" href="#" class="social_links"><i class="fa fa-share-alt"></i></a>
-                <div class="team_social"><a href="#"><i class="fa fa-skype"></i></a><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
+                <!-- =========================== SOCIAL ICONS =========================-->
+                <a title="" href="#" class="social_links"><i class="fa fa-share-alt"></i></a>
+                <div class="team_social">
+                  @foreach(App\Setting::where('related_icon' , 'social')->get() as $social)
+                    <a target="{{$social->link['target']}}" href="{{$social->link['href']}}"><i class="{{$social->link['class']}}"></i></a>
+                  @endforeach
+                  </div>
                 <!-- END======================== SOCIAL ICONS ========================= -->
             </div>
         </div>

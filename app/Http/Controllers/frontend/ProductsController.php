@@ -13,9 +13,8 @@ class ProductsController extends Controller
   //   return view('frontend.sub_category');
   // }
 
-  public function index($slug) {
+  public function index($lang ,$slug) {
     $page = Page::where('slug',$slug)->first();
-
     $pro = Component::where('component_category_id', 14)->get();
     return view('frontend.sub_products')->with('pro', $pro)->with('page', $page);
   }

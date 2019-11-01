@@ -65,10 +65,13 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   // Route::post('contact-us', 'HomeController@formStore')->name('contact-us');
   #News Route
   Route::get('news', 'frontend\NewsController@index');
-  # Sub News Route
-  Route::get('News/{slug}', 'frontend\NewsController@sub_news')->name('News');
+  # CEO MESSAGE
+  Route::get('ceo-message', 'HomeController@ceo_message');
   #Event Route
   Route::get('events', 'frontend\EventController@index');
+
+  # Sub News Route
+  Route::get('News/{slug}', 'frontend\NewsController@sub_news')->name('News');
   # Sub Event Route
   Route::get('Events/{slug}', 'frontend\EventController@sub_events');
   # Calender
@@ -79,8 +82,7 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
   # Pages
   Route::get('{slug}', 'frontend\PagesController@pages');
-  # CEO MESSAGE
-  Route::get('ceo-message', 'HomeController@ceo_message');
+
 
   # Products Route
   Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');
