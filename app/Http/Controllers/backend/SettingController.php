@@ -31,7 +31,7 @@ class SettingController extends Controller
         $href = $request->input('href');
         $target = $request->input('target');
         $class = $request->input('class');
-        $social_array = ["href"          =>  $href,
+        $social_array = [ "href"          =>  $href,
                           "target"        =>  $target,
                           "class"         =>  $class];
         $setting = new Setting;

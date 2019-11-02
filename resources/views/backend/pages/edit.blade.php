@@ -74,7 +74,7 @@
                                 @endforeach
                             </select>
                           </div>
-                        </div>                         
+                        </div>
                         <div class="form-group ">
                           <label class="control-label col-md-3">Active</label>
                             <div class="col-md-9">
@@ -126,101 +126,7 @@
     <!-- END CONTENT BODY -->
 
 
-    @if($page_get->have_gallary == 'yes')
-
-        <h3 class="page-title"> GALLERIES TABLE
-           <small>View</small>
-        </h3>
-        <a style="margin-bottom: 10px;"role="button" href="{{route('gallery.create',['id'=>$page->id])}}" class="btn green"><i class="fa fa-plus"></i> Add Gallery</a>
-
-        <!-- BEGIN EXAMPLE TABLE PORTLET-->
-
-        <div class="portlet box green">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-globe"></i>GALLERIES</div>
-                <div class="tools"> </div>
-            </div>
-
-            <div class="portlet-body">
-                <table class="table table-striped table-bordered table-hover" id="sample_2">
-                    <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>Title</th>
-                          <th>Image</th>
-                          <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($galleries as $gallery)
-                                <tr>
-                                  <td style="width: 20px">{{$gallery->id}}</td>
-                                  <td>{{$gallery->title_en}}</td>
-                                    <td>
-                                        <img src="{{asset($gallery->image)}}" class="rounded" style="width: 100px;height: 100px" alt="img">
-                                    </td>
-
-                                <tr class="bg-yellow-saffron bg-font-yellow-saffron">
-                                  <td style="color: black;width: 20px">{{$gallery->id}}</td>
-                                  <td>{{$gallery->title_en}}</td>
-                                  <td>
-                                      <img src="{{asset($gallery->image)}}" class="rounded" style="width: 50px;height: 50px" alt="img">
-                                  </td>
-
-                                <td>
-                                    <a class="btn btn-info" href="{{route('gallery.edit',$page->id)}}">
-                                        <i class="glyphicon glyphicon-edit" title="EDIT"></i>
-                                    </a>
-
-                                    <a href="javascript:void(0)" class="btn btn-danger delete" title="DESTROY" id="{{$gallery->id}}" url="{{url('/')}}" page="galleries"><i class="fa fa-trash"></i></a>
-                                    @if($gallery->deleted == 0)
-                                      <a class="btn btn-success" role="button" href="{{route('galleries.approvment',['id'=>$gallery->id,'deleted'=>$gallery->deleted])}}" class="btn btn-dark" title=" HIDE "><i class="fa fa-eye-slash"></i>  </a>
-                                    @else
-                                      <a class="btn btn-success" role="button" href="{{route('galleries.approvment',['id'=>$gallery->id,'deleted'=>$gallery->deleted])}}" class="btn btn-dark"><i class="fa fa-eye"></i> </a>
-                                    @endif
-                                </td>
-                            </tr>
-
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- END EXAMPLE TABLE PORTLET-->
-
-
-
-        <div class="modal fade" id="delete_popup" tabindex="-1" role="basic" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title"> DELETE </h4>
-                    </div>
-                    <div class="modal-body">
-
-                     </div>
-                    <div class="modal-footer" >
-                        <button style="margin-left: 10px;float:right" type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
-
-
-                        <form id="form" action="" method="POST"  style="display: flex;float:right">
-                            {{csrf_field()}}
-                            {{method_field('DELETE')}}
-                            <button class="btn btn-danger" type="submit" title="DESTROY">
-                                 DELETE
-                            </button>
-                        </form>
-
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-    @endif
-
+  
 
 </div>
 <!-- Start Description Section -->

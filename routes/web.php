@@ -57,6 +57,8 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
 
   Route::get('/', 'HomeController@index')->name('home');
+  #Home
+  Route::get('home', 'HomeController@index');
   #Form Post Method
   Route::post('/', 'frontend\ContactController@store');
 
@@ -65,6 +67,11 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   // Route::post('contact-us', 'HomeController@formStore')->name('contact-us');
   #News Route
   Route::get('news', 'frontend\NewsController@index');
+
+  #who we are Page
+  Route::get('about-as/who-we-are', 'HomeController@whoWeAre');
+  #CME Page
+  Route::get('cme', 'HomeController@cme');
   # CEO MESSAGE
   Route::get('ceo-message', 'HomeController@ceo_message');
   #Event Route

@@ -7,6 +7,7 @@ use App\Component;
 use App\Message;
 use Session;
 use App\Language;
+use App\Page;
 use Redirect;
 use validator;
 
@@ -14,6 +15,25 @@ class HomeController extends Controller
 {
 
     public function index()
+    {
+      $switch = Language::first();
+      $lang = Language::all();
+      $component = Component::where('component_category_id', 11)->first();
+        return view('frontend.layouts.index')->with('component', $component)->with('lang', $lang)->with('switch', $switch);
+    }
+
+    # Who We are page
+    public function whoWeAre() {
+      $whoWeAre = Page::where('slug', 'who-we-are')->first();
+      return view('frontend.whoWeAre')->with('whoWeAre', $whoWeAre);
+    }
+    #CME Page
+    public function cme() {
+      $cme = Page::where('slug', 'cme')->first();
+      return view('frontend.cme')->with('cme', $cme);
+    }
+
+    public function home()
     {
       $switch = Language::first();
       $lang = Language::all();

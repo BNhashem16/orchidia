@@ -61,11 +61,11 @@
                   <nav>
                     <ul class="menu main_menu hover_menu">
                       @foreach(App\Page::where('active',1)->where('page_id',0)->where('nav',1)->get() as $page)
-                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} two-column drop-left"><a title="more" href="{{('/'.app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
+                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} one-column drop-left"><a title="{{$page->title['en']}}" href="{{('/'.app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
                           @if(count($page->childs) > 0)
                             <ul class="menu-dropdown">
                               @foreach($page->childs as $child)
-                                <li><a title="{{$child->title['en']}}" href="{{url($child->slug)}}">{{$child->title['en']}} - {{trans('app.Home')}} </a></li>
+                                <li><a title="{{$child->title['en']}}" href="{{url('/'.app()->getLocale().'/'.$page->slug.'/'.$child->slug)}}">{{$child->title[app()->getLocale()]}}</a></li>
                               @endforeach
                             </ul>
                           @endif
