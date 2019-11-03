@@ -23,7 +23,6 @@
                         <!-- BEGIN FORM-->
                         {!! Form::Open(['route'=>'setting.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
-
                                           @foreach($langs as $lang)
                                               <div class="form-group">
                                                   <label class="control-label col-md-3">Title {{$lang->name}}</label>
@@ -33,6 +32,7 @@
                                               </div>
                                           @endforeach
 
+                                          <!-- start Link option -->
                                           <div class="form-group ">
                                             <label class="control-label col-md-3">Links Target</label>
                                               <div class="col-md-9">
@@ -47,16 +47,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group ">
-                                          <label class="control-label col-md-3">related Icon</label>
-                                            <div class="col-md-9">
-                                              <input type="radio" value="info"  name="related_icon"> Info Icon <br>
-                                              <input type="radio" value="social"  name="related_icon"> Social Icon
-                                            </div>
-                                        </div>
-
                                         <div class="form-group">
-                                          <label class="control-label col-md-3">Link</label>
+                                          <label class="control-label col-md-3">Link Class</label>
                                             <div class="col-md-3">
                                               <select class="form-control" name="class">
                                                 <option value="fa fa-phone" >Phone Number</option>
@@ -72,6 +64,39 @@
                                                 </select>
                                               </div>
                                             </div>
+                                        <!-- End Link option -->
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="email" value="{{old('type')}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Fax</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="fax" value="{{old('type')}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Phone Number</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="phone_number" value="{{old('type')}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group ">
+                                          <label class="control-label col-md-3">related Icon</label>
+                                            <div class="col-md-9">
+                                              <input type="radio" value="info"  name="related_icon"> Info Icon <br>
+                                              <input type="radio" value="social"  name="related_icon"> Social Icon <br>
+                                              <input type="radio" value="main"  name="related_icon"> Main Icon
+                                            </div>
+                                        </div>
+
+
 
                                             <!-- Start Upload Image -->
                                             <div class="form-group last">

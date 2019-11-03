@@ -36,7 +36,8 @@
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach($gallery as $key => $gallery)
+
+                                @foreach($gallery as $key => $gallery)
 <tr>
                                 <td class="center">{{$key+1}} </td>
                                 <td class="center">{{$gallery->title}}</td>

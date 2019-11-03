@@ -34,16 +34,16 @@
                 <!-- =========================  QUICK CONTACT FORM ========================-->
               </div>
                 <div class="col-md-6 skincolored_section boxed same_height_col centered">
-                  <!--h3.col_header.centered Medicus--><img src="https://orchidiapharma.com//assets/images/orchidia-logo-01.jpg" alt="logo" height="33">
-                                                      <h4><strong>Address</strong></h4>
-                  <p>Al-Obour city – Industrial Zone, Area 14,15, Block no.12011, Cairo, Egypt.</p>
-                                                      <h4><strong>Email Contact</strong></h4>
-                  <p> info@orchidiapharmaceutical.com</p>
-                                                      <h4><strong>Phones</strong></h4>
-                  <p class="num_dir">+20 2 44891580<br></p><!-- <a href="#" class="btn btn-secondary">EMAIL US</a> -->
-                                                      <h4><strong>Fax</strong></h4>
-                  <p class="num_dir">+ 20 2 44891235<br></p><br><!-- <a href="#" class="btn btn-secondary">EMAIL US</a> -->
-
+                  <?php $setting = App\Setting::where('id' , 31)->first() ?>
+                  <img src="http://orchidiapharma.com//assets/images/orchidia-logo-01.jpg" alt="logo" height="33">
+                    <h4 class=""><strong>Address</strong></h4>
+                    <p class="">{{$setting->title[app()->getLocale()]}}</p>
+                    <h4 class=""><strong class="">Email Contact</strong></h4>
+                    <p class=""> {{$setting->extra['email']}}</p>
+                    <h4 class=""><strong class="">Phones</strong></h4>
+                    <p class="">{{$setting->extra['phone_number']}}<br></p>
+                    <h4 class=""><strong>Fax</strong></h4>
+                    <p class="">{{$setting->extra['fax']}}<br></p><br>
                 </div>
               </div>
 

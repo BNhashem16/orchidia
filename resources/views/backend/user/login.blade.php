@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
 Version: 4.5.6
 Author: KeenThemes
@@ -73,7 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
-                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="name" /> </div>
+                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="email" /> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
@@ -88,7 +88,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END LOGIN FORM -->
         </div>
 <script src="{{url('backend/assets/global/plugins/respond.min.js')}}"></script>
-<script src="{{url('backend/assets/global/plugins/excanvas.min.js')}}"></script> 
+<script src="{{url('backend/assets/global/plugins/excanvas.min.js')}}"></script>
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="{{url('backend/assets/global/plugins/jquery.min.js')}}" type="text/javascript"></script>

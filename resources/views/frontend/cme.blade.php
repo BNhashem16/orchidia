@@ -33,16 +33,18 @@
             <ul id="filt_medicus" class="portfolio_filters"></ul>
             <div id="cont_medicus" class="row isotope_portfolio_container isotope">
                             <!-- ================= PORTFOLIO ITEM #1 (Image) ================-->
-              <div class="images col-xs-12 col-sm-6 col-md-6">
-                <div class="portfolio_item stretchy-wrapper ratio_2-1"><a href="https://orchidiapharma.com/images/pages/1512307708_0U9A7598.jpg" class="lightbox_gallery">
-                    <div style="background-image:url(https://orchidiapharma.com/images/pages/1512317994+1_1512307708_0U9A7598.jpg)" class="figure"></div>
-                    <div class="portfolio_title skincolored_section">
-                      <h3> <i class="fa fa-image"></i> Great Mind Wave 3 </h3>
-                    </div>
-                    <div class="portfolio_description skincolored_section degrade">
-                      <p>Great Mind 3 was made in Alexandria</p>
-                    </div></a></div>
-              </div>
+              @foreach(App\Gallery::where('page_id' , 19)->get()->take(2) as $gallery)
+                <div class="images col-xs-12 col-sm-6 col-md-6">
+                  <div class="portfolio_item stretchy-wrapper ratio_2-1"><a href="{{url($gallery->attachment)}}" class="lightbox_gallery">
+                      <div style="background-image:url({{url($gallery->attachment)}})" class="figure"></div>
+                      <div class="portfolio_title skincolored_section">
+                        <h3> <i class="fa fa-image"></i> {{$gallery->title}} </h3>
+                      </div>
+                      <div class="portfolio_description skincolored_section degrade">
+                        <p>Great Mind 3 was made in Alexandria</p>
+                      </div></a></div>
+                </div>
+              @endforeach
 
             </div>
           </div>

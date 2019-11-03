@@ -10,11 +10,11 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Pages</span>
+                    <span>Component</span>
                 </li>
             </ul>
         </div>
-        <h3 class="page-title">Create New Page</h3>
+        <h3 class="page-title">Create New Component</h3>
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PORTLET-->

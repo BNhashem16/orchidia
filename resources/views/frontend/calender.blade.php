@@ -5,19 +5,18 @@
           <div class="hgroup pull-right">
             <div class="title diagonal-bgcolor-trans">
               <div class="container">
-                <h1>Calendar</h1>
+                <h1 style="color:black;" >Calendar</h1>
               </div>
             </div>
             <div class="subtitle body-bg_section">
               <div class="container">
-                <!-- <p class="lowercase">meme</p> -->
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="main">
-        <section class="vcenter no_padd1">
+        <section style="background:white;color:black" class="vcenter no_padd1">
           <div class="container">
             <div class="row">
               <div class="col-sm-12 col-md-12">

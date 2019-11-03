@@ -34,8 +34,16 @@ class SettingController extends Controller
         $social_array = [ "href"          =>  $href,
                           "target"        =>  $target,
                           "class"         =>  $class];
+        $email = $request->input('email');
+        $fax = $request->input('fax');
+        $phone_number = $request->input('phone_number');
+        $info_array = [ "email"         =>  $email,
+                        "fax"           =>  $fax,
+                        "phone_number"  =>  $phone_number ];
+
         $setting = new Setting;
         $setting->title =  $request->input('title');
+
         $setting->related_icon =  $request->input('related_icon');
         // start Update Image
         if ($request->hasfile('image')) {
@@ -48,6 +56,7 @@ class SettingController extends Controller
         }
         // Ending Update Image
         $setting->link = $social_array;
+        $setting->extra =  $info_array;
         $setting->created_by = 1;
         $setting->updated_by = 1;
         $setting->save();

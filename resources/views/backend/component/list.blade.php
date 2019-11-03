@@ -5,7 +5,7 @@
         <div class="page-content">
             <!-- BEGIN PAGE HEADER-->
             <!-- BEGIN PAGE TITLE-->
-            <h3 class="page-title"> Page Table
+            <h3 class="page-title"> Component Table
             </h3>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -40,7 +40,7 @@
                                     <th> # </th>
                                     <th> Image </th>
                                     <th> Title </th>
-                                    <th> Category Component</th>
+                                    <th> Component Category </th>
                                     <th> Small Title </th>
                                     <th> Description </th>
                                     <th> Extra</th>
@@ -53,16 +53,20 @@
                                 @foreach($components as  $component)
 
                                     <td class="center">{{$component->id}} </td>
-                                    <td class="center"><img width="100px" height="100px" src="{{url($component->image)}}" ></td>
+                                    <td class="center">
+                                      @if(empty($component->image)) <p style="color: red;font-weight: bold;" class="center" >Empty</p>
+                                      @else<img width="100px" height="100px" src="{{url($component->image)}}" >
+                                      @endif
+                                    </td>
                                     <td class="center">{{substr($component->title['en'],0,15)}}</td>
-                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{substr($component->category_component->title,0,15)}}</td>
+                                    <td ><label style="color:black;font-weight: Bold; " class="btn btn-warning" > {{substr($component->category_component->title,0,15)}}</label></td>
                                     <td class="center">{{substr($component->sub_title['en'],0,30) }} </td>
                                     <td class="center">{!!substr($component->description['en'] ,0,30) !!} </td>
                                     <td class="center"> {{$component->extra['en']}} </td>
                                     <td>
                                         <a class="btn btn-info " href="{{route('component.edit',$component->id)}}"> Edit </a>
                                     </td>
-                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['component.destroy',$component->id] ]) !!}
+                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['component.destroy',$component->id] , 'files'=>true]) !!}
                                       <td>
                                           <button class="btn btn-danger" data-id="{{$component->id}}" onclick="deletefunction({{$component->id}},'{{url('/')}}')"> Delete </button>
                                       </td>

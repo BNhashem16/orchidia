@@ -8,6 +8,7 @@ use App\Message;
 use Session;
 use App\Language;
 use App\Page;
+use App\Gallery;
 use Redirect;
 use validator;
 
@@ -31,6 +32,13 @@ class HomeController extends Controller
     public function cme() {
       $cme = Page::where('slug', 'cme')->first();
       return view('frontend.cme')->with('cme', $cme);
+    }
+
+    #Gallery
+    public function gallery() {
+      $image = Gallery::where('type', 'image')->get();
+      $video = Gallery::where('type', 'video')->get();
+      return view('frontend.gallery')->with('image', $image)->with('video', $video);
     }
 
     public function home()

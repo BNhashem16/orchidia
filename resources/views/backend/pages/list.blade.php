@@ -28,10 +28,12 @@
                             <thead>
                               <tr>
                                 <th> # </th>
-                                <th> Title English </th>
-                                <th> Description </th>
+                                <th> Title </th>
                                 <th> Image </th>
+                                <th> Have Gallery</th>
+                                <th> Page </th>
                                 <th> Status</th>
+                                <th> Navbar or Main page</th>
                                 <th> Edit </th>
                                 <th> Delete </th>
                               </tr>
@@ -41,13 +43,37 @@
 <tr>
                                 <td class="center">{{$key+1}} </td>
                                 <td class="center">{{$page->title['en']}}</td>
-                                <td class="center">{!!$page->description['en']!!}</td>
-                                <td class="center"><img width="100px" height="100px" src="{{url($page->image)}}" > </td>
+                                <td class="center">@if(empty($page->image )) <label class="btn btn-danger" >No Image</label> @else<img width="100px" height="100px" src="{{url($page->image)}}" >@endif  </td>
+                                <td class="center">
+                                  @if($page->have_gallary == 'yes')
+                                    <label class="btn btn-primary active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Yes</label>
+                                    @else
+                                    <label class="btn btn-danger active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">No</label>
+                                  @endif
+                                </td>
+                                <td class="center">
+                                  @if($page->page_id ==0)
+                                    <label class="btn btn-primary active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">No Parent</label>
+                                    @else
+                                    @foreach($page->childs as $child)
+                                    <label class="btn btn-danger active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">{{$child->title['en']}}</label>
+                                    @endforeach
+                                  @endif
+                                </td>
+
                                 <td class="center">
                                   @if($page->active ==1)
                                     <label class="btn btn-primary active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Active</label>
                                     @else
                                     <label class="btn btn-danger active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Inactive</label>
+                                  @endif
+                                </td>
+
+                                <td class="center">
+                                  @if($page->nav ==1)
+                                    <label class="btn btn-primary active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Navbar</label>
+                                    @else
+                                    <label class="btn btn-danger active_change" data-id="{{$page->id}}" data-url='{{url('/')}}' data-active="{{$page->active}}">Main Page</label>
                                   @endif
                                 </td>
                                 <td>

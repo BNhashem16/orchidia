@@ -21,7 +21,7 @@
             <div class="portlet light form-fit bordered">
               <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                {!! Form::model($page,['route' => ['pages.update',$page->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
+                {!! Form::model($page,['route' => ['pages.update',$page->id], 'method' => 'PATCH', 'files' => true ,'class' =>'form-horizontal form-bordered'] ) !!}
                   <div class="form-body">
                     <div class="form-group">
                       <label class="control-label col-md-3">Page</label>
@@ -124,10 +124,48 @@
         </div>
     </div>
     <!-- END CONTENT BODY -->
+    <br> <hr>
+        @if($page->have_gallary == 'yes')
+            <h3 class="page-title"> GALLERIES TABLE
+               <small>View</small>
+            </h3>
+            <a style="margin-bottom: 10px;"role="button" href="{{route('gallery.create',['id'=>$page->id])}}" class="btn green"><i class="fa fa-plus"></i> Add Gallery</a>
 
-
-  
-
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+            <div class="table_change">
+              <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                <thead>
+                  <tr>
+                    <th> # </th>
+                    <th> Title </th>
+                    <th> attachment </th>
+                    <th> Type </th>
+                    <th> Edit </th>
+                    <th> Delete </th>
+                  </tr>
+                </thead>
+                <tbody
+                    @foreach($page->galleries as $key => $gallery)
+                    <tr>
+                    <td class="center">{{$key+1}} </td>
+                    <td class="center">{{$gallery->title}}</td>
+                    <td class="center"> <img width='80px' height='80px' src="{{url($gallery->attachment)}}" > </td>
+                    <td class="center"><label class="btn btn-warning" style="color:black;" >{{$gallery->type}}<label>  </td>
+                    <td>
+                      <a class="btn btn-info " href="{{route('pages.edit',$gallery->id)}}"> Edit </a>
+                    </td>
+                    <td>
+                      {!! Form::Open(['method' => 'DELETE' , 'route' => ['gallery.destroy',$gallery->id]]) !!}
+                        <button class="btn btn-danger" data-id="{{$gallery->id}}" onclick="deletefunction({{$gallery->id}},'{{url('/')}}')"> Delete </button>
+                      {!! Form::Close() !!}
+                    </td></tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        @endif
 </div>
 <!-- Start Description Section -->
 <?php $langs_count = count($langs); ?>

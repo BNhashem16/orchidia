@@ -85,8 +85,8 @@ class ComponentController extends Controller
       if ($request->hasfile('image')) {
           File::Delete($component->image);
           $file = $request->file('image');
-          $path = 'uploads/pages/';
           $filename = date('Y-m-d-h-i-s').'.'.$file->getClientOriginalExtension();
+          $path = 'uploads/pages/';
           $file->move(public_path().'/'.$path,$filename);
           $component->image = $path.$filename;
       }

@@ -5,10 +5,11 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Hash;
 use Session;
 use Redirect;
 use validate;
-
+use App\User;
 class UserController extends Controller
 {
 
@@ -26,22 +27,42 @@ class UserController extends Controller
 
         public function doLogin(Request $request)
         {
-            #Validation
-            $request->validate([
-                'name' => 'required',
-                'password' => 'required'
-            ]);
+          if (Auth::attempt([
+              'email'=>$request->email,
+              'password'=>$request->password
+          ]))
+          {
 
-            $name = $request->input('name');
-            $password = $request->input('password');
-            $data = ["name"=>$name,"password" =>$password];
-            if(Auth::attempt($data, true)) {
-                return Redirect::to('dashboard');
-            } else {
-                dd($data);
-               Session::flash('error','Username or Password Incorrect');
-               return Redirect::back();
-            }
+              $user= User::where('email', $request->email)->first();
+              if (app()->getLocale() == "en") {
+                  Session::flash('success','You Are Logged in');
+              }else{
+                  Session::flash('success','تم تسجيل الدخول بنجاح');
+              }
+
+              return redirect('/'.app()->getLocale());
+
+          }
+          else{
+              Session::flash('danger',trans('app.EmailAddressError'));
+              return redirect(app()->getLocale().'/signin');
+          }
+            #Validation
+            // $request->validate([
+            //     'name' => 'required',
+            //     'password' => 'required'
+            // ]);
+            //
+            // $name = $request->input('name');
+            // $password = Hash::make($request->input('password'));
+            // $data = ["name"=>$name,"password" =>$password];
+            // if(Auth::attempt($data, true)) {
+            //     return Redirect::to('dashboard');
+            // } else {
+            //
+            //    Session::flash('error','Username or Password Incorrect');
+            //    return Redirect::back();
+            // }
         }
     /**
      * Show the form for creating a new resource.

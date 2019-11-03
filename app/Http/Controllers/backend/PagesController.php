@@ -9,6 +9,7 @@ use App\Language;
 use App\Gallery;
 use Illuminate\Support\Str;
 use App\Component_category;
+use Auth;
 use Exception;
 use Session;
 use Redirect;
@@ -57,8 +58,7 @@ class PagesController extends Controller
             // Ending Update Image
             $page->page_id = $request->input('page_id');
             $page->form_id = $request->form;
-            $page->created_by = 1;
-            $page->updatde_by = 1;
+            $page->created_by = Auth::user()->id;
             $page->have_gallary = $request->input('have_gallary');
             $page->have_form = $request->input('have_form');
             $page->nav = $request->input('nav');
@@ -78,7 +78,7 @@ class PagesController extends Controller
       $page = Page::find($id);
       $page_get = Page::get();
       $langs = Language::get();
-      $forms = Component_category::where('type' , 'form')->get();      
+      $forms = Component_category::where('type' , 'form')->get();
       return view('backend.pages.edit')->with('page' , $page)->with('page_get' , $page_get)->with('langs' , $langs)->with('galleries' , $galleries)->with('forms' ,$forms);
     }
 
@@ -106,8 +106,7 @@ class PagesController extends Controller
             $page->have_form = $request->input('have_form');
             $page->nav = $request->input('nav');
             $page->form_id = $request->form;
-            $page->created_by = 1;
-            $page->updatde_by = 1;
+            $page->updatde_by = Auth::user()->id;
             $page->save();
             Session::flash('success' , 'Page Updated Successfully');
             return Redirect::to('dashboard/pages');

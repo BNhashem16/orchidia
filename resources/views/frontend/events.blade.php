@@ -24,7 +24,7 @@
               @foreach(App\Component::where('component_category_id',13)->get() as $event)
               <div class="col-md-4">
                 <article class="post">
-                  <h2 style="font-weight: 900;font-size: 20px;font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;" class="post_title post_title2 high"><a href="http://orchidiapharma.com/events/Great_Minds_wave_4">{{$event->title['en']}}</a></h2>
+                  <h2 style="font-weight: 900;font-size: 20px;font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;" class="post_title post_title2 high"><a href="{{url('/'.app()->getLocale().'/'.'Events/'.$event->link)}}">{{$event->title['en']}}</a></h2>
                     <div class="post_figure_and_info">
                       <div class="post_sub">
                         <span class="post_info post_date">

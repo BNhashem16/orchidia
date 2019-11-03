@@ -10,11 +10,11 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Language</span>
+                    <span>Component Category</span>
                 </li>
             </ul>
         </div>
-        <h3 class="page-title">Edit Language</h3>
+        <h3 class="page-title">Edit Component Category</h3>
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PORTLET-->

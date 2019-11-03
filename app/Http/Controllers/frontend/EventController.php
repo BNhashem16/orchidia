@@ -12,7 +12,7 @@ class EventController extends Controller
     return view('frontend.events');
   }
 
-  public function sub_events($slug) {
+  public function sub_events($lang ,$slug) {
     $component = Component::where('link',$slug)->first();
     return view('frontend.sub_events')->with('component' , $component);
   }

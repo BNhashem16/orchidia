@@ -59,9 +59,10 @@
                 <div class="menu_container"><span class="close_menu">&times;</span>
                   <!-- ========================= NAVIGATION MENU ========================-->
                   <nav>
+
                     <ul class="menu main_menu hover_menu">
                       @foreach(App\Page::where('active',1)->where('page_id',0)->where('nav',1)->get() as $page)
-                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} one-column drop-left"><a title="{{$page->title['en']}}" href="{{('/'.app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
+                        <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} one-column drop-left"><a title="{{$page->title['en']}}" href="{{$page->slug == 'home' ?('/'.app()->getLocale()) :('/'.app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
                           @if(count($page->childs) > 0)
                             <ul class="menu-dropdown">
                               @foreach($page->childs as $child)
@@ -180,6 +181,11 @@
 <script type="text/javascript" src="{{url('frontend/assets/js/libs/particlesjs/particles.min.js')}}" data-module="particles-js"></script>
 <script type="text/javascript" src="{{url('frontend/assets/js/libs/conformity/dist/conformity.min.js')}}" data-module="equal-column-height"></script>
 <!-- END====================== SCRIPTS ========================-->
+<!-- =================== SCRIPTS | SECTIONS new ===================-->
+<script type="text/javascript" src="{{url('frontend/assets/js/libs/jquery.isotope.min.js')}}" data-module=""></script>
+<script type="text/javascript" src="{{url('frontend/assets/js/libs/imagelightbox.min.js')}}" data-module=""></script>
+<script type="text/javascript" src="{{url('frontend/assets/js/libs/jquery.doublehelix.min.js')}}" data-module="portfolio-grid"></script>
+<!-- END================ SCRIPTS | SECTIONS ===================-->
 <!-- =================== SCRIPTS | SECTIONS ===================-->
 <script type="text/javascript" src="{{url('frontend/assets/js/newsletter.min.js')}}" data-module="newsletter"></script>
 <script type="text/javascript" src="{{url('frontend/assets/js/contact_form.min.js')}}" data-module="contact-form"></script>
@@ -214,5 +220,12 @@
     </div>
 </script>
 <!-- END DYNAMIC STYLE SWITCHER -->
+<script type="text/javascript">
+    $('.collapse').on('shown.bs.collapse', function(){
+    $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+    }).on('hidden.bs.collapse', function(){
+    $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+    });
+  </script>
 </body>
 </html>

@@ -43,12 +43,12 @@
                                 <div class="entry_text">{{trans('app.Events')}}</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry skincolored_section"><a href="{{url('Calender')}}">
+                        <div class="entry skincolored_section"><a href="{{url(app()->getLocale().'/Calender')}}">
                                 <div style="background-image:url('frontend/assets/images/calendar.png');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">{{trans('app.calender')}}</div></a></div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="entry secondary_section"><a href="portfolio.html">
+                        <div class="entry secondary_section"><a href="{{url(app()->getLocale().'/images')}}">
                                 <div style="background-image:url('frontend/assets/images/gallery.jpg');" class="entry_photo stretchy-wrapper ratio_15-9"></div>
                                 <div class="entry_text">{{trans('app.gallary')}}</div></a></div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="hgroup">
                       <h4 style="font-size: 11px;" class="tit_product">{{$product->title['en']}}</h4>
                     </div>
-                    <div class="link"><a href="{{url('Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>{{trans('app.Details')}}</strong>  </a></div>
+                    <div class="link"><a href="{{url(app()->getLocale().'/Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>{{trans('app.Details')}}</strong>  </a></div>
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@
               <!-- END========================= SERVICES ========================-->
                       <div class="clearfix"></div>
                       <div class="text-center">
-                        <a href="{{url('Products')}}" class="btn btn-secondary with-icon">{{trans('app.READ MORE')}}<i class="fa fa-caret-right"></i></a>
+                        <a href="{{url(app()->getLocale().'/Products')}}" class="btn btn-secondary with-icon">{{trans('app.READ MORE')}}<i class="fa fa-caret-right"></i></a>
                       </div>
                     </div>
                   </div>
@@ -143,8 +143,23 @@
                         <h3 class="col_header centered">{{trans('app.APPLY FOR JOB')}}</h3>
                         <!-- ========================= APPOINTMENT FORM ========================-->
                         <div class="appointment">
-                            <form id="appointment_form" name="appointment_form" method="post" action="http://orchidiapharma.com/Messages/appointment" enctype="multipart/form-data">
-
+                          {!! Form::Open(['file' => true , 'id' => 'appointment_form' , 'name' => 'appointment_form']) !!}
+                            @foreach(App\Form::where('component_category_id' , 24)->get() as $form)
+                              @if($form->field['type'] == 'text')
+                                <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
+                              @elseif($form->field['type'] == 'file')
+                                <label id="labl_cv">Attach Resume</label>
+                                <input id="cv_inpt" type="file" name="resume" placeholder="Attach resume" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
+                              @elseif($form->field['type'] == 'submit')
+                                <input type="{{$form->field['type']}}" value="{{$form->title[app()->getLocale()]}}" class=" btn btn-primary">
+                                @elseif($form->field['type'] == 'select')
+                                <select name="sex" class="sex" required="">
+                                  <option value="">Gender</option>
+                                  <option value="Female">Female</option>
+                                  <option value="Male">Male</option>
+                                </select>
+                              @endif
+                            @endforeach
                                 <input type="hidden" name="type" value="1">
                                 <select name="department" class="department" required="">
                                     <option selected="" disabled="">Department</option>
@@ -165,45 +180,30 @@
                                 </select>
                                 <input type="text" name="name" required="" placeholder="Full Name" size="40" aria-required="true" class="name form-control">
 
-                                <input type="date" name="birthdate" required="" placeholder="Date of Birth" size="40" aria-required="true" aria-invalid="false" class="birthdate form-control">
-
-                                <select name="sex" class="sex" required="">
+                                  <select name="sex" class="sex" required="">
                                     <option value="">Gender</option>
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
                                 </select>
 
-                                <input type="text" name="phone" required="" placeholder="Phone Number" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
-
-                                <input type="email" name="email" placeholder="Email" size="40" aria-required="true" aria-invalid="false" class="email form-control" required="">
-
-
-                                <label id="labl_cv">Attach Resume</label>
-                                <input id="cv_inpt" type="file" name="resume" placeholder="Attach resume" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
-
-                                <!-- <input type="file" name="cover_letter" placeholder="Appointment Date" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control" required>
-                                <label>Cover letter</label> -->
-
                                 <div class="clearfix"></div>
-                                <!-- <div class="captcha">
-                                  <div style="background-image:url('./assets/php/contact/captcha.php')" class="captcha-code"></div>
-                                  <input type="text" name="captchainput" value="Enter Code" aria-required="true" aria-invalid="false" class="captchainput form-control">
-                                </div> -->
-                                <input type="submit" value="Send" class=" btn btn-primary">
                                 <div class="notice btn btn-primary alert alert-warning alert-dismissable hidden"></div><img src="./assets/images/ajax-loader.gif" alt="Sending" class="ajax-loader not_visible">
-                            </form>
+                            <!-- </form> -->
+                            {!! Form::Close() !!}
                         </div>
                         <!-- END====================== APPOINTMENT FORM ========================-->
-                    </div>                    <div class="col-md-4 skincolored_section boxed same_height_col centered">
-                        <!--h3.col_header.centered Medicus--><img src="http://orchidiapharma.com//assets/images/orchidia-logo-01.jpg" alt="logo" height="33">
+                    </div>
+                    <div class="col-md-4 skincolored_section boxed same_height_col centered">
+                      <?php $setting = App\Setting::where('id' , 31)->first() ?>
+                      <img src="http://orchidiapharma.com//assets/images/orchidia-logo-01.jpg" alt="logo" height="33">
                         <h4 class=""><strong>Address</strong></h4>
-                        <p class="">Al-Obour city – Industrial Zone, Area 14,15, Block no.12011, Cairo, Egypt.</p>
+                        <p class="">{{$setting->title[app()->getLocale()]}}</p>
                         <h4 class=""><strong class="">Email Contact</strong></h4>
-                        <p class=""> info@orchidiapharmaceutical.com</p>
+                        <p class=""> {{$setting->extra['email']}}</p>
                         <h4 class=""><strong class="">Phones</strong></h4>
-                        <p class="">+20 2 44891580<br></p><!-- <a href="#" class="btn btn-secondary">EMAIL US</a> -->
+                        <p class="">{{$setting->extra['phone_number']}}<br></p>
                         <h4 class=""><strong>Fax</strong></h4>
-                        <p class="">+ 20 2 44891235<br></p><br><!-- <a href="#" class="btn btn-secondary">EMAIL US</a> -->
+                        <p class="">{{$setting->extra['fax']}}<br></p><br>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-//Auth::routes();
+// Auth::routes();
 
 
 
@@ -57,8 +57,7 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
 
   Route::get('/', 'HomeController@index')->name('home');
-  #Home
-  Route::get('home', 'HomeController@index');
+  
   #Form Post Method
   Route::post('/', 'frontend\ContactController@store');
 
@@ -76,6 +75,8 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('ceo-message', 'HomeController@ceo_message');
   #Event Route
   Route::get('events', 'frontend\EventController@index');
+  #Gallery
+  Route::get('images', 'HomeController@gallery');
 
   # Sub News Route
   Route::get('News/{slug}', 'frontend\NewsController@sub_news')->name('News');

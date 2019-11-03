@@ -10,18 +10,18 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Pages</span>
+                    <span>Component</span>
                 </li>
             </ul>
         </div>
-        <h3 class="page-title">Create New Page</h3>
+        <h3 class="page-title">Create New Component</h3>
         <div class="row">
           <div class="col-md-12">
             <!-- BEGIN PORTLET-->
             <div class="portlet light form-fit bordered">
               <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                  {!! Form::model($component,['route' => ['component.update',$component->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
+                  {!! Form::model($component,['route' => ['component.update',$component->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered' ,'files'=>true ] ) !!}
                     <div class="form-body">
                       <div class="form-group">
                         <label class="control-label col-md-3">Category</label>
@@ -70,7 +70,7 @@
                               <div class="col-md-9">
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                   <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img id="preview"  src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                    <img style="width: 200px; height: 140px;" id="preview"  src="{{url($component->image)}}" alt="" /> </div>
                                       <div>
                                         <span class="btn default btn-file">
                                           <input id="img" type="file" name="image"> </span>
