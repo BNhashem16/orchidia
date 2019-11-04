@@ -21,7 +21,7 @@
             <div class="portlet light form-fit bordered">
               <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                {!! Form::model($page,['route' => ['pages.update',$page->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
+                {!! Form::model($gallery,['route' => ['gallery.update',$gallery->id], 'method' => 'PATCH', 'files' => true ,'class' =>'form-horizontal form-bordered'] ) !!}
                   <div class="form-body">
                     <div class="form-group">
                       <label class="control-label col-md-3">Page</label>

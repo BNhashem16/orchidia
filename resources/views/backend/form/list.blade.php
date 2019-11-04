@@ -39,10 +39,10 @@
                                 <tr>
                                     <th> # </th>
                                     <th> Title </th>
-                                    <th> Name</th>
-                                    <th> Small Title </th>
-                                    <th> Description </th>
-                                    <th> Extra</th>
+                                    <th> Input Name</th>
+                                    <th> Input Type </th>
+                                    <th> Mandatory </th>
+                                    <th> Component category</th>
                                     <th> Edit </th>
                                     <th> Delete </th>
                                 </tr>
@@ -50,12 +50,11 @@
                                 <tbody>
 
                                 @foreach($forms as  $form)
-
                                     <td class="center">{{$form->id}} </td>
                                     <td class="center">{{substr($form->title["en"],0,15)}}</td>
-                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{substr($form->field['name'],0,15)}}</td>
+                                    <td ><label style="color:black;font-weight: Bold; " class="btn btn-warning">{{substr($form->field['name'],0,15)}}</label> </td>
                                     <td class="center">{{ $form->field['type']}} </td>
-                                    <td class="center">{{ $form->field['mendatory'] }} </td>
+                                    <td class="center">@if($form->field['mendatory'] == 0 ) <label class="btn btn-danger" >Optional</label> @else <label class="btn btn-success" >Mandatory</label> @endif </td>
                                     <td class="center"> {{$form->component_category_id}} </td>
                                     <td>
                                         <a class="btn btn-info " href="{{route('form.edit',$form->id)}}"> Edit </a>

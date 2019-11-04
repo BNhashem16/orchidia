@@ -42,6 +42,18 @@
                                                   </div>
                                               </div>
                                           @endforeach
+                                          @foreach($langs as $lang)
+                                              <div class="form-group" >
+                                                  <label class="control-label col-md-3">option {{$lang->name}}</label>
+                                                                <div class="col-md-9" id="newElementId">
+                                                      <input type="text" class="form-control" name="extra" value="{{old('title.'.$lang->short_code)}}">
+                                                      <div id="dynamicCheck">
+                                                         <input type="button" value="Create Element" onclick="createNewElement();"/>
+                                                      </div>
+
+                                                  </div>
+                                              </div>
+                                          @endforeach
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Type</label>
                                             <div class="col-md-9">
@@ -77,6 +89,32 @@
 <!-- END CONTENT -->
 @endsection
 @section('jsCode')
+<script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
+
+<script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra' >";
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
+
     <script> for (var i = 0; i < {{$langs_count}}; i++) {CKEDITOR.replace( 'editor'+i );} </script>
 
     <script>

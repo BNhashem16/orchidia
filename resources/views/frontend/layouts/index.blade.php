@@ -67,7 +67,7 @@
               <div class="col-sm-6 col-md-3">
                 <div class="teaser_box centered same_height_col white_section boxed boxed-special cat_box" style="height: auto; min-height: 361px;">
                   <div class="figure">
-                    <a  href="{{url('Products/'.$product->slug)}}">
+                    <a  href="{{url(app()->getLocale().'/Products/'.$product->slug)}}">
                       <img src="{{url($product->image)}}" alt="service" height="195">
                     </a>
                   </div>
@@ -144,26 +144,46 @@
                         <!-- ========================= APPOINTMENT FORM ========================-->
                         <div class="appointment">
                           {!! Form::Open(['file' => true , 'id' => 'appointment_form' , 'name' => 'appointment_form']) !!}
-                            @foreach(App\Form::where('component_category_id' , 24)->get() as $form)
+
+
+
+
+<!-- 
+                              <select name="sex" class="sex" required="">
+                                <option value="">Gender</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select> -->
+                            @foreach(App\Form::where('component_category_id' , 25)->get() as $form)
+
                               @if($form->field['type'] == 'text')
                                 <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
-                              @elseif($form->field['type'] == 'file')
+                              @elseif($form->field['type'] == 'date')
+                              <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="birthdate form-control">
+                                @elseif($form->field['type'] == 'file')
                                 <label id="labl_cv">Attach Resume</label>
                                 <input id="cv_inpt" type="file" name="resume" placeholder="Attach resume" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
+
                               @elseif($form->field['type'] == 'submit')
                                 <input type="{{$form->field['type']}}" value="{{$form->title[app()->getLocale()]}}" class=" btn btn-primary">
-                                @elseif($form->field['type'] == 'select')
-                                <select name="sex" class="sex" required="">
-                                  <option value="">Gender</option>
-                                  <option value="Female">Female</option>
-                                  <option value="Male">Male</option>
-                                </select>
+                              @elseif($form->field['type'] == 'selector')
+                              <select name="department" class="department" required="">
+                                <option selected="" disabled="">{{$form->title[app()->getLocale()]}}</option>
+                                @foreach(App\Form::where('component_category_id' , 25)->get() as $option)
+
+                                @if($option->field['type'] == "select")
+                                    <option value="Sales department">{{$option->extra[app()->getLocale()]}}</option>
+                                  @endif
+                                  @endforeach
+                                  </select>
                               @endif
                             @endforeach
-                                <input type="hidden" name="type" value="1">
-                                <select name="department" class="department" required="">
-                                    <option selected="" disabled="">Department</option>
-                                    <option value="Sales department">Sales department</option>
+                                <!-- <input type="hidden" name="type" value="1"> -->
+
+
+
+
+                                    <!-- <option value="Sales department">Sales department</option>
                                     <option value="Production department">Production department</option>
                                     <option value="Supply chain instead of purchasing department ">Supply chain instead of purchasing department </option>
                                     <option value="HR">HR</option>
@@ -176,15 +196,11 @@
                                     <option value="QA">QA</option>
                                     <option value="R&amp;D">R&amp;D</option>
                                     <option value="Engineering">Engineering</option>
-                                    <option value="Marketing">Marketing</option>
-                                </select>
-                                <input type="text" name="name" required="" placeholder="Full Name" size="40" aria-required="true" class="name form-control">
+                                    <option value="Marketing">Marketing</option> -->
 
-                                  <select name="sex" class="sex" required="">
-                                    <option value="">Gender</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Male">Male</option>
-                                </select>
+                                <!-- <input type="text" name="name" required="" placeholder="Full Name" size="40" aria-required="true" class="name form-control"> -->
+
+
 
                                 <div class="clearfix"></div>
                                 <div class="notice btn btn-primary alert alert-warning alert-dismissable hidden"></div><img src="./assets/images/ajax-loader.gif" alt="Sending" class="ajax-loader not_visible">

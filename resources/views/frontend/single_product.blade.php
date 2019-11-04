@@ -4,7 +4,7 @@
           <div class="hgroup pull-right">
             <div class="title diagonal-bgcolor-trans">
               <div class="container">
-                <h1 style="color: #29377d;" >{{$single_product->title['en']}}</h1>
+                <h1 style="color: #29377d;" >{{$single_product->title[app()->getLocale()]}}</h1>
               </div>
             </div>
             <div class="subtitle body-bg_section">

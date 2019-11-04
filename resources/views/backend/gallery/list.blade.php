@@ -38,13 +38,13 @@
                             <tbody>
 
                                 @foreach($gallery as $key => $gallery)
-<tr>
+                                <tr>
                                 <td class="center">{{$key+1}} </td>
                                 <td class="center">{{$gallery->title}}</td>
                                 <td class="center"> <img width='80px' height='80px' src="{{url($gallery->attachment)}}" > </td>
                                 <td class="center"><label class="btn btn-warning" style="color:black;" >{{$gallery->type}}<label>  </td>
                                 <td>
-                                  <a class="btn btn-info " href="{{route('pages.edit',$gallery->id)}}"> Edit </a>
+                                  <a class="btn btn-info " href="{{route('gallery.edit',$gallery->id)}}"> Edit </a>
                                 </td>
                                 <td>
                                   {!! Form::Open(['method' => 'DELETE' , 'route' => ['gallery.destroy',$gallery->id]]) !!}

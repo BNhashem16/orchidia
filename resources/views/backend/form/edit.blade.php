@@ -10,81 +10,67 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Pages</span>
+                    <span>Forms </span>
                 </li>
             </ul>
         </div>
-        <h3 class="page-title">Create New Page</h3>
+        <h3 class="page-title">Edit Form</h3>
         <div class="row">
-          <div class="col-md-12">
-            <!-- BEGIN PORTLET-->
-            <div class="portlet light form-fit bordered">
-              <div class="portlet-body form">
-                <!-- BEGIN FORM-->
-                  {!! Form::model($component,['route' => ['component.update',$component->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
-                    <div class="form-body">
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Category</label>
-                          <div class="col-md-3">
-                            <select class="form-control" name="component_category_id">
-                              @foreach($component_category as $key => $component_category)
-                                <option value="{{$component_category->id}}" >{{$component_category->title}}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                        </div>
-                        @foreach($langs as $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Title {{$lang->name}}</label>
-                              <div class="col-md-9">
-                                <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{$component->title[$lang->short_code]}}">
-                              </div>
-                          </div>
-                        @endforeach
-                        @foreach($langs as $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Small Title {{$lang->name}}</label>
-                              <div class="col-md-9">
-                                <input type="text" class="form-control" name="sub_title[{{$lang->short_code}}]" value="{{$component->sub_title[$lang->short_code]}}">
-                              </div>
-                          </div>
-                        @endforeach
-                        @foreach($langs as $key => $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Description {{$lang->name}}</label>
-                              <div class="col-md-9">
-                                <textarea class="form-control" id="editor{{$key}}"name="description[{{$lang->short_code}}]">{{$component->description[$lang->short_code]}}</textarea>
-                              </div>
-                          </div>
-                        @endforeach
-                        @foreach($langs as $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Extra {{$lang->name}} (optional)</label>
-                              <div class="col-md-9">
-                                <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="{{$component->extra[$lang->short_code]}}">
-                              </div>
-                          </div>
-                        @endforeach
-                          <div class="form-group last">
-                            <label class="control-label col-md-3">Upload Image</label>
-                              <div class="col-md-9">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img id="preview"  src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
-                                      <div>
-                                        <span class="btn default btn-file">
-                                          <input id="img" type="file" name="image"> </span>
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+            <div class="col-md-12">
+                <!-- BEGIN PORTLET-->
+                <div class="portlet light form-fit bordered">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                          {!! Form::model($form,['route' => ['form.update',$form->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
+                            <div class="form-body">
+                                    <div class="form-group">
+                                            <label class="control-label col-md-3">Category</label>
+                                            <div class="col-md-3">
+                                                <select class="form-control" name="component_category_id">
+                                                    @foreach($component_category as $key => $component_category)
+                                                        <option value="{{$component_category->id}}" @if($component_category->id == $form->component_category_id) selected @endif>{{$component_category->title}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                          @foreach($langs as $lang)
+                                              <div class="form-group">
+                                                  <label class="control-label col-md-3">Title {{$lang->name}}</label>
+                                                  <div class="col-md-9">
+                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{$form->title[$lang->short_code]}}">
+                                                  </div>
+                                              </div>
+                                          @endforeach
+                                          @foreach($langs as $lang)
+                                              <div class="form-group" >
+                                                  <label class="control-label col-md-3">option {{$lang->name}}</label>
+                                                                <div class="col-md-9" id="newElementId">
+                                                      <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="">
+                                                      <div id="dynamicCheck">
+                                                         <input type="button" value="Create Element" onclick="createNewElement();"/>
+                                                      </div>
+
+                                                  </div>
+                                              </div>
+                                          @endforeach
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Type</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="type" value="{{$form->field['type']}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Mendatory</label>
+                                            <div class="col-md-1">
+                                                <input type="checkbox" class="form-control" name="mendatory" @if($form->field['mendatory'] == 1) checked @else '' @endif>
+                                            </div>
+                                        </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
                                         <button class="btn green">
                                                 <i class="fa fa-check"></i> Submit</button>
-                                        <a href="{{url('dashboard/pages')}}" class="btn btn-outline grey-salsa">Cancel</a>
+                                        <a href="{{url('dashboard/form')}}" class="btn btn-outline grey-salsa">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,13 +88,34 @@
 <!-- END CONTENT -->
 @endsection
 @section('jsCode')
-<!-- Start Description Section -->
-    <script>
-      for (var i = 0; i < {{$langs_count}}; i++) {
-        CKEDITOR.replace( 'editor'+i );
-      }
-    </script>
-<!--  End Description Section -->
+<script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
+
+<script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
+
+    <script> for (var i = 0; i < {{$langs_count}}; i++) {CKEDITOR.replace( 'editor'+i );} </script>
+
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {

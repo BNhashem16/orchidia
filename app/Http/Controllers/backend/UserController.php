@@ -40,7 +40,7 @@ class UserController extends Controller
                   Session::flash('success','تم تسجيل الدخول بنجاح');
               }
 
-              return redirect('/'.app()->getLocale());
+              return Redirect::to('/dashboard');
 
           }
           else{

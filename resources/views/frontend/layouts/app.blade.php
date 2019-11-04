@@ -47,7 +47,7 @@
     <!-- Style Switcher, You propably want to remove this!-->
     <link rel="stylesheet" href="{{url('frontend/assets/css/_style-switcher.css')}}" type="text/css" media="all">
 </head>
-<body class="sticky_header" >
+<body class="sticky_header" style=""   >
 <div class="overflow_wrapper" >
     <!-- =========================== HEADER ==========================-->
     <div class="header">
@@ -80,11 +80,14 @@
                         </a>
                         <ul class="menu-dropdown">
                           @foreach( App\Language::where('active' , 1)->get() as $lan)
+                          @if($lan->short_code != app()->getLocale())
                           <li>
                             <a class="flg_a" title="{{$lan->short_code}}" href="{{url('/'.$lan->short_code)}}">
                               <img src="{{url($lan->image)}}">
                             </a>
                           </li>
+
+                          @endif
                           @endforeach
                         </ul>
                       </li>

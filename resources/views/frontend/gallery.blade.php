@@ -49,7 +49,7 @@
                 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/yHI3pABLEuI" frameborder="0" allowfullscreen></iframe> -->
                 <div class="portfolio_item stretchy-wrapper ratio_2-1">
                   <a href="https://www.youtube.com/watch?v=sa2SNoUStKs" class="lightbox_gallery">
-                    <div style="background-image:url(https://orchidiapharma.com/images/pages/1509535323_video.PNG)" class="figure"></div>
+                    <div style="background-image:url({{url($video->attachment)}})" class="figure"></div>
                       <div class="portfolio_title skincolored_section">
                         <h3>
                           <i class="fa fa-youtube"></i>رؤية  أوركيدي

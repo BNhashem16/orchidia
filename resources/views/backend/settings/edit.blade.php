@@ -10,81 +10,116 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <span>Pages</span>
+                    <span>Forms </span>
                 </li>
             </ul>
         </div>
-        <h3 class="page-title">Create New Page</h3>
+        <h3 class="page-title">Create New Setting</h3>
         <div class="row">
-          <div class="col-md-12">
-            <!-- BEGIN PORTLET-->
-            <div class="portlet light form-fit bordered">
-              <div class="portlet-body form">
-                <!-- BEGIN FORM-->
-                  {!! Form::model($component,['route' => ['component.update',$component->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
-                    <div class="form-body">
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Category</label>
-                          <div class="col-md-3">
-                            <select class="form-control" name="component_category_id">
-                              @foreach($component_category as $key => $component_category)
-                                <option value="{{$component_category->id}}" >{{$component_category->title}}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                        </div>
-                        @foreach($langs as $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Title {{$lang->name}}</label>
-                              <div class="col-md-9">
-                                <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{$component->title[$lang->short_code]}}">
-                              </div>
-                          </div>
-                        @endforeach
-                        @foreach($langs as $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Small Title {{$lang->name}}</label>
-                              <div class="col-md-9">
-                                <input type="text" class="form-control" name="sub_title[{{$lang->short_code}}]" value="{{$component->sub_title[$lang->short_code]}}">
-                              </div>
-                          </div>
-                        @endforeach
-                        @foreach($langs as $key => $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Description {{$lang->name}}</label>
-                              <div class="col-md-9">
-                                <textarea class="form-control" id="editor{{$key}}"name="description[{{$lang->short_code}}]">{{$component->description[$lang->short_code]}}</textarea>
-                              </div>
-                          </div>
-                        @endforeach
-                        @foreach($langs as $lang)
-                          <div class="form-group">
-                            <label class="control-label col-md-3">Extra {{$lang->name}} (optional)</label>
-                              <div class="col-md-9">
-                                <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="{{$component->extra[$lang->short_code]}}">
-                              </div>
-                          </div>
-                        @endforeach
-                          <div class="form-group last">
-                            <label class="control-label col-md-3">Upload Image</label>
-                              <div class="col-md-9">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img id="preview"  src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
-                                      <div>
-                                        <span class="btn default btn-file">
-                                          <input id="img" type="file" name="image"> </span>
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+            <div class="col-md-12">
+                <!-- BEGIN PORTLET-->
+                <div class="portlet light form-fit bordered">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                              {!! Form::model($setting,['route' => ['setting.update',$setting->id], 'files' => true , 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}                            <div class="form-body">
+                                          @foreach($langs as $lang)
+                                              <div class="form-group">
+                                                  <label class="control-label col-md-3">Title {{$lang->name}}</label>
+                                                  <div class="col-md-9">
+                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{$setting->title[$lang->short_code]}}">
+                                                  </div>
+                                              </div>
+                                          @endforeach
+
+                                          <!-- start Link option -->
+                                          <div class="form-group ">
+                                            <label class="control-label col-md-3">Links Target</label>
+                                              <div class="col-md-9">
+                                                <input type="radio" value="_blank"  name="target" @if($setting->link['target'] == '_blank') checked @endif  > Open in new Page <br>
+                                                <input type="radio" value=""  name="target" @if($setting->link['target'] == '') checked @endif> Open in the same Page
+                                              </div>
+                                          </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Links</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="href" value="{{$setting->link['href']}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="control-label col-md-3">Link Class</label>
+                                            <div class="col-md-3">
+                                              <select class="form-control" name="class">
+                                                <option value="fa fa-phone" >Phone Number</option>
+                                                <option value="fa fa-envelope" >Message</option>
+                                                <option value="fa fa-location-arrow" >Address</option>
+                                                <option value="fa fa-facebook" >Facebook</option>
+                                                <option value="fa fa-youtube" >Youtube</option>
+                                                <option value="fa fa-instagram" >Instagram</option>
+                                                <option value="fa fa-twitter" >twitter</option>
+                                                <option value="fa fa-whatsapp" >Whatsapp</option>
+                                                <option value="fa fa-linkedin-in" >Linkedin</option>
+                                                <option value="fa fa-google-plus-g" >google plus</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                        <!-- End Link option -->
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="email" value="{{$setting->extra['email']}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Fax</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="fax" value="{{$setting->extra['fax']}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Phone Number</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="phone_number" value="{{$setting->extra['phone_number']}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group ">
+                                          <label class="control-label col-md-3">related Icon</label>
+                                            <div class="col-md-9">
+                                              <input type="radio" value="info"  name="related_icon" @if($setting->related_icon == 'info') checked @endif> Info Icon <br>
+                                              <input type="radio" value="social"  name="related_icon" @if($setting->related_icon == 'social') checked @endif> Social Icon <br>
+                                              <input type="radio" value="main"  name="related_icon" @if($setting->related_icon == 'main') checked @endif> Main Icon
+                                            </div>
+                                        </div>
+
+
+
+                                            <!-- Start Upload Image -->
+
+                                            <div class="form-group last">
+                                              <label class="control-label col-md-3">Upload Logo </label>
+                                                <div class="col-md-9">
+                                                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                      @if($setting->logo != Null )<img id="preview"  src="{{url($setting->logo)}}" alt="" /> @else <img id="preview"  src="" alt="" /> @endif
+                                                    </div>
+                                                    <div>
+                                                      <span class="btn default btn-file">
+                                                      <input id="img" type="file" name="image"> </span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <!-- End Upload Image -->
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
                                         <button class="btn green">
                                                 <i class="fa fa-check"></i> Submit</button>
-                                        <a href="{{url('dashboard/pages')}}" class="btn btn-outline grey-salsa">Cancel</a>
+                                        <a href="{{url('dashboard/setting')}}" class="btn btn-outline grey-salsa">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,13 +137,8 @@
 <!-- END CONTENT -->
 @endsection
 @section('jsCode')
-<!-- Start Description Section -->
-    <script>
-      for (var i = 0; i < {{$langs_count}}; i++) {
-        CKEDITOR.replace( 'editor'+i );
-      }
-    </script>
-<!--  End Description Section -->
+    <script> for (var i = 0; i < {{$langs_count}}; i++) {CKEDITOR.replace( 'editor'+i );} </script>
+
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {

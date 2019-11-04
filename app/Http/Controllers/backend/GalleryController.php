@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Gallery;
 use App\Page;
+use App\Language;
+use App\Component_category;
 use Exception;
 use Session;
 use Redirect;
@@ -59,40 +61,46 @@ class GalleryController extends Controller
       return Redirect::back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+      $gallery = Gallery::find($id);
+      $langs = Language::where('active' , 1)->get();
+      $component_category = Component_category::where('type', 'form')->get();
+      return view('backend.gallery.edit')->with('gallery' , $gallery)->with('langs' , $langs)->with('component_category' , $component_category);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request,[
+          'title'=>'required',
+          'image'=>'required',
+      ]);
+
+      try {
+          $gallery = new Gallery;
+          $gallery->title = $request->title;
+          $gallery->page_id = $request->page_id;
+          $gallery->type = $request->type;
+          // start Update Image
+          if ($request->hasfile('image')) {
+              File::Delete($gallery->attachment);
+              $file = $request->file('image');
+              $path = 'uploads/pages/';
+              $filename = date('Y-m-d-h-i-s').'.'.$file->getClientOriginalExtension();
+              $file->move(public_path().'/'.$path,$filename);
+              $gallery->attachment = $path.$filename;
+          }
+          // Ending Update Image
+          $gallery->save();
+          Session::flash('success' , 'Gallery Added Successfully');
+          return Redirect::to('dashboard/gallery');
+      } catch (\Exception $e) {
+          Session::flash('error', 'Gallery Not Added');
+
+      }
+      return Redirect::back();
     }
-    
+
     public function destroy($id)
     {
       if(!$id || Gallery::where('id',$id)->count() == 0) {

@@ -8,6 +8,11 @@ class Form extends Model
 {
 	protected $table="forms";
     protected $fillable=['title','field','component_category_id','created_by','updated_by'];
-    protected $casts=['field'=>'array','title'=>'array'];
+    protected $casts=['field'=>'array','title'=>'array' , 'extra'=>'array'];
+
+		// public function component_categories()
+    // {
+	  //   return $this->hasMany(Component_category::class);
+    // }
 
 }

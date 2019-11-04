@@ -26,12 +26,12 @@
               <div class="col-md-3 col-xs-10 ">
                 <article class="post dark_section">
                   <div class="post_figure_and_info">
-                     <img src="http://orchidiapharma.com/images/pages/1518363099_Ocuguard.jpg" alt="OCUGUARD" title="OCUGUARD">
+                     <img src="{{url($page->image)}}" alt="OCUGUARD" title="OCUGUARD">
                   </div>
                   <h2 class="post_title">
-                    <a href="http://orchidiapharma.com/en/Products/Eye_tonics_-_Eye_vitamins/OCUGUARD">{{$sub_product->title['en']}} </a></h2>
-                  <p class="post_subtitle subtitle2">{{$page->title['en']}}</p>
-                  <a href="{{url('Products/'.$page->slug.'/'.$sub_product->slug)}}" class="btn btn-primary">Read More</a>
+                    <a href="{{url(app()->getLocale().'/'.'Products/'.$page->slug.'/'.$sub_product->slug)}}">{{$sub_product->title[app()->getLocale()]}} </a></h2>
+                  <p class="post_subtitle subtitle2">{{$page->title[app()->getLocale()]}}</p>
+                  <a href="{{url(app()->getLocale().'/'.'Products/'.$page->slug.'/'.$sub_product->slug)}}" class="btn btn-primary">Read More</a>
                 </article>
               </div>
               @endforeach

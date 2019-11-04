@@ -36,9 +36,9 @@
                                 <thead>
                                 <tr>
                                     <th> # </th>
-                                    <th> Title </th>
-                                    <th> Links</th>
-                                    <th> Logo </th>
+                                    <th> English Title </th>
+                                    <th> Arabic Title </th>
+                                    <th> Related Icon</th>
                                     <th> Edit </th>
                                     <th> Delete </th>
                                 </tr>
@@ -48,14 +48,13 @@
                                 @foreach($setting as $key => $setting)
                                     <td class="center">{{$key +1}} </td>
                                     <td class="center">{{substr($setting->title["en"],0,15)}}</td>
-                                    <td style="color:black;font-weight: Bold; " class="btn btn-warning" >{{substr($setting->field['name'],0,15)}}</td>
-                                    <td class="center">{{ $setting->field['type']}} </td>
-                                    <td class="center">{{ $setting->field['mendatory'] }} </td>
-                                    <td class="center"> {{$setting->component_category_id}} </td>
+                                    <td class="center">{{substr($setting->title["ar"],0,15)}}</td>
+                                    <td class="center"> @if($setting->related_icon == 'social') <label class="btn btn-info" >Social Icon</label> @elseif($setting->related_icon == 'main') <label class="btn btn-success" >Main Icon</label> @else <label class="btn btn-warning" >Info Icon</label> @endif</td>
+
                                     <td>
-                                        <a class="btn btn-info " href="{{route('form.edit',$setting->id)}}"> Edit </a>
+                                        <a class="btn btn-info " href="{{route('setting.edit',$setting->id)}}"> Edit </a>
                                     </td>
-                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['form.destroy',$setting->id] ]) !!}
+                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['setting.destroy',$setting->id] ]) !!}
                                       <td>
                                           <button class="btn btn-danger" data-id="{{$setting->id}}" onclick="deletefunction({{$setting->id}},'{{url('/')}}')"> Delete </button>
                                       </td>
