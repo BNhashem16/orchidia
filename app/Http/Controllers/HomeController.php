@@ -71,11 +71,20 @@ class HomeController extends Controller
         $phone_number = $request->input('phone_number');
         $subject = $request->input('subject');
         $msg = $request->input('message');
-        $message_array = ["name"          =>  $name,
+
+        $full_name = $request->input('full_name');
+        $department = $request->input('department');
+        $date = $request->input('date');
+        $message_array = [ // Form 1
+                          "name"          =>  $name,
                           "email"         =>  $email,
                           "phone_number"  =>  $phone_number,
                           "subject"       =>  $subject,
-                          "message"       =>  $msg];
+                          "message"       =>  $msg,
+                          // Form 2
+                          "full_name"       =>  $full_name,
+                          "department"    => $department,
+                        "date"    => $date];
         $contact_form = new Message;
         $contact_form->message = $message_array;
         $contact_form->page_id = 1;

@@ -14,22 +14,21 @@
                 </li>
             </ul>
         </div>
-        <h3 class="page-title">Create New Form</h3>
+        <h3 class="page-title">Edit Form</h3>
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PORTLET-->
                 <div class="portlet light form-fit bordered">
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
-                        {!! Form::Open(['route'=>'form.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
+                          {!! Form::model($form,['route' => ['form.update',$form->id], 'method' => 'PATCH' ,'class' =>'form-horizontal form-bordered'] ) !!}
                             <div class="form-body">
-
                                     <div class="form-group">
                                             <label class="control-label col-md-3">Category</label>
                                             <div class="col-md-3">
                                                 <select class="form-control" name="component_category_id">
                                                     @foreach($component_category as $key => $component_category)
-                                                        <option value="{{$component_category->id}}" >{{$component_category->title}}</option>
+                                                        <option value="{{$component_category->id}}" @if($component_category->id == $form->component_category_id) selected @endif>{{$component_category->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -38,40 +37,32 @@
                                               <div class="form-group">
                                                   <label class="control-label col-md-3">Title {{$lang->name}}</label>
                                                   <div class="col-md-9">
-                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{$form->title[$lang->short_code]}}">
                                                   </div>
                                               </div>
                                           @endforeach
-                                          @foreach($langs as $key=>$lang)
+                                          @foreach($langs as $lang)
                                               <div class="form-group" >
                                                   <label class="control-label col-md-3">option {{$lang->name}}</label>
-                                                  <div class="col-md-7" id="newElementId{{$lang->short_code}}">
-                                                    <input type="text" class="form-control" name="extra[{{$lang->short_code}}][{{$key}}]" value="{{old('title.'.$lang->short_code)}}">
-                                                  </div>
-                                                  <div class="col-md-2" id="dynamicCheck">
-                                                     <input type="button" value="Create Element" onclick="createNewElement('{{$lang->short_code}}');"/>
+                                                                <div class="col-md-9" id="newElementId">
+                                                      <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="">
+                                                      <div id="dynamicCheck">
+                                                         <input type="button" value="Create Element" onclick="createNewElement();"/>
+                                                      </div>
+
                                                   </div>
                                               </div>
                                           @endforeach
-                                          <div class="form-group">
-                                                  <label class="control-label col-md-3">Type</label>
-                                                  <div class="col-md-3">
-                                                      <select class="form-control" name="type">
-                                                              <option value="text">Text</option>
-                                                              <option value="date">Date</option>
-                                                              <option value="selector">Selector</option>
-                                                              <option value="email">Email</option>
-                                                              <option value="password">Password</option>
-                                                              <option value="number">number</option>
-                                                              <option value="file">file</option>
-                                                              <option value="submit">Submit</option>
-                                                      </select>
-                                                  </div>
-                                              </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Type</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="type" value="{{$form->field['type']}}">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Mendatory</label>
                                             <div class="col-md-1">
-                                                <input type="checkbox" class="form-control" name="mendatory" value="1">
+                                                <input type="checkbox" class="form-control" name="mendatory" @if($form->field['mendatory'] == 1) checked @else '' @endif>
                                             </div>
                                         </div>
                             <div class="form-actions">
@@ -79,7 +70,7 @@
                                     <div class="col-md-offset-3 col-md-9">
                                         <button class="btn green">
                                                 <i class="fa fa-check"></i> Submit</button>
-                                        <a href="{{url('dashboard/pages')}}" class="btn btn-outline grey-salsa">Cancel</a>
+                                        <a href="{{url('dashboard/form')}}" class="btn btn-outline grey-salsa">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -98,31 +89,28 @@
 @endsection
 @section('jsCode')
 <script type="text/JavaScript">
-// function createNewElementar() {
-//     // First create a DIV element.
-// 	var txtNewInputBox = document.createElement('div');
-//
-//     // Then add the content (a new input box) of the element.
-// 	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[ar]' >";
-//
-//     // Finally put it where it is supposed to appear.
-// 	document.getElementById("newElementId").appendChild(txtNewInputBox);
-// }
-</script>
-
-<script type="text/JavaScript">
-var key=0;
-function createNewElement(lan) {
+function createNewElement() {
     // First create a DIV element.
-  key++;
 	var txtNewInputBox = document.createElement('div');
 
     // Then add the content (a new input box) of the element.
-	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra["+lan+"]["+key+"]'>";
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
 
     // Finally put it where it is supposed to appear.
-	document.getElementById("newElementId"+lan).appendChild(txtNewInputBox);
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
 
+<script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
 </script>
 

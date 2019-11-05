@@ -39,29 +39,31 @@
                                 <tr>
                                     <th> # </th>
                                     <th> Title </th>
-                                    <th> Input Name</th>
-                                    <th> Input Type </th>
-                                    <th> Mandatory </th>
-                                    <th> Component category</th>
-                                    <th> Edit </th>
+                                    <th> Email</th>
+                                    <th> Phone </th>
+                                    <th> Subject </th>
+                                    <th> Message</th>
+                                    <th> Page ID</th>
+                                    <!-- <th> Edit </th> -->
                                     <th> Delete </th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($forms as  $form)
-                                    <td class="center">{{$form->id}} </td>
-                                    <td class="center">{{substr($form->title["en"],0,15)}}</td>
-                                    <td ><label class="btn btn-primary">{{substr($form->field['name'],0,15)}}</label> </td>
-                                    <td class="center">{{ $form->field['type']}} </td>
-                                    <td class="center">@if($form->field['mendatory'] == 0 ) <label class="btn btn-danger" >Optional</label> @else <label class="btn btn-success" >Mandatory</label> @endif </td>
-                                    <td class="center"><label style="color:black;font-weight: Bold;" class="btn btn-warning" >{{$form->component_categories->title}}</label></td>
-                                    <td>
-                                        <a class="btn btn-info " href="{{route('form.edit',$form->id)}}"> Edit </a>
-                                    </td>
-                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['form.destroy',$form->id] ]) !!}
+                                @foreach($messages as $key => $message)
+                                    <td class="center">{{$key+1}} </td>
+                                    <td class="center">{{$message->message['name']}}</td>
+                                    <td ><label style="color:black;font-weight: Bold; " class="btn btn-warning">{{$message->message['email']}}</label> </td>
+                                    <td class="center">{{$message->message['phone_number']}}</td>
+                                    <td class="center">{{$message->message['subject']}}</td>
+                                    <td class="center">{{$message->message['message']}}</td>
+                                    <td class="center"> {{$message->page_id}} </td>
+                                    <!-- <td>
+                                        <a class="btn btn-info " href="{{route('form.edit',$message->id)}}"> Edit </a>
+                                    </td> -->
+                                    {!! Form::Open(['method' => 'DELETE' , 'route' => ['messages.destroy',$message->id] ]) !!}
                                       <td>
-                                          <button class="btn btn-danger" data-id="{{$form->id}}" onclick="deletefunction({{$form->id}},'{{url('/')}}')"> Delete </button>
+                                          <button class="btn btn-danger" data-id="{{$message->id}}" onclick="deletefunction({{$message->id}},'{{url('/')}}')"> Delete </button>
                                       </td>
                                     {!! Form::Close() !!}
                                   </tr>

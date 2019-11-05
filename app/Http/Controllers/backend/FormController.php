@@ -32,6 +32,7 @@ class FormController extends Controller
 
     public function store(Request $request)
     {
+
       try {
         $title_en = $request->title["en"];
         $name = str_replace(" ","_", $title_en);
@@ -41,20 +42,30 @@ class FormController extends Controller
         $field = [  "name"      =>  $name,
                     "type"      =>  $type,
                     "mendatory" =>  $mendatory];
-        // $extra = $request->extra;
+
+        $extra = $request->extra;
+        // dd($extra);
+        // $extra_array= [];
+        // foreach ($extra as $key => $value) {
+        //   foreach ($value as  $key2=>$type) {
+        //     var_dump($type);
+        //   }
+        // }die();
         // $extra_array = [  "option"    =>  $extra ];
+
         $title = $request->title;
         $form = new Form;
         $form->title = $title;
         $form->field = $field;
-        $form->extra = $request->extra;
+        $form->extra = $extra;
         $form->component_category_id = $request->component_category_id;
-        $form->created_by = Auth::user()->id;
+        $form->created_by = 1;
         $form->save();
 
       Session::flash('success' , 'Form Added Successfully');
       return Redirect::to('dashboard/form');
   } catch (\Exception $e) {
+    dd($e);
       Session::flash('error', 'Form Not Added');
   }
   return Redirect::back();
@@ -81,13 +92,14 @@ class FormController extends Controller
         $field = [  "name"      =>  $name,
                     "type"      =>  $type,
                     "mendatory" =>  $mendatory];
-        $extra = $request->extra;
-        $extra_array = [  "option"    =>  $extra ];
+        // $extra = $request->extra;
+        // $extra_array = [  "option"    =>  $extra ];
+        $title = $request->title;
         $form = Form::find($id);
-        $form->title = $request->title;
+        $form->title = $title;
         $form->field = $field;
-        // $form = $request->extra;
-        $form->extra = $extra_array;
+        $form = $request->extra;
+        // $form->extra = $extra_array;
         $form->component_category_id = $request->component_category_id;
         $form->updated_by = Auth::user()->id;
         $form->save();

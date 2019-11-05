@@ -221,6 +221,23 @@
                     </ul>
                 </li>
 
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-briefcase"></i>
+                        <span class="title">Messages Table List</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/messages')}}" class="nav-link "> Messages Table </a>
+                        </li>
+<!--
+                        <li class="nav-item  ">
+                            <a href="{{url('dashboard/messages/create')}}" class="nav-link ">Create Page </a>
+                        </li> -->
+                    </ul>
+                </li>
+
             </ul>
             <!-- END SIDEBAR MENU -->
             <!-- END SIDEBAR MENU -->

@@ -35,6 +35,8 @@ Route::resource('dashboard/component/category', 'backend\Component_categoryContr
 Route::resource('dashboard/component', 'backend\ComponentController');
 #Gallery
 Route::resource('dashboard/gallery', 'backend\GalleryController');
+#Messages
+Route::resource('dashboard/messages', 'backend\MessagesController');
 #Setting
 Route::resource('dashboard/setting', 'backend\SettingController');
 #Gallery
@@ -57,13 +59,13 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
 
   Route::get('/', 'HomeController@index')->name('home');
-  
+
   #Form Post Method
   Route::post('/', 'frontend\ContactController@store');
 
   #Contact Us
   Route::resource('contact-us', 'frontend\ContactController');
-  // Route::post('contact-us', 'HomeController@formStore')->name('contact-us');
+  Route::post('/', 'HomeController@formStore');
   #News Route
   Route::get('news', 'frontend\NewsController@index');
 

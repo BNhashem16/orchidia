@@ -42,32 +42,24 @@
                                                   </div>
                                               </div>
                                           @endforeach
-                                          @foreach($langs as $key=>$lang)
+                                          @foreach($langs as $lang)
                                               <div class="form-group" >
                                                   <label class="control-label col-md-3">option {{$lang->name}}</label>
-                                                  <div class="col-md-7" id="newElementId{{$lang->short_code}}">
-                                                    <input type="text" class="form-control" name="extra[{{$lang->short_code}}][{{$key}}]" value="{{old('title.'.$lang->short_code)}}">
-                                                  </div>
-                                                  <div class="col-md-2" id="dynamicCheck">
-                                                     <input type="button" value="Create Element" onclick="createNewElement('{{$lang->short_code}}');"/>
+                                                                <div class="col-md-9" id="newElementId">
+                                                      <input type="text" class="form-control" name="extra[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                                      <div id="dynamicCheck">
+                                                         <input type="button" value="Create Element" onclick="createNewElement();"/>
+                                                      </div>
+
                                                   </div>
                                               </div>
                                           @endforeach
-                                          <div class="form-group">
-                                                  <label class="control-label col-md-3">Type</label>
-                                                  <div class="col-md-3">
-                                                      <select class="form-control" name="type">
-                                                              <option value="text">Text</option>
-                                                              <option value="date">Date</option>
-                                                              <option value="selector">Selector</option>
-                                                              <option value="email">Email</option>
-                                                              <option value="password">Password</option>
-                                                              <option value="number">number</option>
-                                                              <option value="file">file</option>
-                                                              <option value="submit">Submit</option>
-                                                      </select>
-                                                  </div>
-                                              </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Type</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" name="type" value="{{old('type')}}">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Mendatory</label>
                                             <div class="col-md-1">
@@ -98,31 +90,28 @@
 @endsection
 @section('jsCode')
 <script type="text/JavaScript">
-// function createNewElementar() {
-//     // First create a DIV element.
-// 	var txtNewInputBox = document.createElement('div');
-//
-//     // Then add the content (a new input box) of the element.
-// 	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[ar]' >";
-//
-//     // Finally put it where it is supposed to appear.
-// 	document.getElementById("newElementId").appendChild(txtNewInputBox);
-// }
-</script>
-
-<script type="text/JavaScript">
-var key=0;
-function createNewElement(lan) {
+function createNewElement() {
     // First create a DIV element.
-  key++;
 	var txtNewInputBox = document.createElement('div');
 
     // Then add the content (a new input box) of the element.
-	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra["+lan+"]["+key+"]'>";
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
 
     // Finally put it where it is supposed to appear.
-	document.getElementById("newElementId"+lan).appendChild(txtNewInputBox);
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+</script>
 
+<script type="text/JavaScript">
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<input type='text' class='form-control' id='newInputBox' name='extra[{{$lang->short_code}}]' >";
+
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
 }
 </script>
 
