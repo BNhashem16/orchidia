@@ -13,8 +13,9 @@ class MessagesController extends Controller
 
     public function index()
     {
-      $messages = Message::all();
-      return view('backend.messages.list')->with('messages' , $messages);
+      $contact = Message::where('page_id' , 17)->get();
+      $messages = Message::where('page_id' , 25)->get();
+      return view('backend.messages.list')->with('contact' , $contact)->with('messages' , $messages);
     }
 
 

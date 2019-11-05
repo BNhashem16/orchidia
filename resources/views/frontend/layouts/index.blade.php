@@ -144,7 +144,7 @@
                         <!-- ========================= APPOINTMENT FORM ========================-->
                         <div class="appointment">
                           {!! Form::Open(['file' => true , 'id' => 'appointment_form' , 'name' => 'appointment_form']) !!}
-                            @foreach(App\Form::where('component_category_id' , 25)->get() as $form)
+                            @foreach(App\Form::where('component_category_id' , 26)->get() as $form)
                               @if($form->field['type'] == 'text')
                                   <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
                                 @elseif($form->field['type'] == 'date')

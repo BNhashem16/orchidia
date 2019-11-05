@@ -59,7 +59,7 @@ class FormController extends Controller
         $form->field = $field;
         $form->extra = $extra;
         $form->component_category_id = $request->component_category_id;
-        $form->created_by = 1;
+        $form->created_by = Auth::user()->id;
         $form->save();
 
       Session::flash('success' , 'Form Added Successfully');

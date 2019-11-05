@@ -5,7 +5,7 @@
         <div class="page-content">
             <!-- BEGIN PAGE HEADER-->
             <!-- BEGIN PAGE TITLE-->
-            <h3 class="page-title"> Page Table
+            <h3 class="page-title"> Form Table
             </h3>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->

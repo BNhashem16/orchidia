@@ -1,15 +1,25 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-// Auth::routes();
+Auth::routes();
 
 
 
+
+#Logout
+Route::get('dashboard/logout', 'backend\UserController@logout');
+#Login
+Route::get('dashboard/login', 'backend\UserController@login')->name('login');
+Route::post('dashboard/login', 'backend\UserController@doLogin');
 
 
 //============
 //==Back End==
 //============
+Route::group(['middleware'  => ['auth' , 'isAdmin']] , function(){
+
+
+
 #Home
 Route::get('dashboard', 'backend\DashboardController@index')->name('dashboard');
 #Category
@@ -37,14 +47,12 @@ Route::resource('dashboard/component', 'backend\ComponentController');
 Route::resource('dashboard/gallery', 'backend\GalleryController');
 #Messages
 Route::resource('dashboard/messages', 'backend\MessagesController');
+
 #Setting
 Route::resource('dashboard/setting', 'backend\SettingController');
 #Gallery
 Route::resource('dashboard/form', 'backend\FormController');
-#Login
-Route::get('dashboard/login', 'backend\UserController@login');
-Route::post('dashboard/login', 'backend\UserController@doLogin');
-
+});
 
 
 

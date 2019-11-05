@@ -27,48 +27,55 @@ class UserController extends Controller
 
         public function doLogin(Request $request)
         {
-          if (Auth::attempt([
-              'email'=>$request->email,
-              'password'=>$request->password
-          ]))
-          {
-
-              $user= User::where('email', $request->email)->first();
-              if (app()->getLocale() == "en") {
-                  Session::flash('success','You Are Logged in');
-              }else{
-                  Session::flash('success','تم تسجيل الدخول بنجاح');
-              }
-
-              return Redirect::to('/dashboard');
-
-          }
-          else{
-              Session::flash('danger',trans('app.EmailAddressError'));
-              return redirect(app()->getLocale().'/signin');
-          }
+          // if (Auth::attempt([
+          //     'email'=>$request->email,
+          //     'password'=>$request->password
+          // ]))
+          // {
+          //
+          //     $user= User::where('email', $request->email)->first();
+          //     if (app()->getLocale() == "en") {
+          //         Session::flash('success','You Are Logged in');
+          //     }else{
+          //         Session::flash('success','تم تسجيل الدخول بنجاح');
+          //     }
+          //
+          //     return Redirect::to('/dashboard');
+          //
+          // }
+          // else{
+          //     Session::flash('danger',trans('app.EmailAddressError'));
+          //     return redirect(app()->getLocale().'/signin');
+          // }
             #Validation
-            // $request->validate([
-            //     'name' => 'required',
-            //     'password' => 'required'
-            // ]);
-            //
-            // $name = $request->input('name');
-            // $password = Hash::make($request->input('password'));
-            // $data = ["name"=>$name,"password" =>$password];
-            // if(Auth::attempt($data, true)) {
-            //     return Redirect::to('dashboard');
-            // } else {
-            //
-            //    Session::flash('error','Username or Password Incorrect');
-            //    return Redirect::back();
-            // }
+            #Validation
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+
+            $email = $request->input('email');
+            $password = $request->input('password');
+            $isAdmin = 1;
+            $data = ["email"=>$email,"password" =>$password , "isAdmin" => $isAdmin];
+            if(\Auth::attempt($data, true)) {
+                return \Redirect::to('/dashboard');
+            } else {
+               Session::flash('error','Email \ Password Incorrect');
+               return \Redirect::back();
+            }
         }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+     public function logout()
+     {
+       Auth::logout();
+       return Redirect::to('dashboard/login');
+     }
+
     public function create()
     {
         //

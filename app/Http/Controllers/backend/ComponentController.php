@@ -9,6 +9,7 @@ use App\Component_category;
 use App\Language;
 use Illuminate\Support\Str;
 use Exception;
+use Auth;
 use Session;
 use Redirect;
 use File;
@@ -51,8 +52,7 @@ class ComponentController extends Controller
                 $component->image = $path.$filename;
             }
             // Ending Update Image
-            $component->created_by = 1;
-            $component->updated_by = 1;
+            $component->created_by = Auth::user()->id;
             $component->save();
             Session::flash('success' , 'Component Added Successfully');
             return Redirect::to('dashboard/component');
@@ -91,8 +91,7 @@ class ComponentController extends Controller
           $component->image = $path.$filename;
       }
       // Ending Update Image
-      $component->created_by = 1;
-      $component->updated_by = 1;
+      $component->updated_by = Auth::user()->id;;
       $component->save();
       Session::flash('success' , 'Component Added Successfully');
       return Redirect::to('dashboard/component');

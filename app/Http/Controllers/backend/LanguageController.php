@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Language;
+use Auth;
 use Exception;
 use Session;
 use Redirect;
@@ -35,6 +36,7 @@ class LanguageController extends Controller
             $lang->name = $request->name;
             $lang->short_code = $request->short_code;
             $lang->active = $request->input('status');
+            $lang->created_by = Auth::user()->id;
             $lang->save();
             Session::flash('success' , 'Language Added Successfully');
             return Redirect::to('dashboard/lang');
@@ -56,6 +58,7 @@ class LanguageController extends Controller
             $lang->name = $request->input('name');
             $lang->short_code = $request->input('short_code');
             $lang->active = $request->input('status');
+            $lang->updated_by = Auth::user()->id;
             $lang->save();
             Session::flash('success', 'Language Updated Successfully');
             return Redirect::to('dashboard/lang');
