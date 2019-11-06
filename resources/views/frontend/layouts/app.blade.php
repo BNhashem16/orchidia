@@ -119,7 +119,7 @@
                 @foreach(App\Setting::where('logo' , '!=' , null)->get() as $logo)
                 <p><img src="{{url($logo->logo)}}" alt="image-desc"></p>
                 @endforeach
-                @foreach(App\Setting::where('related_icon' , 'info')->orderBy('id' , 'DESC')->get() as $info)
+                @foreach(App\Setting::where('related_icon' , 'info')->orderBy('id' , 'Asc')->get() as $info)
                 @if(empty ( $info->link['href'] ))
                 <p ><i class="{{$info->link['class']}}"></i><span>{{$info->title[app()->getLocale()]}}</span></p>
                 @else
@@ -138,7 +138,7 @@
             <!-- ========================== LATEST NEWS =============================-->
             <div class="col-sm-6 col-md-4">
               <div class="widget pl_latest_news_widget">
-                <h4>Latest News</h4>
+                <h4>{{trans('app.LATEST NEWS')}}</h4>
                 <ul class="media-list">
                   <?php $count = 0; ?>
                   @foreach (App\Component::where('component_category_id' , 12)->get() as $new)
@@ -146,7 +146,7 @@
                       <li class="media">
                         <a href="{{app()->getLocale().'/'.'News/'.$new->link}}" style="background-image:url({{$new->image}});" class="media-photo"></a>
                         <h5 class="media-heading">
-                          <a href="{{'News/'.$new->link}}">{{$new->title[$app->getLocale()]}}</a><br>
+                          <a href="{{app()->getLocale().'/'.'News/'.$new->link}}">{{$new->title[$app->getLocale()]}}</a><br>
                             <span>{{ $new->created_at->format('y-m-d') }} </span>
                         </h5>
                           <p>{!! substr($new->sub_title[$app->getLocale()] , 0 , 40)  !!}</p>
@@ -166,7 +166,7 @@
                 <div>
                   <img src="https://orchidiapharma.com/images/pages/1508169297_1507740938_OSAMA_ABBAS.png" width="90" alt="image-desc" class="pull-left img-ceo">
                     <p>{!! substr($message->description[app()->getLocale()] , 0 ,285) !!}</p>
-                      <a href="{{url(app()->getLocale().'/'.$message->link)}}" class="btn btn-primary">Read More</a>
+                      <a href="{{url(app()->getLocale().'/'.$message->link)}}" class="btn btn-primary">{{trans('app.READ MORE')}}</a>
                       @endforeach
                 </div>
             </div>

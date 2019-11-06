@@ -39,11 +39,6 @@
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
         <div class="content">
-          @if(Session::has('success'))
-              <p class="alert alert-success">{{Session::get('success')}}</p>
-            @elseif(Session::has('error'))
-             <p class="alert alert-danger">{{Session::get('error')}}</p>
-          @endif
 
             <!-- BEGIN LOGIN FORM -->
             {{ Form::Open(['login-form']) }}
@@ -53,6 +48,13 @@
             @elseif(Session::has('error'))
                 <p class="alert alert-danger" > {{Session::get('error')}}</p>
             @endif
+            @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error){{ $error }}@endforeach
+                            </ul>
+                        </div>
+                    @endif
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>

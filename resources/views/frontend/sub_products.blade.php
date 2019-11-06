@@ -4,7 +4,7 @@
     <div class="hgroup pull-right">
       <div class="title diagonal-bgcolor-trans">
         <div class="container">
-          <h1 style="color: #29377d;" >{{$page->title['en']}}</h1>
+          <h1 style="color: #29377d;" >{{$page->title[app()->getLocale()]}}</h1>
         </div>
       </div>
       <div class="subtitle body-bg_section">
@@ -31,7 +31,7 @@
                   <h2 class="post_title">
                     <a href="{{url(app()->getLocale().'/'.'Products/'.$page->slug.'/'.$sub_product->slug)}}">{{$sub_product->title[app()->getLocale()]}} </a></h2>
                   <p class="post_subtitle subtitle2">{{$page->title[app()->getLocale()]}}</p>
-                  <a href="{{url(app()->getLocale().'/'.'Products/'.$page->slug.'/'.$sub_product->slug)}}" class="btn btn-primary">Read More</a>
+                  <a href="{{url(app()->getLocale().'/'.'Products/'.$page->slug.'/'.$sub_product->slug)}}" class="btn btn-primary">{{trans('app.READ MORE')}}</a>
                 </article>
               </div>
               @endforeach

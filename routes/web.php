@@ -1,25 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
-
 Auth::routes();
-
-
-
-
 #Logout
 Route::get('dashboard/logout', 'backend\UserController@logout');
 #Login
 Route::get('dashboard/login', 'backend\UserController@login')->name('login');
 Route::post('dashboard/login', 'backend\UserController@doLogin');
-
-
-//============
-//==Back End==
-//============
+//----------------------------------Back End-------------------------------------------
 Route::group(['middleware'  => ['auth' , 'isAdmin']] , function(){
-
-
-
 #Home
 Route::get('dashboard', 'backend\DashboardController@index')->name('dashboard');
 #Category
@@ -30,7 +18,6 @@ Route::get('dashboard', 'backend\DashboardController@index')->name('dashboard');
 Route::resource('dashboard/slider', 'backend\SliderController');
 Route::get('dashboard/slider/delete_ajax/{slider}','backend\SliderController@ajax_delete')->name('delete.ajax');
 Route::get('dashboard/slider/change_active/{slider}','backend\SliderController@change_active')->name('change.active');
-
 #Language
 Route::resource('dashboard/lang', 'backend\LanguageController');
 Route::get('dashboard/lang/delete_ajax/{lang}','backend\LanguageController@ajax_delete')->name('delete.ajax');
@@ -53,41 +40,30 @@ Route::resource('dashboard/setting', 'backend\SettingController');
 #Gallery
 Route::resource('dashboard/form', 'backend\FormController');
 });
-
-
-
-//=============
-//==Front End==
-//=============
-Route::get('/',function(){
-  return redirect()->to('/en');
-});
-
+//-------------------------------------------Front End-------------------------------------
+Route::get('/',function(){ return redirect()->to('/en'); });
 Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('/' ,'HomeController@lang');
-
   Route::get('/', 'HomeController@index')->name('home');
-
   #Form Post Method
   Route::post('/', 'frontend\ContactController@store');
-
   #Contact Us
   Route::resource('contact-us', 'frontend\ContactController');
   Route::post('/', 'HomeController@formStore');
   #News Route
   Route::get('news', 'frontend\NewsController@index');
-
   #who we are Page
   Route::get('about-as/who-we-are', 'HomeController@whoWeAre');
   #CME Page
   Route::get('cme', 'HomeController@cme');
   # CEO MESSAGE
   Route::get('ceo-message', 'HomeController@ceo_message');
+  # ِAll Products
+  Route::get('Products', 'HomeController@all_products');
   #Event Route
   Route::get('events', 'frontend\EventController@index');
   #Gallery
   Route::get('images', 'HomeController@gallery');
-
   # Sub News Route
   Route::get('News/{slug}', 'frontend\NewsController@sub_news')->name('News');
   # Sub Event Route
@@ -100,9 +76,6 @@ Route::group(['prefix'=>'{lang?}','middleware' => 'Lang'] , function() {
   Route::get('Products/{slug}/{slug2}', 'frontend\ProductsController@sub_category');
   # Pages
   Route::get('{slug}', 'frontend\PagesController@pages');
-
-
   # Products Route
   Route::get('Products/{slug1}/{slug2}/{slug3}', 'frontend\ProductsController@single_product');
-
 });

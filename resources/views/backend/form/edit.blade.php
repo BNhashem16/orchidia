@@ -29,7 +29,7 @@
                                             <div class="col-md-3">
                                                 <select class="form-control" name="component_category_id">
                                                     @foreach($component_category as $key => $component_category)
-                                                        <option value="{{$component_category->id}}" >{{$component_category->title}}</option>
+                                                        <option value="{{$component_category->id}}" @if($form->component_categories->id == $component_category->id ) selected @endif >{{$component_category->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -38,7 +38,7 @@
                                               <div class="form-group">
                                                   <label class="control-label col-md-3">Title {{$lang->name}}</label>
                                                   <div class="col-md-9">
-                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{old('title.'.$lang->short_code)}}">
+                                                      <input type="text" class="form-control" name="title[{{$lang->short_code}}]" value="{{$form->title[$lang->short_code]}}">
                                                   </div>
                                               </div>
                                           @endforeach
@@ -57,21 +57,21 @@
                                                   <label class="control-label col-md-3">Type</label>
                                                   <div class="col-md-3">
                                                       <select class="form-control" name="type">
-                                                              <option value="text">Text</option>
-                                                              <option value="date">Date</option>
-                                                              <option value="selector">Selector</option>
-                                                              <option value="email">Email</option>
-                                                              <option value="password">Password</option>
-                                                              <option value="number">number</option>
-                                                              <option value="file">file</option>
-                                                              <option value="submit">Submit</option>
+                                                              <option value="text" @if($form->field['type'] == 'text' ) selected @endif >Text</option>
+                                                              <option value="date" @if($form->field['type'] == 'date' ) selected @endif>Date</option>
+                                                              <option value="selector" @if($form->field['type'] == 'selector' ) selected @endif>Selector</option>
+                                                              <option value="email" @if($form->field['type'] == 'email' ) selected @endif>Email</option>
+                                                              <option value="password" @if($form->field['type'] == 'password' ) selected @endif>Password</option>
+                                                              <option value="number" @if($form->field['type'] == 'number' ) selected @endif>number</option>
+                                                              <option value="file" @if($form->field['type'] == 'file' ) selected @endif>file</option>
+                                                              <option value="submit" @if($form->field['type'] == 'submit' ) selected @endif >Submit</option>
                                                       </select>
                                                   </div>
                                               </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Mendatory</label>
                                             <div class="col-md-1">
-                                                <input type="checkbox" class="form-control" name="mendatory" value="1">
+                                                <input type="checkbox" class="form-control" name="mendatory" value="1" @if($form->field['mendatory'] == 1) checked @endif>
                                             </div>
                                         </div>
                             <div class="form-actions">

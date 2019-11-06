@@ -73,7 +73,7 @@
                   </div>
                   <div class="content cat_content">
                     <div class="hgroup">
-                      <h4 style="font-size: 11px;" class="tit_product">{{$product->title['en']}}</h4>
+                      <h4 style="font-size: 11px;" class="tit_product">{{$product->title[app()->getLocale()]}}</h4>
                     </div>
                     <div class="link"><a href="{{url(app()->getLocale().'/Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>{{trans('app.Details')}}</strong>  </a></div>
                   </div>
@@ -101,7 +101,7 @@
                 <!-- ========================= /CALL TO ACTION ========================-->
               </div>
               <div class="col-md-4 col-sm-4">
-                <a href="http://orchidiapharma.com/Wet_lab">
+
                   <div class="pricing_plan black_section transparent transparent-film">
                     <div class="stretchy-wrapper ratio_2-1">
                       <div style="background-image:url({{$component->image}});" class="pricing_plan_photo"></div>
@@ -110,7 +110,7 @@
                       <h3>{{$component->title[app()->getLocale()]}}</h3>
                     </div>
                   </div>
-                </a>
+      
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@
                                       <textarea name="{{$form->field['name']}}" cols="40" rows="4" aria-invalid="false" class="message form-control" placeholder="Message"></textarea>
                                     </span>
                                   @elseif($form->field['type'] == 'submit')
-                                    <input type="{{$form->field['type']}}" value="Send" class=" btn btn-primary">
+                                    <input type="{{$form->field['type']}}" value="{{$form->title[app()->getLocale()]}}" class=" btn btn-primary">
                                   @else
                                     <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" size="40" aria-required="true" aria-invalid="false" placeholder="{{$form->title[app()->getLocale()]}}" class="name form-control">
                                   @endif
@@ -143,15 +143,15 @@
                         <h3 class="col_header centered">{{trans('app.APPLY FOR JOB')}}</h3>
                         <!-- ========================= APPOINTMENT FORM ========================-->
                         <div class="appointment">
-                          {!! Form::Open(['file' => true , 'id' => 'appointment_form' , 'name' => 'appointment_form']) !!}
+                          {!! Form::Open(['files' => true , 'id' => 'appointment_form' , 'name' => 'appointment_form']) !!}
                             @foreach(App\Form::where('component_category_id' , 26)->get() as $form)
                               @if($form->field['type'] == 'text')
                                   <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
                                 @elseif($form->field['type'] == 'date')
                                     <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="birthdate form-control">
                                   @elseif($form->field['type'] == 'file')
-                                      <label id="labl_cv">Attach Resume</label>
-                                      <input id="cv_inpt" type="file" name="resume" placeholder="Attach resume" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
+                                      <label id="labl_cv">{{$form->title[app()->getLocale()]}}</label>
+                                      <input id="cv_inpt" type="{{$form->field['type']}}" name="{{$form->field['name']}}" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
                                     @elseif($form->field['type'] == 'submit')
                                       <input type="{{$form->field['type']}}" value="{{$form->title[app()->getLocale()]}}" class=" btn btn-primary">
                                         @elseif($form->field['type'] == 'email')
@@ -178,13 +178,13 @@
                     <div class="col-md-4 skincolored_section boxed same_height_col centered">
                       <?php $setting = App\Setting::where('id' , 31)->first() ?>
                       <img src="http://orchidiapharma.com//assets/images/orchidia-logo-01.jpg" alt="logo" height="33">
-                        <h4 class=""><strong>Address</strong></h4>
+                        <h4 class=""><strong>{{trans('app.Address')}}</strong></h4>
                         <p class="">{{$setting->title[app()->getLocale()]}}</p>
-                        <h4 class=""><strong class="">Email Contact</strong></h4>
+                        <h4 class=""><strong class="">{{trans('app.Email Contact')}}</strong></h4>
                         <p class=""> {{$setting->extra['email']}}</p>
-                        <h4 class=""><strong class="">Phones</strong></h4>
+                        <h4 class=""><strong class="">{{trans('app.PHONES')}}</strong></h4>
                         <p class="">{{$setting->extra['phone_number']}}<br></p>
-                        <h4 class=""><strong>Fax</strong></h4>
+                        <h4 class=""><strong>{{trans('app.Fax')}}</strong></h4>
                         <p class="">{{$setting->extra['fax']}}<br></p><br>
                     </div>
                 </div>

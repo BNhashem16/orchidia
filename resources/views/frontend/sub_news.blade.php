@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-sm-12 col-md-12">
           <article class="post">
-            <div class="post_figure_and_info news-cal">
+            <div style="color: black;" class="post_figure_and_info news-cal">
               <div class="col-md-5 pull-right no_pad">
                 <div class="post_sub">
                   <span class="post_info post_date">
@@ -33,7 +33,7 @@
                       </a>
                     </figure>
               </div>
-                  <p style="color: #323232;"> {!! $news->description[$app->getLocale()] !!} </p>
+                  <p > {!! $news->description[$app->getLocale()] !!} </p>
             </div>
           </article>
         </div>

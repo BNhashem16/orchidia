@@ -12,6 +12,6 @@ class Component_category extends Model
     }
 
     public function forms() {
-    return $this->hasMany(Form::class ,'component_category_id', 'id');
+    return $this->hasMany(Form::class , 'component_category_id'  , 'id');
   }
 }

@@ -82,7 +82,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Phone Number</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="phone_number" value="{{$setting->extra['phone_number']}}">
+                                                <input type="text" class="form-control" name="phone_number" value="">
                                             </div>
                                         </div>
 

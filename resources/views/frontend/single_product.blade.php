@@ -20,9 +20,9 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-12 col-md-12">
-                <img class="col-md-3 pull-right img-who" src="{{url($single_product->image)}}" >
+                <img style="margin-left:4px" class="col-md-3 pull-right img-who" src="{{url($single_product->image)}}" >
                 <div class="col-md-9"></div>
-                <p style="color: #323232;"> {!! $single_product->description['en'] !!} </p>
+                <p style="color: #323232;"> {!! $single_product->description[app()->getLocale()] !!} </p>
               </div>
                 <a target="blank" href="http://orchidiapharma.com/images/pages/1512629905_Travonorm.pdf" class="a_prod" > <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Insert </a>  <br>
             </div>

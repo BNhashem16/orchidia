@@ -86,6 +86,15 @@ class HomeController extends Controller
                           "department"    => $department,
                         "date"    => $date];
         $contact_form = new Message;
+        // start Update Image
+        if ($request->hasfile('attach_resume')) {
+            $file = $request->file('attach_resume');
+            $path = 'uploads/pages/';
+            $filename = date('Y-m-d-h-i-s').'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/'.$path,$filename);
+            $contact_form->files = $path.$filename;
+        }
+        // Ending Update Image
         $contact_form->message = $message_array;
         $contact_form->page_id = 1;
         $contact_form->created_by = 1;
@@ -103,6 +112,11 @@ class HomeController extends Controller
   public function ceo_message($slug) {
     $ceo_message = Component::where('link',$slug)->first();
     return view('frontend.ceo_message')->with('ceo_message' , $ceo_message);
+  }
+
+  public function all_products() {
+    $sub = Page::where('nav', 0)->where('id','page_id')->get();
+    return view('frontend.layouts.all_products')->with('sub' , $sub);
   }
 
 

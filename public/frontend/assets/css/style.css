@@ -3869,6 +3869,7 @@ article.post .post_figure_and_info .post_sub a {
 article.post .post_figure_and_info .post_sub .post_info {
   display: inline-block;
   padding: 10px 10px;
+  margin-left: 15px;
   color: #fff;
 }
 article.post .post_figure_and_info .post_sub .post_info i {

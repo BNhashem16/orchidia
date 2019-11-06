@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-12">
-          <iframe class=" pull-right" width="500" height="300" src="{{url($cme->image)}}" frameborder="0" allowfullscreen></iframe>
+          <iframe style="margin-left: 20px" class=" pull-right" width="500" height="300" src="{{url($cme->image)}}" frameborder="0" allowfullscreen></iframe>
             {!! $cme->description[app()->getLocale()] !!}
         </div>
       </div>

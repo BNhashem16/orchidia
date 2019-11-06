@@ -60,8 +60,11 @@ class UserController extends Controller
             $data = ["email"=>$email,"password" =>$password , "isAdmin" => $isAdmin];
             if(\Auth::attempt($data, true)) {
                 return \Redirect::to('/dashboard');
+            } elseif("isAdmin" != $isAdmin) {
+              Session::flash('error','أنت مش أدمن يا لص');
+              return \Redirect::back();
             } else {
-               Session::flash('error','Email \ Password Incorrect');
+               Session::flash('error','Email or Password Incorrect');
                return \Redirect::back();
             }
         }
