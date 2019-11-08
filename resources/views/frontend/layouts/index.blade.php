@@ -1,31 +1,31 @@
 @section('content')
-    <div class="head_panel">
+<div class="head_panel">
         <!-- ============================ SLIDER ==========================-->
         <div class="slider_wrapper">
-            <div id="head_panel_slider" class="owl-carousel">
-                <!-- ============================ SLIDE ==========================-->
-                <?php $component_cat = App\Component_category::first();  ?>
-                @foreach(App\Component::where('component_category_id',$component_cat->id)->get() as $slider)
-                <div class="stretchy-wrapper ratio_slider" >
-                    <div style="background-image: url({{$slider->image}});" aria-hidden="true" class="item">
-                        <div class="container">
-                            <div class="caption caption-right caption-fancy">
-                                <div class="inner animated bounceInUp">
-                                    <div class="t1">{{$slider->title[$app->getLocale()]}}</div>
-                                    <div class="t2 uppercase">{{$slider->sub_title[$app->getLocale()]}}</div>
-                                    <div class="t3 uppercase">{{$slider->extra[$app->getLocale()]}}</div>
-                                    <p class="desc hidden-xxs">{!! $slider->description[$app->getLocale()] !!} </p>
-                                </div>
-                            </div>
-                        </div>
+          <div id="head_panel_slider" class="owl-carousel">
+          	 <!-- ============================ SLIDE  ==========================-->
+             <?php $component_cat = App\Component_category::first();  ?>
+             @foreach(App\Component::where('component_category_id',$component_cat->id)->get() as $slider)
+            <div class="stretchy-wrapper ratio_slider">
+              <div style="background-image: url({{$slider->image}});" aria-hidden="true" class="item">
+                <div class="container">
+                  <div class="caption caption-left caption-fancy">
+                    <div class="inner black_section transparent-film animated bounceInUp">
+                      <div class="t1 uppercase">{{$slider->title[$app->getLocale()]}}</div>
+                      <div class="t2 uppercase">{{$slider->sub_title[$app->getLocale()]}}</div>
+                      <div class="t3 uppercase">{{$slider->extra[$app->getLocale()]}}</div>
+                      <div class="desc"><p>&nbsp;&amp; {!! $slider->description[$app->getLocale()] !!}</p></div>
                     </div>
+                  </div>
                 </div>
-                @endforeach
-                <!-- END========================= SLIDE ==========================-->
+              </div>
             </div>
+            @endforeach
+            <!-- END========================= SLIDE ==========================-->
+          </div>
         </div>
         <!-- END========================= SLIDER ==========================-->
-    </div>
+      </div>
     <!--include templates/headpanel-slider-full-height-->
     <div class="main">
         <section class="no_padding no_cols_padding transparent elevate">
@@ -60,7 +60,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12 section_header fancy centered">
-                <h2>Our Products</h2>
+                <h2>{{trans('app.Our Products')}}</h2>
               </div>
               <!-- ==================== SERVICE BOX ===================-->
               @foreach(App\Page::where('active',1)->where('nav',0)->where('page_id',0)->get() as $product)
@@ -110,7 +110,7 @@
                       <h3>{{$component->title[app()->getLocale()]}}</h3>
                     </div>
                   </div>
-      
+
               </div>
             </div>
           </div>
@@ -145,26 +145,25 @@
                         <div class="appointment">
                           {!! Form::Open(['files' => true , 'id' => 'appointment_form' , 'name' => 'appointment_form']) !!}
                             @foreach(App\Form::where('component_category_id' , 26)->get() as $form)
-                              @if($form->field['type'] == 'text')
-                                  <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
-                                @elseif($form->field['type'] == 'date')
-                                    <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="birthdate form-control">
-                                  @elseif($form->field['type'] == 'file')
-                                      <label id="labl_cv">{{$form->title[app()->getLocale()]}}</label>
-                                      <input id="cv_inpt" type="{{$form->field['type']}}" name="{{$form->field['name']}}" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
-                                    @elseif($form->field['type'] == 'submit')
-                                      <input type="{{$form->field['type']}}" value="{{$form->title[app()->getLocale()]}}" class=" btn btn-primary">
-                                        @elseif($form->field['type'] == 'email')
-                                            <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="email form-control" required="">
-                                          @elseif($form->field['type'] == 'selector')
-                                            <select name="{{$form->field['name']}}" class="department" required="">
-                                              <option selected="" disabled="">{{$form->title[app()->getLocale()]}}</option>
-                                              @if($form->field['type'] == "selector")
-                                                @foreach($form->extra[app()->getLocale()] as $row)
-                                                  <option value="{{$row}}">{{$row}}</option>
-                                                @endforeach
-                                              @endif
-                                            </select>
+                              @if($form->field['type'] == 'file')
+                                  <label id="labl_cv">{{$form->title[app()->getLocale()]}}</label>
+                                  <input id="cv_inpt" type="{{$form->field['type']}}" name="{{$form->field['name']}}" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="appointment_date form-control " required="">
+                                @elseif($form->field['type'] == 'submit')
+                                  <input type="{{$form->field['type']}}" value="{{$form->title[app()->getLocale()]}}" class=" btn btn-primary">
+                                @elseif($form->field['type'] == 'email')
+                                    <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="email form-control" required="">
+                                @elseif($form->field['type'] == 'selector')
+                                  <select name="{{$form->field['name']}}" class="department" required="">
+                                    <option selected="" disabled="">{{$form->title[app()->getLocale()]}}</option>
+                                    @if($form->field['type'] == "selector")
+                                      @foreach($form->extra[app()->getLocale()] as $row)
+                                        <option value="{{$row}}">{{$row}}</option>
+                                      @endforeach
+                                    @endif
+                                  </select>
+                                @else
+                                <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
+
                               @endif
                             @endforeach
 

@@ -1,36 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="ar">
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Medical Premium Theme | Medicus</title>
+    <title>Orchidia</title>
+    <!-- Map -->
+    <meta name="description" content="orchidia">
+    <meta name="keywords" content="Orchidia">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="HandheldFriendly" content="true">
     <meta name="apple-touch-fullscreen" content="yes">
-    <!-- FAVICON-->
-    <link rel="apple-touch-icon" sizes="57x57" href="{{url('frontend/assets/favicon/apple-touch-icon-57x57.png')}}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{url('frontend/assets/favicon/apple-touch-icon-60x60.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{url('frontend/assets/favicon/apple-touch-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{url('frontend/assets/favicon/apple-touch-icon-76x76.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{url('frontend/assets/favicon/apple-touch-icon-114x114.png')}}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{url('frontend/assets/favicon/apple-touch-icon-120x120.png')}}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{url('frontend/assets/favicon/apple-touch-icon-144x144.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{url('frontend/assets/favicon/apple-touch-icon-152x152.png')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{url('frontend/assets/favicon/apple-touch-icon-180x180.png')}}">
-    <link rel="icon" type="image/png" href="{{url('frontend/assets/favicon/favicon-32x32.png" sizes="32x32')}}">
-    <link rel="icon" type="image/png" href="{{url('frontend/assets/favicon/android-chrome-192x192.png" sizes="192x192')}}">
-    <link rel="icon" type="image/png" href="{{url('frontend/assets/favicon/favicon-96x96.png" sizes="96x96')}}">
-    <link rel="icon" type="image/png" href="{{url('frontend/assets/favicon/favicon-16x16.png" sizes="16x16')}}">
+    <link rel="icon" type="image/png" href="{{url('frontend/assets/favicon/logo_small.png')}}" sizes="16x16">
     <link rel="manifest" href="{{url('frontend/assets/favicon/manifest.json')}}">
-    <link rel="shortcut icon" href="{{url('frontend/assets/favicon/favicon.ico')}}">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="{{url('frontend/assets/favicon/mstile-144x144.png')}}">
-    <meta name="msapplication-config" content="{{url('frontend/assets/favicon/browserconfig.xml')}}">
+    <meta name="msapplication-config" content="https://orchidiapharma.com/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900" rel="stylesheet" type="text/css">
+    <!-- LIGHTBOX   new    -->
+    <link rel="stylesheet" href="{{url('frontend/assets/css/libs/imagelightbox.min.css')}}" type="text/css" media="all">
     <!-- OWLSLIDER-->
     <link rel="stylesheet" href="{{url('frontend/assets/js/libs/owl.carousel.2.0.0-beta.2.4/css/owl.carousel.css')}}" type="text/css" media="all" data-module="owlslider">
     <link rel="stylesheet" href="{{url('frontend/assets/js/libs/owl.carousel.2.0.0-beta.2.4/css/owl.theme.default.css')}}" type="text/css" media="all" data-module="owlslider">
@@ -41,26 +31,27 @@
     <link rel="stylesheet" href="{{url('frontend/assets/fonts/webfont-medical-icons/wfmi-style.css')}}" type="text/css" media="all">
     <!-- MAIN STYLESHEETS-->
     <link rel="stylesheet" href="{{url('frontend/assets/css/theme_custom_bootstrap.min.css')}}" type="text/css" media="all">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('frontend/assets/css/style.css')}}" type="text/css" media="all">
     <!-- HEADER SCRIPTS	-->
     <script type="text/javascript" src="{{url('frontend/assets/js/libs/modernizr.custom.48287.js')}}"></script>
-    <!-- Style Switcher, You propably want to remove this!-->
-    <link rel="stylesheet" href="{{url('frontend/assets/css/_style-switcher.css')}}" type="text/css" media="all">
-</head>
-<body class="sticky_header" style=""   >
-<div class="overflow_wrapper" >
-    <!-- =========================== HEADER ==========================-->
-    <div class="header">
+    <link rel="stylesheet" href="{{url('frontend/assets/css/_style-switcher.css" type="text/css')}}" media="all">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxGrUEE1XC6USzfLR9sOcBVC42vLmwSU8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Changa:600" rel="stylesheet">
+  </head>
+  <body class="sticky_header" >
+    <div class="overflow_wrapper">
+      <!-- =========================== HEADER ==========================-->
+      <div class="header">
         <div class="mainbar gradient diagonal">
-            <div class="container">
+            <div class="container" >
                 <div class="logo"><a href="{{url('/')}}" class="brand">
-                  <img src="{{url('frontend/assets/images/medicus-header-logo-x64.png')}}" alt="logo"></a>
+                  <img src="{{url('frontend/assets/images/orchidia-logo-01.png')}}" alt="logo"></a>
                 </div>
-                <div class="menu_container"><span class="close_menu">&times;</span>
+                <div @if(app()->getLocale() == 'ar' ) style="direction: rtl;" @endif class="menu_container"><span class="close_menu">&times;</span>
                   <!-- ========================= NAVIGATION MENU ========================-->
                   <nav>
-
-                    <ul class="menu main_menu hover_menu">
+                    <ul class="menu main_menu hover_menu" >
                       @foreach(App\Page::where('active',1)->where('page_id',0)->where('nav',1)->get() as $page)
                         <li class="{{count($page->childs) > 0 ? 'lihasdropdown' : ''}} one-column drop-left"><a title="{{$page->title['en']}}" href="{{$page->slug == 'home' ?('/'.app()->getLocale()) :('/'.app()->getLocale().'/'.$page->slug)}}">{{$page->title[app()->getLocale()] }} </a>
                           @if(count($page->childs) > 0)
@@ -74,40 +65,43 @@
                       @endforeach
                       <li class="lihasdropdown drop-left">
                         <a href="">
-                          @if(app()->getLocale() == 'ar') <img src="{{url('frontend/assets/images/egy.jpg')}}" width="20">
-                          @else <img src="{{url('frontend/assets/images/us.jpg')}}" width="20">
-                          @endif
-                        </a>
-                        <ul class="menu-dropdown">
-                          @foreach( App\Language::where('active' , 1)->get() as $lan)
-                          @if($lan->short_code != app()->getLocale())
-                          <li>
-                            <a class="flg_a" title="{{$lan->short_code}}" href="{{url('/'.$lan->short_code)}}">
-                              <img src="{{url($lan->image)}}">
-                            </a>
-                          </li>
-
-                          @endif
-                          @endforeach
-                        </ul>
+                         @if(app()->getLocale() == 'ar') <img src="{{url('frontend/assets/images/egy.jpg')}}" width="20">
+                         @else <img src="{{url('frontend/assets/images/us.jpg')}}" width="20">
+                         @endif
+                          </a>
+                          <ul class="menu-dropdown">
+                            @foreach( App\Language::where('active' , 1)->get() as $lan)
+                              @if($lan->short_code != app()->getLocale())
+                                <li>
+                                  <a class="flg_a" title="{{$lan->short_code}}" href="{{url('/'.$lan->short_code)}}">
+                                    <img src="{{url($lan->image)}}">
+                                  </a>
+                                </li>
+                              @endif
+                            @endforeach
+                          </ul>
                       </li>
                     </ul>
                   </nav>
-                  <!-- END====================== NAVIGATION MENU ========================-->
-                </div>
-                <!-- =========================== SOCIAL ICONS =========================-->
-                <a title="" href="#" class="social_links"><i class="fa fa-share-alt"></i></a>
+              <!-- END====================== NAVIGATION MENU ========================-->
+            </div>
+            <label class="mobile_collapser">MENU  </label>
+            <!-- =========================== SOCIAL ICONS =========================-->
+            <a title="" href="#" class="social_links">
+              <i class="fa fa-share-alt"></i>
+            </a>
+            <a title="" href="#" class="social_links"><i class="fa fa-share-alt"></i></a>
                 <div class="team_social">
                   @foreach(App\Setting::where('related_icon' , 'social')->get() as $social)
                     <a target="{{$social->link['target']}}" href="{{$social->link['href']}}"><i class="{{$social->link['class']}}"></i></a>
                   @endforeach
-                  </div>
-                <!-- END======================== SOCIAL ICONS ========================= -->
-            </div>
+                </div>
+            <!-- END======================== SOCIAL ICONS ========================= -->
+          </div>
         </div>
-    </div>
-    <div class="brand-colors"></div>
-    <!-- END======================== HEADER ==========================-->
+      </div>
+      <div class="brand-colors"></div>
+      <!-- END======================== HEADER ==========================-->
 @yield('content')
     <!-- ============================ FOOTER ============================-->
     <footer class="gradient-invert diagonal-70-invert vbottom">

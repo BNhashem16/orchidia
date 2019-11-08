@@ -13,7 +13,7 @@
 		'Address'			 	=> 	'Address',
 		'Email Contact' => 	'Email Contact',
 		'PHONES' 				=> 	'PHONES',
-		// '' => '',
+		'Our Products' 	=> 	'Our Products',
 		// '' => '',
 		// '' => '',
 		// '' => '',

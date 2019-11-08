@@ -1,3 +1,72 @@
+/*!
+Theme Name: Medicus - HEALTH-X
+Theme URI: http://plethorathemes.com/html/medicus/
+Description: Medical HTML Template based on twitter bootstrap. 
+Version: 1.1.0
+Author: Plethora Themes
+Author URI: http://www.plethorathemes.com
+*/
+/* 
+    TABLE OF CONTENTS
+=================================================================
+
+    0. =BOOTSTRAP FRAMEWORK REFERENCE IMPORTS
+
+    1. =THEME MIXINS GENERAL HELPER STYLES & CLASSES
+
+    2. =BUTTONS
+
+    3. =BODY & TYPOGRAPHY
+
+    4. =THE HEADER, LOGO & PRIMARY MENU
+
+    5. =THE HEAD PANEL AREA
+
+    6. =THE MAIN AREA & THE ROOT SECTION ELEMENT
+
+    7. =DESIGN ELEMENTS
+
+    8. =BLOG PAGE 
+
+    9. =SIDEBAR & WIDGETS
+
+    10. =FOOTER WIDGETIZED AREA
+
+    11. =BOOTSTRAP ELEMENTS OVERRIDES
+
+    12. =MISC STYLES
+
+    13. =RESPONSIVE STATES
+
+=================================================================
+*/
+/* 
+================================================================= 
+
+
+0. =BOOTSTRAP FRAMEWORK REFERENCE IMPORTS
+
+In "style.less" we reference some of Bootstrap's .less files in order to take advantage of their classes and mixins.
+We also reference the "theme_variables.less" in order to override the original variables and make our custom theme. 
+A customized "theme_custom_bootstrap.css" is also loaded by the theme in a precompiled minified css version.
+================================================================= 
+*/
+/*!
+ ______ _____   _______ _______ _______ _______ ______ _______ 
+|   __ \     |_|    ___|_     _|   |   |       |   __ \   _   |
+|    __/       |    ___| |   | |       |   -   |      <       |
+|___|  |_______|_______| |___| |___|___|_______|___|__|___|___|
+
+P L E T H O R A T H E M E S . C O M 				   (c) 2015
+                        
+Theme Name: Medicus   
+THEME STYLES v.1.0.0
+=============================================================== 
+*/
+/* 
+1. =THEME MIXINS GENERAL HELPER STYLES & CLASSES
+=============================================================== 
+*/
 .background_cover {
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -33,7 +102,7 @@
   overflow: hidden;
 }
 .uppercase {
-  text-transform: uppercase !important;
+  //text-transform: uppercase !important;
 }
 .centered {
   text-align: center !important;
@@ -229,6 +298,7 @@ footer.gradient-invert .container {
   z-index: 0;
   background-color: #efefef;
   background-color: rgba(239, 239, 239, 0.5);
+  border-radius: 10px !important;
 }
 .black_section.transparent-film:before {
   background-color: #000000;
@@ -411,9 +481,9 @@ i.fa.white_section {
   -ms-user-select: none;
   user-select: none;
 }
-/*
+/* 
 2. =BUTTONS
-===============================================================
+=============================================================== 
 */
 .btn {
   display: inline-block;
@@ -1104,19 +1174,21 @@ input[type="button"].btn-block {
 .btn.with-icon.btn-success i {
   background-color: #357935;
 }
-/*
+/* 
 3. =BODY & TYPOGRAPHY
-===============================================================
+=============================================================== 
 */
 body {
   -webkit-font-smoothing: antialiased;
   background-color: #efefef;
-  color: #ffffff;
+  color: #323232;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.5;
   overflow-x: hidden;
 }
+body h1{color:#29377d; }
+body h2{color:#29377d; }
 .overflow_wrapper {
   overflow: hidden;
   position: relative;
@@ -1136,7 +1208,7 @@ a:focus {
 ul,
 ol,
 dl {
-  padding-left: 1em;
+  /*padding-left: 1em;*/
 }
 h1,
 h2,
@@ -1171,7 +1243,7 @@ h3,
 }
 h4,
 .h4 {
-  font-size: 19px;
+  font-size: 14px;
 }
 h5,
 .h5 {
@@ -1207,16 +1279,16 @@ h6 .small,
 .h6 .small {
   color: inherit;
 }
-/*
+/* 
 4. =THE HEADER, LOGO & PRIMARY MENU
-===============================================================
+=============================================================== 
 */
 /*
---------------------------------------------------------------
-
+--------------------------------------------------------------  
+ 
 THE HEADER ELEMENT
 
---------------------------------------------------------------
+-------------------------------------------------------------- 
 */
 .header {
   font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1261,10 +1333,10 @@ THE HEADER ELEMENT
   background-color: rgba(48, 71, 112, 0.7) !important;
 }
 .header .mainbar.gradient {
-  background: linear-gradient(to right, #4eabf9 0%, #4eabf9 50%, #304770 50%, #304770 100%);
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 50%, #304770 50%, #304770 100%);
 }
 .header .mainbar.diagonal .container {
-  background: linear-gradient(45deg, #4eabf9 0%, #4eabf9 30%, #304770 29%, #304770 100%);
+  background: linear-gradient(45deg, #ffffff 0%, #ffffff 30%, #304770 29%, #304770 100%);
 }
 body.sticky_header .header {
   left: 0;
@@ -1273,11 +1345,11 @@ body.sticky_header .header {
   width: 100%;
 }
 /*
---------------------------------------------------------------
-
+--------------------------------------------------------------  
+ 
 THE LOGO
 
---------------------------------------------------------------
+-------------------------------------------------------------- 
 */
 .logo {
   margin: 15px 0;
@@ -1292,7 +1364,7 @@ THE LOGO
 }
 .logo a.brand img {
   width: auto;
-  max-height: 32px;
+  max-height: 58px;
 }
 .logo a.brand:link,
 .logo a.brand:visited {
@@ -1304,11 +1376,11 @@ THE LOGO
   color: #ffffff;
 }
 /*
---------------------------------------------------------------
-
+--------------------------------------------------------------  
+ 
 THE PRIMARY MENU
 
---------------------------------------------------------------
+-------------------------------------------------------------- 
 */
 label.mobile_collapser,
 span.close_menu {
@@ -1322,7 +1394,7 @@ span.close_menu {
   -webkit-transform: translate(0px, -50%);
   -ms-transform: translate(0px, -50%);
   transform: translate(0px, -50%);
-  right: 60px;
+  right: 40px;
   z-index: 100;
   background: transparent;
 }
@@ -1365,10 +1437,10 @@ span.close_menu {
 .menu_container ul.top_menu li a,
 .top_menu_container ul.top_menu li a {
   line-height: 1em;
-  padding: 10px 15px;
+  padding: 10px 10px;
   display: block;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
   background-color: transparent;
@@ -1635,11 +1707,11 @@ ul.menu-dropdown > li.active > a:focus {
   top: 19px;
 }
 /*
---------------------------------------------------------------
-
+--------------------------------------------------------------  
+ 
 NAVIGATION SOCIAL ICONS
 
---------------------------------------------------------------
+-------------------------------------------------------------- 
 */
 a.social_links {
   position: absolute;
@@ -1699,9 +1771,9 @@ a.social_links {
   transform: translate(0, 100%);
   z-index: 1;
 }
-/*
+/* 
 5. =THE HEAD PANEL AREA
-===============================================================
+=============================================================== 
 */
 .head_panel {
   -webkit-transition: all 300ms ease-in-out;
@@ -1792,8 +1864,8 @@ a.social_links {
   text-align: left;
 }
 .head_panel .slider_wrapper .caption.caption-right {
-  left: 0;
-  right: inherit;
+  right: 0;
+  left: inherit;
   text-align: left;
 }
 .caption .inner {
@@ -1843,7 +1915,7 @@ a.social_links {
 }
 .caption.caption-fancy .inner .t2 {
   display: inline-block;
-  font-size: 40px;
+  font-size: 34px;
   font-weight: 300;
 }
 .caption.caption-fancy .inner .t2:after {
@@ -1864,7 +1936,7 @@ a.social_links {
   display: none;
 }
 .caption.caption-flat .inner .t1 {
-  font-size: 56px;
+  font-size: 44px;
   font-weight: 900;
   line-height: 1em;
 }
@@ -1949,18 +2021,20 @@ a.social_links {
   padding: 30px 0 10px 0;
 }
 .head_panel .hgroup .title.diagonal-bgcolor-trans {
-  background: linear-gradient(to right, #efefef 0%, #efefef 25%, transparent 25%, transparent 100%);
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 25%, #ffffff00 25%, #ffffff00 100%);
+
 }
+
 .head_panel .hgroup .title.diagonal-bgcolor-trans .container h1 {
   display: inline-block;
   position: relative;
-  background-color: #efefef;
+  background-color: #ffffff;
   min-width: 300px;
   padding-right: 10px;
   z-index: 2;
 }
 .head_panel .hgroup .title.diagonal-bgcolor-trans .container h1:after {
-  background: linear-gradient(to top right, #efefef 0%, #efefef 50%, transparent 50%, transparent 100%);
+  background: linear-gradient(to top right, #ffffff 0%, #ffffff 50%, transparent 50%, transparent 100%);
   content: '';
   width: 72px;
   height: 100%;
@@ -2002,14 +2076,14 @@ a.social_links {
 }
 /*** MAP ***/
 .map {
-  height: 480px !important;
+  height: 304px !important;
 }
 .map img {
   max-width: none !important;
 }
-/*
+/* 
 6. =THE MAIN AREA & THE ROOT SECTION ELEMENT
-===============================================================
+=============================================================== 
 */
 .main {
   position: relative;
@@ -2018,10 +2092,11 @@ a.social_links {
   transition: all 300ms ease-in-out;
   -webkit-overflow-scrolling: touch;
   z-index: 9;
+  /*background-color: #ffff; */
 }
 .main section {
   position: relative;
-  background-color: #efefef;
+  background-color: #ffffff;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -2429,7 +2504,7 @@ section[class*="_section"] div[class*="_section"] .white_section a i {
 div[class*="_section"] .body-bg_section,
 section[class*="_section"] .body-bg_section,
 section[class*="_section"] div[class*="_section"] .body-bg_section {
-  background-color: #efefef;
+  background-color: #ffffff;
   color: #323232;
 }
 .body-bg_section a:link,
@@ -2474,9 +2549,9 @@ section[class*="_section"] div[class*="_section"] .body-bg_section a i {
   margin-bottom: 20px;
   margin-top: 0;
 }
-/*
+/* 
 7. =DESIGN ELEMENTS
-===============================================================
+=============================================================== 
 */
 /*** ENTRY ***/
 .entry {
@@ -2909,7 +2984,7 @@ select.department {
   transform: translate(-50%, -50%);
 }
 .teaser_box .content {
-  padding: 25px 20px 30px 20px;
+  padding: 25px 0px 32px 0px;
 }
 .teaser_box .content .hgroup {
   margin: 0 0 15px 0;
@@ -3825,16 +3900,16 @@ ul.portfolio_filters li a.active:hover {
   height: auto;
   max-height: 200px;
 }
-/*
+/* 
 8. =BLOG PAGE ELEMENTS
-===============================================================
+=============================================================== 
 */
 /*
---------------------------------------------------------------
-
+--------------------------------------------------------------  
+ 
 BLOG PAGE ELEMENTS
 
---------------------------------------------------------------
+-------------------------------------------------------------- 
 */
 article.post {
   padding-bottom: 20px;
@@ -3863,13 +3938,22 @@ article.post .post_figure_and_info .post_sub {
   display: inline-block;
   padding: 0;
 }
+article.post .news-cal .post_sub {
+    position: absolute;
+    top: 0;
+    right: 0px !important;
+    /*left: none !important;*/
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+  }
+
 article.post .post_figure_and_info .post_sub a {
   color: inherit;
 }
 article.post .post_figure_and_info .post_sub .post_info {
   display: inline-block;
   padding: 10px 10px;
-  margin-left: 15px;
   color: #fff;
 }
 article.post .post_figure_and_info .post_sub .post_info i {
@@ -3937,7 +4021,7 @@ article.post figure a {
   text-transform: uppercase;
   margin-top: 22px;
   margin-bottom: 11px;
-  font-size: 25px;
+  font-size: 19px;
   font-weight: 900;
   margin: 0;
 }
@@ -3977,7 +4061,7 @@ article.post figure a {
 }
 /*
 9. =SIDEBAR AND WIDGETS
-===============================================================
+=============================================================== 
 */
 .wpb_widgetised_column {
   padding-top: 4px;
@@ -4165,9 +4249,9 @@ article.post figure a {
   margin: 0 10px 10px 0;
   padding: 10px;
 }
-/*
+/* 
 10. =FOOTER WIDGETIZED AREA
-===============================================================
+=============================================================== 
 */
 footer {
   background-color: #232323;
@@ -4193,13 +4277,13 @@ footer a:active {
   padding-bottom: 15px;
   position: relative;
 }
-/*
+/* 
 11. =BOOTSTRAP ELEMENTS OVERRIDES
-===============================================================
+=============================================================== 
 */
-/*
+/* 
 X. =BOOTSTRAP ELEMENTS OVERRIDES
-===============================================================
+=============================================================== 
 */
 .bs-example-tabs .nav-tabs {
   margin-bottom: 15px;
@@ -4262,9 +4346,9 @@ X. =BOOTSTRAP ELEMENTS OVERRIDES
     font-size: 63px;
   }
 }
-/*
+/* 
 12. =MISC STYLES
-===============================================================
+=============================================================== 
 */
 img {
   max-width: 100%;
@@ -4345,9 +4429,9 @@ i.fa.danger {
   border: none;
   width: 100%;
 }
-/*
+/* 
  =3D Links Effect
- --------------------------------------------------------------
+ -------------------------------------------------------------- 
 */
 .roll {
   display: inline-block;
@@ -4388,9 +4472,9 @@ i.fa.danger {
   -webkit-transform: translate3d(0px, 105%, 0px) rotateX(-90deg);
   -webkit-transform-origin: 50% 0%;
 }
-/*
+/* 
  = BACK TO TOP BUTTON
- --------------------------------------------------------------
+ -------------------------------------------------------------- 
 */
 #return-to-top {
   position: fixed;
@@ -4561,9 +4645,9 @@ ul.owl-carousel {
   transition: all 2000ms ease-in-out;
   -webkit-overflow-scrolling: touch;
 }
-/*
+/* 
 13. =RESPONSIVE STATES
-===============================================================
+=============================================================== 
 */
 /* =Responsive: Very Large Desktops (Higher Part of LG)
 -------------------------------------------------------------- */
@@ -4589,7 +4673,7 @@ ul.owl-carousel {
   }
   .vcenter div[class*="col-"] {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     float: none;
     margin-right: -4px;
   }
@@ -4604,7 +4688,7 @@ ul.owl-carousel {
 -------------------------------------------------------------- */
 @media (min-width: 992px) and (max-width: 1199px) {
   .header .mainbar.diagonal .container {
-    background: linear-gradient(45deg, #4eabf9 0%, #4eabf9 30%, #304770 30%, #304770 100%);
+    background: linear-gradient(45deg, #ffffff 0%, #ffffff 30%, #304770 30%, #304770 100%);
   }
   .menu_container ul.main_menu > li > a {
     padding: 10px 10px;
@@ -4625,7 +4709,7 @@ ul.owl-carousel {
     margin-right: -4px;
   }
 }
-/* =Responsive: Small devices (SM) Tablets (Mobile Menu)
+/* =Responsive: Small devices (SM) Tablets (Mobile Menu) 
 -------------------------------------------------------------- */
 @media only screen and (max-width: 991px) {
   h1,
@@ -4642,7 +4726,7 @@ ul.owl-carousel {
   }
   h4,
   .h4 {
-    font-size: 18px;
+    font-size: 14px;
   }
   h5,
   .h5 {
@@ -4656,7 +4740,7 @@ ul.owl-carousel {
     padding-bottom: 50% !important;
   }
   .header .mainbar.diagonal .container {
-    background: linear-gradient(45deg, #4eabf9 0%, #4eabf9 50%, #304770 50%, #304770 100%);
+    background: linear-gradient(45deg, #ffffff 0%, #ffffff 50%, #304770 50%, #304770 100%);
   }
   .logo {
     margin: 10px 0;
@@ -4948,7 +5032,7 @@ ul.owl-carousel {
     padding-bottom: 70% !important;
   }
   .header .mainbar.diagonal .container {
-    background: linear-gradient(45deg, #4eabf9 0%, #4eabf9 50%, #304770 50%, #304770 100%);
+    background: linear-gradient(45deg, #ffffff 0%, #ffffff 50%, #304770 50%, #304770 100%);
   }
   .logo {
     margin: 5px 0;
@@ -5056,6 +5140,7 @@ ul.owl-carousel {
   .section_header.fancy h6 {
     font-size: 21px;
   }
+
 }
 /* =Responsive: Small Phones (XXXS)
 -------------------------------------------------------------- */
@@ -5076,7 +5161,51 @@ ul.owl-carousel {
     transform: translate(0px, 0px);
   }
 }
-/*
+/* 
 14. =WORDPRESS STYLES
-===============================================================
+=============================================================== 
 */
+
+
+.img-who{margin-bottom: 10px;}
+.no_padd1{padding-bottom: 0 !important;}
+.no_padd2{padding-top: 0 !important;}
+/*.mang-marg{margin-top: -20px;}*/
+.manag-desc{padding: 0 10px 0 10px !important;}
+.img-event-single{margin: 0 0 10px 10px !important;}
+.no_pad{padding: 0px !important; background-color: #ffff !important;}
+/*.parallax-slider{top:0 !important;}*/
+.desc2{min-height: 60px;}
+.subtitle2{font-size: 14px !important;}
+.post_title2{font-size: 20px !important; margin-bottom: 0px !important; margin-top: 0px !important;}
+.high{height: 38px;}
+.hight{height: 36px;}
+.img-ceo{margin-right: 10px !important; margin-left: 10px !important;}
+.right-tex{ text-align: left !important; }
+#labl_cv{margin-bottom: 0px !important; margin-top: 5px !important;}
+#cv_inpt{margin-top: 0px !important;}
+.maps{height: 200px !important;}
+.cat_box{padding-left:  0px !important; padding-right: 0px !important;}
+.cat_content{padding-right: 20px !important; padding-left: 20px !important;}
+.bann-tit > * {top:20% !important; width: 40%!important; text-align: center !important; }
+.no_back{background: transparent !important;}
+.img_news{height: 200px !important;}
+.desc_news{min-height: 50px !important; margin-top: 10px !important;}
+.hd_accor{background-color: #304770 !important; color:#ffff !important;}
+.img_accor{margin-left: 10px !important; margin-right: 10px !important;}
+.fb_butt{color: #304770 !important;}
+.a_prod{padding-left: 12px !important; padding-right: 12px !important;}
+.flg_a{padding-left: 2px !important; padding-right: 2px !important; padding-top: 2px !important; padding-bottom: 2px !important;}
+.manag_tit{color: #ffff !important;}
+.cntry_pro{min-height: 250px !important;}
+.tit_product{font-size: 11px !important;}
+.news_posts{padding-bottom: 0px !important;}
+.titl_jobs{background-color: #ffff !important;}
+.cntrs_font_size{font-size: 17px !important;}
+
+@media screen and (min-width: 2525px) {
+    .head_panel .hgroup .title.diagonal-bgcolor-trans {
+      background: linear-gradient(to right, #ffffff 0%, #ffffff 39%, #ffffff00 25%, #ffffff00 100%);
+
+    }
+}
