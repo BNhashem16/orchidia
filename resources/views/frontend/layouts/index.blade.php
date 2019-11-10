@@ -14,7 +14,7 @@
                       <div class="t1 uppercase">{{$slider->title[$app->getLocale()]}}</div>
                       <div class="t2 uppercase">{{$slider->sub_title[$app->getLocale()]}}</div>
                       <div class="t3 uppercase">{{$slider->extra[$app->getLocale()]}}</div>
-                      <div class="desc"><p>&nbsp;&amp; {!! $slider->description[$app->getLocale()] !!}</p></div>
+                      <div class="desc"><p> {!! $slider->description[$app->getLocale()] !!}</p></div>
                     </div>
                   </div>
                 </div>
@@ -64,57 +64,56 @@
               </div>
               <!-- ==================== SERVICE BOX ===================-->
               @foreach(App\Page::where('active',1)->where('nav',0)->where('page_id',0)->get() as $product)
-              <div class="col-sm-6 col-md-3">
-                <div class="teaser_box centered same_height_col white_section boxed boxed-special cat_box" style="height: auto; min-height: 361px;">
-                  <div class="figure">
-                    <a  href="{{url(app()->getLocale().'/Products/'.$product->slug)}}">
-                      <img src="{{url($product->image)}}" alt="service" height="195">
-                    </a>
-                  </div>
-                  <div class="content cat_content">
-                    <div class="hgroup">
-                      <h4 style="font-size: 11px;" class="tit_product">{{$product->title[app()->getLocale()]}}</h4>
+                <div class="col-sm-6 col-md-3">
+                  <div class="teaser_box centered same_height_col white_section boxed boxed-special cat_box" style="height: auto; min-height: 361px;">
+                    <div class="figure">
+                      <a  href="{{url(app()->getLocale().'/Products/'.$product->slug)}}">
+                        <img src="{{url($product->image)}}" alt="service" height="195">
+                      </a>
                     </div>
-                    <div class="link"><a href="{{url(app()->getLocale().'/Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>{{trans('app.Details')}}</strong>  </a></div>
+                    <div class="content cat_content">
+                      <div class="hgroup">
+                        <h4 style="font-size: 11px;" class="tit_product">{{$product->title[app()->getLocale()]}}</h4>
+                      </div>
+                      <div class="link"><a href="{{url(app()->getLocale().'/Products/'.$product->slug)}}" class="btn btn-sm btn-primary"><strong>{{trans('app.Details')}}</strong>  </a></div>
+                    </div>
                   </div>
                 </div>
-              </div>
               @endforeach
               <!-- END================= SERVICE BOX ===================-->
               <!-- END========================= SERVICES ========================-->
-                      <div class="clearfix"></div>
-                      <div class="text-center">
-                        <a href="{{url(app()->getLocale().'/Products')}}" class="btn btn-secondary with-icon">{{trans('app.READ MORE')}}<i class="fa fa-caret-right"></i></a>
+              <div class="clearfix"></div>
+                <div class="text-center">
+                  <a href="{{url(app()->getLocale().'/Products')}}" class="btn btn-secondary with-icon">{{trans('app.READ MORE')}}<i class="fa fa-caret-right"></i></a>
+                </div>
+            </div>
+          </div>
+        </section>
+                <!-- ========================= CALL TO ACTION ========================-->
+                <section style="background-image: url('frontend/assets/images/Wetlap.jpg')" class="secondary_section transparent-film parallax-window vcenter">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-8 col-sm-8">
+                        <!-- ========================= CALL TO ACTION ========================-->
+                        <div class="section_header fancy">
+                          <h3><small>{!! $component->title[app()->getLocale()]  !!}</small></h3>
+                          <p>{!! $component->description[app()->getLocale()]  !!}</p>
+                        </div>
+                        <!-- ========================= /CALL TO ACTION ========================-->
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                        <div class="pricing_plan black_section transparent transparent-film">
+                          <div class="stretchy-wrapper ratio_2-1">
+                            <div style="background-image:url({{$component->image}});" class="pricing_plan_photo"></div>
+                          </div>
+                          <div class="plan_title skincolored_section transparent transparent-film">
+                            <h3>{{$component->title[app()->getLocale()]}}</h3>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </section>
-        <section style="background-image: none;" class="secondary_section transparent-film parallax-window vcenter transparent" data-parallax="scroll" data-image-src="http://orchidiapharma.com/images/pages/1508862771+1_Wetlap.jpg" data-position="center top">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8 col-sm-8">
-                <!-- ========================= CALL TO ACTION ========================-->
-                <div class="section_header fancy">
-                  <h3><small>{!! $component->title[app()->getLocale()]  !!}</small></h3>
-                  <p>{!! $component->description[app()->getLocale()]  !!}</p>
-                </div>
-                <!-- ========================= /CALL TO ACTION ========================-->
-              </div>
-              <div class="col-md-4 col-sm-4">
-
-                  <div class="pricing_plan black_section transparent transparent-film">
-                    <div class="stretchy-wrapper ratio_2-1">
-                      <div style="background-image:url({{$component->image}});" class="pricing_plan_photo"></div>
-                    </div>
-                    <div class="plan_title skincolored_section transparent transparent-film">
-                      <h3>{{$component->title[app()->getLocale()]}}</h3>
-                    </div>
-                  </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
         <section id="contact_panel">
             <div class="container">
                 <div class="row">
@@ -162,11 +161,9 @@
                                     @endif
                                   </select>
                                 @else
-                                <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" required="" placeholder="{{$form->title[app()->getLocale()]}}" size="40" aria-required="true" aria-invalid="false" class="phone form-control">
-
+                                <input type="{{$form->field['type']}}" name="{{$form->field['name']}}" placeholder="{{$form->title[app()->getLocale()]}}" required="" size="40" aria-required="true" aria-invalid="false" class="name form-control">
                               @endif
                             @endforeach
-
                                 <div class="clearfix"></div>
                                 <div class="notice btn btn-primary alert alert-warning alert-dismissable hidden"></div><img src="./assets/images/ajax-loader.gif" alt="Sending" class="ajax-loader not_visible">
                             <!-- </form> -->

@@ -32,7 +32,7 @@
                     </a>
                   </figure>
               </div>
-                <p style="color: #323232;">{{$component->description['en']}}</p>
+                <p style="color: #323232;">{{$component->description[app()->getLocale()]}}</p>
             </div>
           </article>
         </div>

@@ -24,7 +24,7 @@
               @foreach(App\Component::where('component_category_id',13)->get() as $event)
               <div class="col-md-4">
                 <article class="post">
-                  <h2 style="font-weight: 900;font-size: 20px;font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;" class="post_title post_title2 high"><a href="{{url('/'.app()->getLocale().'/'.'Events/'.$event->link)}}">{{$event->title['en']}}</a></h2>
+                  <h2 style="font-weight: 900;font-size: 20px;font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;" class="post_title post_title2 high"><a href="{{url('/'.app()->getLocale().'/'.'Events/'.$event->link)}}">{{$event->title[app()->getLocale()]}}</a></h2>
                     <div class="post_figure_and_info">
                       <div class="post_sub">
                         <span class="post_info post_date">
@@ -32,10 +32,10 @@
                         </span>
                       </div>
                         <figure class="stretchy-wrapper ratio_12-5">
-                          <a href="{{url('Events/'.$event->link)}}" title="Great Minds wave 4" style="background-image: url({{$event->image}})"></a>
+                          <a href="{{url('Events/'.$event->link)}}" title="Great Minds wave 4" style="background-image: url({{url($event->image)}})"></a>
                         </figure>
                   </div>
-                    <p style="color:black;" class="desc hight" >{{substr($event->description['en'], 0, 90)}}....</p>
+                    <p style="color:black;" class="desc hight" >{{substr($event->description[app()->getLocale()], 0, 90)}}....</p>
                       <a href="{{url('/'.app()->getLocale().'/'.'Events/'.$event->link)}}" class="btn btn-primary">Read More</a>
                 </article>
               </div>
