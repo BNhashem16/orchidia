@@ -20,6 +20,13 @@
             <!-- BEGIN PORTLET-->
             <div class="portlet light form-fit bordered">
               <div class="portlet-body form">
+                @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error) <li> {{ $error }} </li> @endforeach
+                                </ul>
+                            </div>
+                        @endif
                 <!-- BEGIN FORM-->
                 {!! Form::Open(['route'=>'pages.store','files'=>true  ,'class' =>'form-horizontal form-bordered'] ) !!}
                   <div class="form-body">
@@ -74,7 +81,7 @@
                                 @endforeach
                             </select>
                           </div>
-                        </div>                        
+                        </div>
                         <div class="form-group ">
                           <label class="control-label col-md-3">Active</label>
                             <div class="col-md-9">

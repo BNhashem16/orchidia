@@ -7,38 +7,41 @@ Route::get('dashboard/logout', 'backend\UserController@logout');
 Route::get('dashboard/login', 'backend\UserController@login')->name('login');
 Route::post('dashboard/login', 'backend\UserController@doLogin');
 //----------------------------------Back End-------------------------------------------
-Route::group(['middleware'  => ['auth' , 'isAdmin']] , function(){
+Route::group(['prefix' => 'dashboard', 'middleware'  => ['auth' , 'isAdmin']] , function(){
 #Home
-Route::get('dashboard', 'backend\DashboardController@index')->name('dashboard');
+Route::get('', 'backend\DashboardController@index')->name('dashboard');
 #Category
 // Route::resource('dashboard/categories', 'backend\CategoryController');
 // Route::get('dashboard/categories/delete_ajax/{category}','backend\CategoryController@ajax_delete')->name('delete.ajax');
 // Route::get('dashboard/categories/change_active/{category}','backend\CategoryController@change_active')->name('change.active');
-#Slider & Bannar
-Route::resource('dashboard/slider', 'backend\SliderController');
-Route::get('dashboard/slider/delete_ajax/{slider}','backend\SliderController@ajax_delete')->name('delete.ajax');
-Route::get('dashboard/slider/change_active/{slider}','backend\SliderController@change_active')->name('change.active');
+
 #Language
-Route::resource('dashboard/lang', 'backend\LanguageController');
-Route::get('dashboard/lang/delete_ajax/{lang}','backend\LanguageController@ajax_delete')->name('delete.ajax');
-Route::get('dashboard/lang/change_active/{lang}','backend\LanguageController@change_active')->name('change.active');
+Route::resource('/lang', 'backend\LanguageController');
+Route::get('/lang/change_active/{lang}','backend\LanguageController@change_active')->name('change.active');
+Route::delete('/lang/{id}', 'backend\LanguageController@destroy')->name('lang.destroy');
+// Route::post('/lang', 'backend\LanguageController@store');
 #pages
-Route::resource('dashboard/pages', 'backend\PagesController');
-Route::get('dashboard/pages/delete_ajax/{page}','backend\PagesController@ajax_delete')->name('delete.ajax');
-Route::get('dashboard/pages/change_active/{page}','backend\PagesController@change_active')->name('change.active');
+Route::resource('/pages', 'backend\PagesController');
+Route::delete('/pages/{id}' , 'backend\PagesController@destroy');
+Route::get('/pages/change_active/{page}','backend\PagesController@change_active')->name('change.active');
 #Component Category
-Route::resource('dashboard/component/category', 'backend\Component_categoryController');
-#Component Category
-Route::resource('dashboard/component', 'backend\ComponentController');
+Route::resource('/component/category', 'backend\Component_categoryController');
+  Route::get('/component/category/dynamic_pdf', 'backend\DynamicPDFController@index');
+  Route::get('/component/category/dynamic_pdf/pdf', 'backend\DynamicPDFController@pdf');
+
+  Route::get('/component/category/import_excel', 'backend\ImportExcelController@index');
+  Route::post('/component/category/import_excel/import', 'backend\ImportExcelController@import');
+#Component
+Route::resource('/component', 'backend\ComponentController');
 #Gallery
-Route::resource('dashboard/gallery', 'backend\GalleryController');
+Route::resource('/gallery', 'backend\GalleryController');
 #Messages
-Route::resource('dashboard/messages', 'backend\MessagesController');
+Route::resource('/messages', 'backend\MessagesController');
 
 #Setting
-Route::resource('dashboard/setting', 'backend\SettingController');
+Route::resource('/setting', 'backend\SettingController');
 #Gallery
-Route::resource('dashboard/form', 'backend\FormController');
+Route::resource('/form', 'backend\FormController');
 });
 //-------------------------------------------Front End-------------------------------------
 Route::get('/',function(){ return redirect()->to('/en'); });

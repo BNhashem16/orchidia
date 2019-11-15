@@ -33,7 +33,7 @@
                             @elseif(Session::has('error'))
                                 <p class="alert alert-danger" > {{Session::get('error')}}</p>
                             @endif
-                            <div class="table_change">
+                            <div class="ajax">
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                 <thead>
                                 <tr>
@@ -47,14 +47,15 @@
                                 </thead>
                                 <tbody>
                                 @foreach($lang as $key => $lang)
+                                <tr class="id{{$lang->id}}" >
                                     <td class="center">{{$key+1}} </td>
                                     <td class="center">{{$lang->name}}</td>
                                     <td class="center">{{$lang->short_code}}</td>
                                     <td class="center">
                                         @if($lang->active ==1)
-                                            <label class="btn btn-primary active_change" data-id="{{$lang->id}}" data-url='{{url('/')}}' data-active="{{$lang->active}}">Active</label>
+                                            <label class="btn btn-primary active_change" data-id="{{$lang->id}}" data-url='{{url('/dashboard/lang')}}' data-active="{{$lang->active}}">Active</label>
                                         @else
-                                            <label class="btn btn-danger active_change" data-id="{{$lang->id}}" data-url='{{url('/')}}' data-active="{{$lang->active}}">Inactive</label> @endif
+                                            <label class="btn btn-danger active_change" data-id="{{$lang->id}}" data-url='{{url('/dashboard/lang')}}' data-active="{{$lang->active}}">Inactive</label> @endif
                                     </td>
 
 
@@ -65,14 +66,13 @@
 
 
                                     <td>
-{!! Form::Open(['method' => 'DELETE' , 'route' => ['lang.destroy',$lang->id]]) !!}
-                                        <button class="btn btn-danger" data-id="{{$lang->id}}" onclick="deletefunction({{$lang->id}},'{{url('/')}}')"> Delete </button>
-{!! Form::Close() !!}
-</td>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <button class="deleteRecord btn btn-danger" data-id="{{$lang->id}}" > Delete </button>
+                                    </td>
                                 </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                              </table>
                             </div>
                         </div>
                     </div>
@@ -99,24 +99,25 @@
                 cache: false,
                 success: function(result)
                 {
-                    $('.table_change').html(result);
+                    $('tbody tr.id'+id).html(result);
                 }
             });
 
         });
-        function deletefunction(id,url) {
 
-            $.ajax({
-                type: "GET",
-                url:url+'/dashboard/lang/delete_ajax/'+id,
-                data: {'id':id},
-                cache: false,
-                success: function(result)
-                {
-                    $('.table_change').html(result);
-                }
-            });
-        }
+    $(".deleteRecord").click(function(){
+      var id = $(this).data("id");
+      var token = $("meta[name='csrf-token']").attr("content");
+      $.ajax({
+        url: "/dashboard/lang/"+id,
+        type: 'DELETE',
+        data: { "id": id, "_token": token },
+        success: function (data){
+            $('tbody tr.id'+id).remove();
+        }});
+    });
+
+
     </script>
     @endsection
 @extends('backend.layouts.app')

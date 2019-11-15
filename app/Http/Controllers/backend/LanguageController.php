@@ -8,7 +8,9 @@ use App\Language;
 use Auth;
 use Exception;
 use Session;
+use Validator;
 use Redirect;
+use Response;
 
 class LanguageController extends Controller
 {
@@ -30,21 +32,22 @@ class LanguageController extends Controller
     }
 
     public function store(Request $request)
-    {
-        try {
-            $lang = new Language;
-            $lang->name = $request->name;
-            $lang->short_code = $request->short_code;
-            $lang->active = $request->input('status');
-            $lang->created_by = Auth::user()->id;
-            $lang->save();
-            Session::flash('success' , 'Language Added Successfully');
-            return Redirect::to('dashboard/lang');
-        } catch (\Exception $e) {
-            Session::flash('error', 'Language Not Added');
+        {
+          try {
+              $lang = new Language;
+              $lang->name = $request->input('name');
+              $lang->short_code = $request->input('short_code');
+              $lang->active = $request->input('active');
+              $lang->updated_by = Auth::user()->id;
+              $lang->save();
+              Session::flash('success', 'Language Updated Successfully');
+              return Redirect::to('dashboard/lang');
+          } catch (\Exception $e) {
+              Session::flash('error', 'Language Not Updated');
+              return Redirect::back();
+          }
+
         }
-        return Redirect::back();
-    }
 
     public function edit($id)
     {
@@ -68,26 +71,6 @@ class LanguageController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
-      if(!$id || Language::where('id',$id)->count() == 0) {
-        return \App::abort(404);
-      }
-
-    try {
-      Language::where('id',$id)->delete();
-        Session::flash('success','Language Deleted Successfully');
-    } catch (\Exception $e) {
-      Session::flash('error','Language Not Deleted');
-    }
-    return Redirect::back();
-    }
-    // public  function ajax_delete(Language $lang) {
-    //     $lang->delete();
-    //
-    //     $lang = Language::orderBy('id','DESC')->get();
-    //     return view('backend.language.ajax')->with('lang' , $lang);
-    // }
     // public  function change_active(Language $lang) {
     //     $active = $_GET['active'];
     //     $active == 1 ? $lang->update(['active'=>0]) :   $lang->update(['active'=>1]);
@@ -97,4 +80,8 @@ class LanguageController extends Controller
     // //     return view('backend.language.ajax')->with('lang' , $lang);
     //
     // }
+    public function destroy(Language $lang){
+      $lang->delete();
+      return Session::flash('success' ,'Record deleted successfully!');
+    }
 }

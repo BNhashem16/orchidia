@@ -14,4 +14,9 @@ class Component_category extends Model
     public function forms() {
     return $this->hasMany(Form::class , 'component_category_id'  , 'id');
   }
+
+  public function user()
+  {
+      return $this->belongsTo('App\User', 'id'  , 'created_by');
+  }
 }

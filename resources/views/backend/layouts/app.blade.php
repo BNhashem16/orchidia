@@ -9,6 +9,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="{{url('backend/assets/global/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
@@ -56,6 +57,10 @@
     <link href="{{url('backend/assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
+    <style>
+     .error{ color:red; }
+    </style>
+
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
@@ -241,6 +246,7 @@
 <script src="{{url('backend/assets/global/plugins/jquery.blockui.min.js')}}" type="text/javascript"></script>
 <script src="{{url('backend/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="{{url('backend/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script>
 <script src="{{url('backend/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js')}}" type="text/javascript"></script>
@@ -276,7 +282,13 @@
 <script src="{{url('backend/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
 <script src="{{url('backend/assets/pages/scripts/table-datatables-editable.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+
+
+
 <script src="https://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
+
+
 @yield('jsCode')
+
 </body>
 </html>

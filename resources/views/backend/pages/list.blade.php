@@ -40,7 +40,7 @@
                             </thead>
                             <tbody>
                               @foreach($page as $key => $page)
-<tr>
+                              <tr class="id{{$page->id}}" >
                                 <td class="center">{{$key+1}} </td>
                                 <td class="center">{{$page->title['en']}}</td>
                                 <td class="center">@if(empty($page->image )) <label class="btn btn-danger" >No Image</label> @else<img width="100px" height="100px" src="{{url($page->image)}}" >@endif  </td>
@@ -80,10 +80,10 @@
                                   <a class="btn btn-info " href="{{route('pages.edit',$page->id)}}"> Edit </a>
                                 </td>
                                 <td>
-                                  {!! Form::Open(['method' => 'DELETE' , 'route' => ['pages.destroy',$page->id]]) !!}
-                                    <button class="btn btn-danger" data-id="{{$page->id}}" onclick="deletefunction({{$page->id}},'{{url('/')}}')"> Delete </button>
-                                  {!! Form::Close() !!}
-                                </td></tr>
+                                  <meta name="csrf-token" content="{{ csrf_token() }}">
+                                  <button class="deleteRecord btn btn-danger" data-id="{{$page->id}}" > Delete </button>
+                                  </td>
+                                </tr>
                               @endforeach
                             </tbody>
                           </table>
@@ -114,19 +114,18 @@
             });
 
         });
-        function deletefunction(id,url) {
 
-            $.ajax({
-                type: "GET",
-                url:url+'/dashboard/lang/delete_ajax/'+id,
-                data: {'id':id},
-                cache: false,
-                success: function(result)
-                {
-                    $('.table_change').html(result);
-                }
-            });
-        }
+        $(".deleteRecord").click(function(){
+          var id = $(this).data("id");
+          var token = $("meta[name='csrf-token']").attr("content");
+          $.ajax({
+            url: "/dashboard/pages/"+id,
+            type: 'DELETE',
+            data: { "id": id, "_token": token },
+            success: function (data){
+                $('tbody tr.id'+id).remove();
+            }});
+        });
     </script>
     @endsection
 @extends('backend.layouts.app')

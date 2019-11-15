@@ -37,6 +37,7 @@ class PagesController extends Controller
         $this->validate($request,[
             'description.en'=>'required',
             'description.ar'=>'required',
+            'image' => 'mimes:jpeg,bmp,png'
         ]);
 
         try {
@@ -116,18 +117,8 @@ class PagesController extends Controller
         return Redirect::back();
     }
 
-    public function destroy($id)
-    {
-      if(!$id || Page::where('id',$id)->count() == 0) {
-        return \App::abort(404);
-      }
-
-    try {
-      Page::where('id',$id)->delete();
-        Session::flash('success','Page Deleted Successfully');
-    } catch (\Exception $e) {
-      Session::flash('error','Page Not Deleted');
-    }
-    return Redirect::back();
-    }
+    public function destroy($id){
+          Page::where('id',$id)->delete();
+          return response()->json([ 'success' => 'Record deleted successfully!' ]);
+        }
 }
