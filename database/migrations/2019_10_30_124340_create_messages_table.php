@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->json('message');
             $table->integer('page_id');
+            $table->string('files');
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();

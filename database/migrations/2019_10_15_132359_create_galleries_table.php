@@ -18,6 +18,7 @@ class CreateGalleriesTable extends Migration
             $table->string('title');
             $table->string('attachment');
             $table->enum('type', ['video' , 'image']);
+            $table->integer('page_id');
             $table->timestamps();
         });
     }

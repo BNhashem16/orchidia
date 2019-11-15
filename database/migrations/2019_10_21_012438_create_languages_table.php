@@ -17,6 +17,7 @@ class CreateLanguagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('short_code');
+            $table->string('image');
             $table->string('active')->default('0');
             $table->integer('created_by')->default('0');
             $table->integer('updated_by')->default('0');

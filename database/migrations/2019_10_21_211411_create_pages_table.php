@@ -21,6 +21,7 @@ class CreatePagesTable extends Migration
             $table->boolean('active')->default('1');
             $table->string('image');
             $table->string('page_id');
+            $table->boolean('nav')->nullable();
             $table->enum('have_gallary', ['yes' , 'no']);
             $table->enum('have_form', ['yes' , 'no']);
             $table->integer('form_id')->nullable();
