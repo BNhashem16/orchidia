@@ -8,13 +8,15 @@ use Auth;
 use Session;
 use Redirect;
 use validator;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Component_categoryController extends Controller
 {
     public function index()
     {
-        $component_category = Component_category::orderBy('id','DESC')->get();
-        return view('backend.component_category.list')->with('component_category' , $component_category);
+        $component_categories = Component_category::orderBy('id','DESC')->get();
+        return view('backend.component_category.list')->with('component_categories' , $component_categories);
     }
 
     public function create()
@@ -80,4 +82,11 @@ class Component_categoryController extends Controller
 		     }
 		       return Redirect::back();
          }
+
+    public function import()
+    {
+        Excel::import(new UsersImport, 'users.xlsx');
+
+        return redirect('/')->with('success', 'All good!');
+    }
 }

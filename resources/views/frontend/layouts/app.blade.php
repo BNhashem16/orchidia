@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar">
+@if(app()->getLocale() == 'en' )
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -11,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="HandheldFriendly" content="true">
     <meta name="apple-touch-fullscreen" content="yes">
-    <link rel="icon" type="image/png" href="{{url('frontend/assets/favicon/logo_small.png')}}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{url('frontend/assets/images/logo_small.png')}}" sizes="16x16">
     <link rel="manifest" href="{{url('frontend/assets/favicon/manifest.json')}}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="https://orchidiapharma.com/assets/favicon/browserconfig.xml">
@@ -39,6 +40,49 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxGrUEE1XC6USzfLR9sOcBVC42vLmwSU8"></script>
     <link href="https://fonts.googleapis.com/css?family=Changa:600" rel="stylesheet">
   </head>
+@else
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>اوركيديا</title>
+        <!-- Map -->
+        <meta name="description" content="اوركيديا">
+        <meta name="keywords" content="اوركيديا">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link rel="icon" type="image/png" href="{{url('frontend/assets/images/logo_small.png')}}" sizes="16x16">
+        <link rel="manifest" href="https://orchidiapharma.com/assets/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="https://orchidiapharma.com/assets/favicon/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <!-- Google Fonts-->
+        <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,600,500,700,800,900" rel="stylesheet" type="text/css">
+        <!-- LIGHTBOX   new    -->
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/css/libs/imagelightbox.min.css" type="text/css" media="all">
+        <!-- OWLSLIDER-->
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/js/libs/owl.carousel.2.0.0-beta.2.4/css/owl.carousel.css" type="text/css" media="all" data-module="owlslider">
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/js/libs/owl.carousel.2.0.0-beta.2.4/css/owl.theme.default.css" type="text/css" media="all" data-module="owlslider">
+        <!-- ANIMATE.CSS LIBRARY-->
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/css/libs/animate.min.css" type="text/css" media="all">
+        <!-- ICON WEB FONTS	-->
+        <link rel="stylesheet" href="{{url('frontend/assets/fonts/font-awesome/css/font-awesome.min.css')}}" type="text/css" media="all">
+        <link rel="stylesheet" href="{{url('frontend/assets/fonts/webfont-medical-icons/wfmi-style.css')}}" type="text/css" media="all">
+        <!-- MAIN STYLESHEETS-->
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/css/theme_custom_bootstrap.min.css" type="text/css" media="all">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/css/style_ar.css" type="text/css" media="all">
+
+        <!-- HEADER SCRIPTS	-->
+        <script type="text/javascript" src="https://orchidiapharma.com/assets/js/libs/modernizr.custom.48287.js"></script>
+        <link rel="stylesheet" href="https://orchidiapharma.com/assets/css/_style-switcher.css" type="text/css" media="all">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxGrUEE1XC6USzfLR9sOcBVC42vLmwSU8"></script>
+        <link href="https://fonts.googleapis.com/css?family=Changa:600" rel="stylesheet">
+        <script type="text/javascript" src="chrome-extension://aggiiclaiamajehmlfpkjmlbadmkledi/popup.js" async=""></script><script type="text/javascript" src="chrome-extension://aggiiclaiamajehmlfpkjmlbadmkledi/tat_popup.js" async=""></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/1/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/39/1/util.js"></script>
+    </head>
+@endif
   <body class="sticky_header" >
     <div class="overflow_wrapper">
       <!-- =========================== HEADER ==========================-->

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Component_category extends Model
 {
+    protected $fillable=['title','type','created_by','updated_by'];
+
     public function components()
     {
 	    return $this->hasMany('App\Component','id','component_category_id');

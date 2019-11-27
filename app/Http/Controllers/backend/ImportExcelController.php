@@ -15,34 +15,10 @@ class ImportExcelController extends Controller
      return view('import_excel', compact('component_categories'));
     }
 
-    function import(Request $request)
+    public function import()
     {
-     $this->validate($request, [
-      'select_file'  => 'required|mimes:xls,xlsx'
-     ]);
+        Excel::import(new ComponentCategory, request()->file('file'));
 
-     $path = $request->file('select_file')->getRealPath();
-
-     $component_categories = Excel::load($path)->get();
-
-     if($component_categories->count() > 0)
-     {
-      foreach($component_categories->toArray() as $key => $value)
-      {
-       foreach($value as $row)
-       {
-        $insert_data[] = array(
-         'title'  => $row['title'],
-         'type'   => $row['type'],
-        );
-       }
-      }
-
-      if(!empty($insert_data))
-      {
-       DB::table('component_categories')->insert($insert_data);
-      }
-     }
-     return back()->with('success', 'Excel Data Imported successfully.');
+        return back();
     }
 }

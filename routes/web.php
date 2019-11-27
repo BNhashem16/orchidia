@@ -2,46 +2,43 @@
 use Illuminate\Support\Facades\Route;
 Auth::routes();
 #Logout
-Route::get('dashboard/logout', 'backend\UserController@logout');
+    Route::get('dashboard/logout', 'backend\UserController@logout');
 #Login
-Route::get('dashboard/login', 'backend\UserController@login')->name('login');
-Route::post('dashboard/login', 'backend\UserController@doLogin');
+    Route::get('dashboard/login', 'backend\UserController@login')->name('login');
+    Route::post('dashboard/login', 'backend\UserController@doLogin');
 //----------------------------------Back End-------------------------------------------
 Route::group(['prefix' => 'dashboard', 'middleware'  => ['auth' , 'isAdmin']] , function(){
 #Home
-Route::get('', 'backend\DashboardController@index')->name('dashboard');
+    Route::get('', 'backend\DashboardController@index')->name('dashboard');
 #Category
-// Route::resource('dashboard/categories', 'backend\CategoryController');
-// Route::get('dashboard/categories/delete_ajax/{category}','backend\CategoryController@ajax_delete')->name('delete.ajax');
-// Route::get('dashboard/categories/change_active/{category}','backend\CategoryController@change_active')->name('change.active');
-
+    // Route::resource('dashboard/categories', 'backend\CategoryController');
+    // Route::get('dashboard/categories/delete_ajax/{category}','backend\CategoryController@ajax_delete')->name('delete.ajax');
+    // Route::get('dashboard/categories/change_active/{category}','backend\CategoryController@change_active')->name('change.active');
 #Language
-Route::resource('/lang', 'backend\LanguageController');
-Route::get('/lang/change_active/{lang}','backend\LanguageController@change_active')->name('change.active');
-Route::delete('/lang/{id}', 'backend\LanguageController@destroy')->name('lang.destroy');
-// Route::post('/lang', 'backend\LanguageController@store');
+    Route::resource('/lang', 'backend\LanguageController');
+    Route::get('/lang/change_active/{lang}','backend\LanguageController@change_active')->name('change.active');
+    Route::delete('/lang/{id}', 'backend\LanguageController@destroy')->name('lang.destroy');
+    // Route::post('/lang', 'backend\LanguageController@store');
 #pages
-Route::resource('/pages', 'backend\PagesController');
-Route::delete('/pages/{id}' , 'backend\PagesController@destroy');
-Route::get('/pages/change_active/{page}','backend\PagesController@change_active')->name('change.active');
+    Route::resource('/pages', 'backend\PagesController');
+    Route::delete('/pages/{id}' , 'backend\PagesController@destroy');
+    Route::get('/pages/change_active/{page}','backend\PagesController@change_active')->name('change.active');
 #Component Category
-Route::resource('/component/category', 'backend\Component_categoryController');
-  Route::get('/component/category/dynamic_pdf', 'backend\DynamicPDFController@index');
-  Route::get('/component/category/dynamic_pdf/pdf', 'backend\DynamicPDFController@pdf');
-
-  Route::get('/component/category/import_excel', 'backend\ImportExcelController@index');
-  Route::post('/component/category/import_excel/import', 'backend\ImportExcelController@import');
+    Route::resource('/component/category', 'backend\Component_categoryController');
+    #Convert Into PDF
+    Route::get('/component/category/dynamic_pdf', 'backend\DynamicPDFController@index');
+    Route::get('/component/category/dynamic_pdf/pdf', 'backend\DynamicPDFController@pdf');
 #Component
-Route::resource('/component', 'backend\ComponentController');
+    Route::resource('/component', 'backend\ComponentController');
 #Gallery
-Route::resource('/gallery', 'backend\GalleryController');
+    Route::resource('/gallery', 'backend\GalleryController');
 #Messages
-Route::resource('/messages', 'backend\MessagesController');
+    Route::resource('/messages', 'backend\MessagesController');
 
 #Setting
-Route::resource('/setting', 'backend\SettingController');
+    Route::resource('/setting', 'backend\SettingController');
 #Gallery
-Route::resource('/form', 'backend\FormController');
+    Route::resource('/form', 'backend\FormController');
 });
 //-------------------------------------------Front End-------------------------------------
 Route::get('/',function(){ return redirect()->to('/en'); });

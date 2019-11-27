@@ -25,12 +25,23 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="card-body">
+                                    <form action="{{ url('/dashboard/component/category/import_excel/import') }}" method="POST" name="importform"
+                                          enctype="multipart/form-data">
+                                        {{ csrf_token() }}
+                                        <input type="file" name="file" class="form-control">
+                                        <br>
+                                        <a class="btn btn-info" href="{{ url('export') }}">
+                                            Export File</a>
+                                        <button class="btn btn-success">Import File</button>
+                                    </form>
+                                </div>
                             @if(Session::has('success'))
                                 <p class="alert alert-success" > {{Session::get('success')}}</p>
                             @elseif(Session::has('error'))
                                 <p class="alert alert-danger" > {{Session::get('error')}}</p>
                             @endif
+
                             <div class="table_change">
                                 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                 <thead>
@@ -43,7 +54,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($component_category as $key => $component_category)
+                                @foreach($component_categories as $key => $component_category)
                                     <td class="center">{{$key+1}} </td>
                                     <td class="center">{{$component_category->title}}</td>
                                     <td class="center"> <label class="btn btn-warning" style="color:black;font-weight: bold" > {{$component_category->type}} </label></td>
